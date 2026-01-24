@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" href="assets/img/logo/madc-mob.png" type="image/png" sizes="16x16" />
+    <title>Nagpur Airport | MADC</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --madc-red: #D92128;
+            --madc-grey: #555759;
+            --madc-dark: #2c2c2c;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--madc-dark);
+            background-color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* --- Hero Section with Parallax --- */
+        .hero-section {
+            position: relative;
+            height: 70vh;
+            background: linear-gradient(rgba(44, 44, 44, 0.7), rgba(217, 33, 40, 0.4)), 
+                        url('https://images.unsplash.com/photo-1556382226-d80c3c2423dc?q=80&w=2069&auto=format&fit=crop');
+            background-size: cover;
+            background-attachment: fixed; /* Parallax Effect */
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            animation: fadeInDown 1.5s ease;
+        }
+
+        .hero-subtitle {
+            font-weight: 300;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            border: 1px solid var(--madc-red);
+        }
+
+        /* --- Section Styling --- */
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            color: var(--madc-grey);
+            position: relative;
+            margin-bottom: 50px;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--madc-red);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- Premium Cards --- */
+        .info-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            border-top: 5px solid transparent;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            background: var(--madc-red);
+            transition: width 0.4s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(217, 33, 40, 0.15);
+        }
+
+        .info-card:hover::before {
+            width: 100%;
+        }
+
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background: rgba(217, 33, 40, 0.1);
+            color: var(--madc-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            transition: 0.4s;
+        }
+
+        .info-card:hover .icon-box {
+            background: var(--madc-red);
+            color: white;
+            transform: rotateY(360deg);
+        }
+
+        /* --- Content Layout --- */
+        .content-block {
+            margin-bottom: 2rem;
+            text-align: justify;
+        }
+
+        /* --- Stats Strip --- */
+        .stats-strip {
+            background: var(--madc-grey);
+            color: white;
+            padding: 50px 0;
+            margin: 60px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .stat-item:last-child { border-right: none; }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--madc-red); /* Logo Red */
+            background: white;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; 
+            background-clip: text;
+            background-image: linear-gradient(to right, #fff, #ccc);
+        }
+
+        /* --- Scroll Top Button --- */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--madc-red);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(217, 33, 40, 0.4);
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-container"></div>
+
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Nagpur Airport</h1>
+            <h2 class="h4 mt-2 font-weight-light">Global Aviation Hub in the Making</h2>
+            <div class="hero-subtitle">Elevating Aviation Industry in India</div>
+        </div>
+    </header>
+
+    <section id="about" class="section-padding">
+        <div class="container">
+            
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-10" data-aos="fade-up">
+                    <div class="text-center">
+                        <h2 class="section-title">A Beacon of Progress</h2>
+                    </div>
+                    <div class="info-card" style="border-left: 5px solid var(--madc-red);">
+                        <p class="lead" style="font-weight: 500; color: #555;">
+                            Situated at the geographic center of India, Dr. Babasaheb Ambedkar International Airport, Nagpur stands as a beacon of progress, seamlessly blending strategic importance, operational resilience, and transformative potential. It is spread vastly over an area of about 1460 acres having runway dimensions of 3200 metres X 45 metres, encompassing the peak hour terminal capacity of 2450 pax with an overall capacity to handle 4 mppa passengers, one- time cargo holding capacity of 100 MT and annual cargo holding capacity of 6925 MT. Operating round the clock, regardless of weather conditions, Nagpur Airport is not just an aviation hub, it is at the cusp of evolution of regional airports in the country. Here, we explore the multifaceted significance of Nagpur Airport, encapsulating its operational prowess, airline diversity, and its impact on passenger connectivity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 align-items-stretch">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+                    <div class="info-card">
+                        <div class="icon-box">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4 class="mb-3" style="color: var(--madc-grey);">Operational Prowess</h4>
+                        <p class="content-block">
+                            The DBAI Airport caters for 24-hour-operations, under all weather conditions. The airport, situated within the city limits of Nagpur at an easily identifiable location and conveniently connected by roads and city metro, stands on the standards set by the Airports Authority of India (AAI), the International Civil Aviation Organization (ICAO) and the International Air Transport Association (IATA). Currently, Nagpur Airport hosts a diverse mix of 5 airlines, comprising 3 domestic carriers and 2 international Air carriers. The connectivity from Nagpur not only enhances accessibility for passengers but also provides airlines with ample opportunities to optimize route networks and maximize operational efficiency and enhancing its appeal as a reliable transit point for both domestic and international travellers.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                    <div class="info-card">
+                        <div class="icon-box">
+                            <i class="fas fa-plane-departure"></i>
+                        </div>
+                        <h4 class="mb-3" style="color: var(--madc-grey);">Bustling Nexus</h4>
+                        <p class="content-block">
+                            With about 31 daily departing flights, Nagpur Airport serves as a bustling nexus, connecting passengers from and around Nagpur Division to 13 major cities across India and 2 international destinations (Sharjah & Doha). A testament to its popularity and operational efficiency, Nagpur Airport handles a significant footfall of approximately 9000 passengers per day and about 150 MT cargo per day. The steady influx underscores the airport's pivotal role in catering to the travel needs of the region, establishing itself as a central transit point and contributing to the city's economic vibrancy.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-strip" data-aos="zoom-in">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-6 stat-item">
+                        <i class="fas fa-users mb-2" style="font-size:1.5rem; opacity:0.7"></i>
+                        <div class="stat-number">4 MPPA</div>
+                        <small>Capacity</small>
+                    </div>
+                    <div class="col-md-3 col-6 stat-item">
+                        <i class="fas fa-plane mb-2" style="font-size:1.5rem; opacity:0.7"></i>
+                        <div class="stat-number">31+</div>
+                        <small>Daily Flights</small>
+                    </div>
+                    <div class="col-md-3 col-6 stat-item">
+                        <i class="fas fa-map-marker-alt mb-2" style="font-size:1.5rem; opacity:0.7"></i>
+                        <div class="stat-number">13</div>
+                        <small>Domestic Cities</small>
+                    </div>
+                    <div class="col-md-3 col-6 stat-item">
+                        <i class="fas fa-boxes mb-2" style="font-size:1.5rem; opacity:0.7"></i>
+                        <div class="stat-number">150 MT</div>
+                        <small>Daily Cargo</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="info-card" style="background-color: #fcfcfc;">
+                         <div class="icon-box">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4 class="mb-3" style="color: var(--madc-grey);">Future Growth</h4>
+                        <p class="content-block">
+                            Nagpur Airport's journey is one of continual growth and future potential for both passengers as well as cargo. As it navigates the currents of the aviation industry, the airport stands poised to become a regional powerhouse, attracting more airlines, expanding its route network, and solidifying its standing as a vital conduit for both domestic and international travellers. As part of Nagpur Airport’s growth process, this airport is being privatized in near future.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="info-card" style="border-bottom: 5px solid var(--madc-red);">
+                         <div class="icon-box">
+                            <i class="fas fa-globe-asia"></i>
+                        </div>
+                        <h4 class="mb-3" style="color: var(--madc-grey);">Regional Powerhouse</h4>
+                        <p class="content-block">
+                           In essence, Nagpur Airport's operational resilience, diverse airline portfolio, and extensive connectivity paint a vivid picture of its pivotal role in the aviation industry more particularly in the Vidarbha region of Maharashtra. Beyond being a transit point, it stands as a testament to the evolution of regional airports, demonstrating how strategic planning and operational excellence can propel an airport into the forefront of the nation's aviation landscape. Nagpur Airport isn't just a place where planes take off and land; it's a dynamic force that connects people, fosters economic growth, amplifies stakeholder/ passenger convenience, offers humongous opportunities, and exemplifies the limitless possibilities within the realm of regional aviation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="scroll-top" id="scrollTopBtn">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $("#header-container").load("header.html");
+            $("#footer-container").load("footer.html");
+
+            // Initialize Animations
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 100
+            });
+
+            // Scroll Top Logic
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 300) {
+                    $('#scrollTopBtn').addClass('active');
+                } else {
+                    $('#scrollTopBtn').removeClass('active');
+                }
+            });
+
+            $('#scrollTopBtn').click(function() {
+                $('html, body').animate({scrollTop : 0}, 800);
+                return false;
+            });
+        });
+
+        function goBack() {
+            window.location.href ='pro-madc.html';
+        }
+    </script>
+    
+    <script async type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script async type="text/javascript">
+        function googleTranslateElementInit(){
+            new google.translate.TranslateElement({
+                defaultLanguage:'en',
+                pageLanguage:'en',
+                includedLanguages:'en,hi,mr',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false,
+                multilanguagePage: true}, 'google_translate_element')
+        };
+    </script>
+
+</body>
+</html>

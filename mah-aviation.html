@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link rel="icon" href="assets/img/logo/madc-mob.png" type="image/png" sizes="16x16" />
+
+    <title>Airports and Aviation Infrastructure in Maharashtra | MADC</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            /* MADC Official Color Palette */
+            --primary-red: #E10600;
+            --logo-grey: #9E9E9E;
+            --dark-grey: #3A3A3A;
+            --pure-white: #FFFFFF;
+            
+            /* Premium Shades */
+            --red-light: rgba(225, 6, 0, 0.08);
+            --red-medium: rgba(225, 6, 0, 0.15);
+            --red-dark: #B80500;
+            --grey-light: rgba(158, 158, 158, 0.08);
+            --grey-medium: rgba(158, 158, 158, 0.15);
+            --dark-light: rgba(58, 58, 58, 0.1);
+            
+            /* Effects */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.12);
+            --shadow-red: 0 10px 30px rgba(225, 6, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fcfcfc;
+            color: var(--dark-grey);
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* Premium Background with Subtle Texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--pure-white);
+            background-image: 
+                radial-gradient(circle at 10% 20%, var(--red-light) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, var(--grey-light) 0%, transparent 20%);
+            z-index: -1;
+        }
+
+        /* Premium Header */
+        .premium-header {
+            background: linear-gradient(135deg, var(--dark-grey) 0%, #2d2d2d 100%);
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 40px 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .premium-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(225, 6, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 30%, rgba(158, 158, 158, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .premium-header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, #fcfcfc);
+            z-index: 2;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: var(--primary-red);
+            color: var(--pure-white);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            box-shadow: var(--shadow-red);
+        }
+
+        .header-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--pure-white);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .header-title span {
+            color: var(--primary-red);
+            position: relative;
+        }
+
+        .header-title span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-red);
+            opacity: 0.5;
+        }
+
+        .header-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* Stats Counter Animation */
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            min-width: 180px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary-red);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-red);
+            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        /* Premium Cards */
+        .premium-card {
+            background: var(--pure-white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .premium-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .premium-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-red), var(--red-dark));
+            border-radius: 5px 0 0 5px;
+        }
+
+        .card-header-premium {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--grey-light);
+        }
+
+        .card-icon-premium {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--red-dark) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 25px;
+            color: var(--pure-white);
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-red);
+        }
+
+        .card-title-premium {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-grey);
+            margin: 0;
+        }
+
+        .card-subtitle {
+            color: var(--logo-grey);
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        /* Enhanced Premium Tables */
+        .table-premium-wrapper {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            margin-top: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .table-premium {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--pure-white);
+        }
+
+        .table-premium thead {
+            background: linear-gradient(135deg, var(--dark-grey) 0%, #444 100%);
+        }
+
+        .table-premium thead th {
+            color: var(--pure-white);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 25px 20px;
+            border: none;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        .table-premium thead th:first-child {
+            padding-left: 30px;
+        }
+
+        .table-premium thead th:last-child {
+            padding-right: 30px;
+        }
+
+        .table-premium tbody tr {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .table-premium tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .table-premium tbody tr:hover {
+            background-color: var(--red-light);
+            transform: scale(1.005);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 1;
+        }
+
+        .table-premium td {
+            padding: 25px 20px;
+            vertical-align: middle;
+            color: var(--dark-grey);
+            font-size: 1rem;
+        }
+
+        .table-premium td:first-child {
+            padding-left: 30px;
+            font-weight: 700;
+            color: var(--primary-red);
+            text-align: center;
+            width: 80px;
+            background-color: var(--red-light);
+        }
+
+        .table-premium td:nth-child(2) {
+            font-weight: 600;
+            color: var(--dark-grey);
+            border-right: 1px solid rgba(0, 0, 0, 0.05);
+            width: 30%;
+        }
+
+        .badge-premium {
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+
+        .badge-red {
+            background: var(--red-light);
+            color: var(--primary-red);
+            border: 1px solid rgba(225, 6, 0, 0.2);
+        }
+
+        .badge-grey {
+            background: var(--grey-light);
+            color: var(--logo-grey);
+            border: 1px solid rgba(158, 158, 158, 0.2);
+        }
+
+        .badge-dark {
+            background: var(--dark-light);
+            color: var(--dark-grey);
+            border: 1px solid rgba(58, 58, 58, 0.2);
+        }
+
+        /* Airport List Items */
+        .airport-item-premium {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .airport-item-premium:hover {
+            background: var(--red-light);
+        }
+
+        .airport-item-premium i {
+            color: var(--primary-red);
+            margin-right: 12px;
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .airport-name {
+            font-weight: 600;
+            color: var(--dark-grey);
+        }
+
+        .airport-owner {
+            color: var(--logo-grey);
+            font-size: 0.9rem;
+            margin-left: 8px;
+        }
+
+        /* Map Section */
+        .map-section-premium {
+            text-align: center;
+            margin: 60px 0;
+            position: relative;
+        }
+
+        .map-title-premium {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark-grey);
+            margin-bottom: 15px;
+        }
+
+        .map-subtitle-premium {
+            font-size: 1.2rem;
+            color: var(--logo-grey);
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        .map-container-premium {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 10px solid var(--pure-white);
+        }
+
+        .map-container-premium:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .map-container-premium img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .map-container-premium:hover img {
+            transform: scale(1.02);
+        }
+
+        .map-overlay-premium {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(58, 58, 58, 0.9) 0%, transparent 100%);
+            color: var(--pure-white);
+            text-align: left;
+        }
+
+        .map-overlay-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .map-overlay-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Scroll Top Button */
+        .scroll-top-premium {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-red);
+            color: var(--pure-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-red);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            font-size: 1.3rem;
+        }
+
+        .scroll-top-premium.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-top-premium:hover {
+            background: var(--red-dark);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(225, 6, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .header-title {
+                font-size: 3rem;
+            }
+            
+            .premium-card {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .header-title {
+                font-size: 2.5rem;
+            }
+            
+            .stats-grid {
+                gap: 20px;
+            }
+            
+            .stat-item {
+                min-width: 160px;
+                padding: 20px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .card-title-premium {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .premium-header {
+                padding: 80px 0 60px;
+                border-radius: 0 0 30px 30px;
+            }
+            
+            .header-title {
+                font-size: 2.2rem;
+            }
+            
+            .header-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .premium-card {
+                padding: 25px;
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            
+            .card-header-premium {
+                flex-direction: column;
+                text-align: center;
+                margin-bottom: 25px;
+            }
+            
+            .card-icon-premium {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .table-premium thead {
+                display: none;
+            }
+            
+            .table-premium, .table-premium tbody, .table-premium tr, .table-premium td {
+                display: block;
+                width: 100%;
+            }
+            
+            .table-premium tr {
+                margin-bottom: 25px;
+                border: 1px solid rgba(0, 0, 0, 0.05);
+                border-radius: 12px;
+                overflow: hidden;
+                background: var(--pure-white);
+                box-shadow: var(--shadow-sm);
+            }
+            
+            .table-premium td {
+                padding: 18px;
+                text-align: left;
+                position: relative;
+                padding-left: 45%;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            }
+            
+            .table-premium td:first-child {
+                padding-left: 18px;
+                text-align: left;
+                background: var(--red-light);
+                font-weight: 700;
+                color: var(--primary-red);
+            }
+            
+            .table-premium td:nth-child(2) {
+                border-right: none;
+                width: 100%;
+            }
+            
+            .table-premium td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 18px;
+                width: 40%;
+                font-weight: 700;
+                color: var(--dark-grey);
+                text-transform: uppercase;
+                font-size: 0.85rem;
+            }
+            
+            .map-title-premium {
+                font-size: 2rem;
+            }
+            
+            .map-subtitle-premium {
+                font-size: 1.1rem;
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-title {
+                font-size: 1.8rem;
+            }
+            
+            .stats-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stat-item {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .premium-card {
+                padding: 20px 15px;
+            }
+            
+            .card-title-premium {
+                font-size: 1.5rem;
+            }
+            
+            .map-container-premium {
+                margin-left: 15px;
+                margin-right: 15px;
+                border-width: 5px;
+            }
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .fade-in-up.delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .fade-in-up.delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .fade-in-up.delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        /* Number Counter Animation */
+        .count-up {
+            display: inline-block;
+            animation: countUp 1s ease-out forwards;
+            opacity: 0;
+        }
+    </style>
+    <script async src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+</head>
+
+<body>
+
+    <!-- Premium Header -->
+    <header class="premium-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-badge fade-in-up">MADC Aviation Infrastructure</div>
+                <h1 class="header-title fade-in-up delay-1">
+                    Airports & Aviation <br>in <span>Maharashtra</span>
+                </h1>
+                <p class="header-subtitle fade-in-up delay-2">
+                    Comprehensive overview of existing and proposed aviation infrastructure 
+                    driving connectivity and economic growth across Maharashtra
+                </p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item fade-in-up delay-1">
+                        <div class="stat-number count-up" data-count="28">0</div>
+                        <div class="stat-label">Airports & Airstrips</div>
+                    </div>
+                    <div class="stat-item fade-in-up delay-2">
+                        <div class="stat-number count-up" data-count="4">0</div>
+                        <div class="stat-label">International Airports</div>
+                    </div>
+                    <div class="stat-item fade-in-up delay-3">
+                        <div class="stat-number count-up" data-count="4">0</div>
+                        <div class="stat-label">New Airports Proposed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-11">
+                    
+                    <!-- Existing Infrastructure Card -->
+                    <div class="premium-card fade-in-up">
+                        <div class="card-header-premium">
+                            <div class="card-icon-premium">
+                                <i class="fas fa-plane-departure"></i>
+                            </div>
+                            <div>
+                                <h2 class="card-title-premium">Existing Infrastructure</h2>
+                                <p class="card-subtitle">28 Airports & Airstrips currently operational across Maharashtra</p>
+                            </div>
+                        </div>
+                        
+                        <div class="table-premium-wrapper">
+                            <table class="table-premium">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">#</th>
+                                        <th>Category</th>
+                                        <th>Airport Name & Ownership</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td data-label="Serial">01</td>
+                                        <td data-label="Category">
+                                            International Airports
+                                            <div class="mt-2">
+                                                <span class="badge-premium badge-red">Total: 4</span>
+                                            </div>
+                                        </td>
+                                        <td data-label="Airports">
+                                            <div class="airport-list">
+                                                <div class="airport-item-premium">
+                                                    <i class="fas fa-check-circle"></i>
+                                                    <span class="airport-name">Mumbai</span>
+                                                    <span class="airport-owner">(AAI)</span>
+                                                </div>
+                                                <div class="airport-item-premium">
+                                                    <i class="fas fa-check-circle"></i>
+                                                    <span class="airport-name">Nagpur</span>
+                                                    <span class="airport-owner">(MIHAN India Ltd.)</span>
+                                                </div>
+                                                <div class="airport-item-premium">
+                                                    <i class="fas fa-check-circle"></i>
+                                                    <span class="airport-name">Pune</span>
+                                                    <span class="airport-owner">(Air Force)</span>
+                                                </div>
+                                                <div class="airport-item-premium">
+                                                    <i class="fas fa-check-circle"></i>
+                                                    <span class="airport-name">Aurangabad</span>
+                                                    <span class="airport-owner">(AAI)</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="Serial">02</td>
+                                        <td data-label="Category">
+                                            International Airports (with License)
+                                            <div class="mt-2">
+                                                <span class="badge-premium badge-grey">Total: 7</span>
+                                            </div>
+                                        </td>
+                                        <td data-label="Airports">
+                                            <strong>Nashik</strong> (HAL), <strong>Kolhapur</strong> (AAI), <strong>Sindhudurg</strong> (MIDC), 
+                                            <strong>Shirdi</strong> (MADC), <strong>Gondia</strong> (AAI), <strong>Jalgaon</strong> (AAI), 
+                                            <strong>Juhu</strong> (AAI)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="Serial">03</td>
+                                        <td data-label="Category">
+                                            Domestic Airports (Un-licensed)
+                                            <div class="mt-2">
+                                                <span class="badge-premium badge-dark">Total: 15</span>
+                                            </div>
+                                        </td>
+                                        <td data-label="Airports">
+                                            Nanded (MIDC), Baramati (MIDC), Yavatmal (MIDC), Latur (MIDC), Dharashiv (MIDC), 
+                                            Amravati (MADC), Ratnagiri (ICG), Solapur (AAI), Akola (AAI), Karad (MADC), 
+                                            Dhule (MADC), Phaltan (MADC), Kalyan (Defence Unused), Hadapsar (DGCA – Glider), 
+                                            Chandrapur (Morwa) (MADC)
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Proposed Development Card -->
+                    <div class="premium-card fade-in-up delay-1">
+                        <div class="card-header-premium">
+                            <div class="card-icon-premium">
+                                <i class="fas fa-hard-hat"></i>
+                            </div>
+                            <div>
+                                <h2 class="card-title-premium">Proposed Development</h2>
+                                <p class="card-subtitle">4 new airports planned to enhance connectivity across Maharashtra</p>
+                            </div>
+                        </div>
+                        
+                        <div class="table-premium-wrapper">
+                            <table class="table-premium">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">#</th>
+                                        <th>Category</th>
+                                        <th>Proposed Location & Agency</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td data-label="Serial">01</td>
+                                        <td data-label="Category">
+                                            New Proposed Airports
+                                            <div class="mt-2">
+                                                <span class="badge-premium" style="background: rgba(255, 193, 7, 0.1); color: #d39e00; border: 1px solid rgba(255, 193, 7, 0.2);">
+                                                    Upcoming: 4
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td data-label="Details">
+                                            <div class="proposed-airports-grid">
+                                                <div class="proposed-airport-item" style="background: var(--red-light); border-left: 4px solid var(--primary-red); padding: 15px; margin-bottom: 15px; border-radius: 8px;">
+                                                    <div style="font-weight: 600; color: var(--dark-grey);">Navi Mumbai</div>
+                                                    <div style="color: var(--logo-grey); font-size: 0.9rem;">CIDCO</div>
+                                                </div>
+                                                <div class="proposed-airport-item" style="background: var(--red-light); border-left: 4px solid var(--primary-red); padding: 15px; margin-bottom: 15px; border-radius: 8px;">
+                                                    <div style="font-weight: 600; color: var(--dark-grey);">Pune - Purandar</div>
+                                                    <div style="color: var(--logo-grey); font-size: 0.9rem;">MADC</div>
+                                                </div>
+                                                <div class="proposed-airport-item" style="background: var(--red-light); border-left: 4px solid var(--primary-red); padding: 15px; margin-bottom: 15px; border-radius: 8px;">
+                                                    <div style="font-weight: 600; color: var(--dark-grey);">Solapur - Boramani</div>
+                                                    <div style="color: var(--logo-grey); font-size: 0.9rem;">MADC</div>
+                                                </div>
+                                                <div class="proposed-airport-item" style="background: var(--red-light); border-left: 4px solid var(--primary-red); padding: 15px; margin-bottom: 15px; border-radius: 8px;">
+                                                    <div style="font-weight: 600; color: var(--dark-grey);">Chandrapur - Murti-Vihirgaon</div>
+                                                    <div style="color: var(--logo-grey); font-size: 0.9rem;">MADC</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <section class="map-section-premium">
+            <div class="container">
+                <h2 class="map-title-premium fade-in-up">Aviation Infrastructure Map</h2>
+                <p class="map-subtitle-premium fade-in-up delay-1">
+                    Strategic visualization of airport locations and connectivity across Maharashtra
+                </p>
+                
+                <div class="map-container-premium fade-in-up delay-2">
+                    <img src="assets/img/logo/aviation-m.jpg" alt="Aviation Map of Maharashtra">
+                    <div class="map-overlay-premium">
+                        <div class="map-overlay-title">Maharashtra Aviation Network</div>
+                        <div class="map-overlay-subtitle">Comprehensive infrastructure supporting regional and international connectivity</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scroll Top Button -->
+    <div class="scroll-top-premium">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 800
+        });
+
+        $(document).ready(function () {
+            // Animate number counters
+            function animateCounters() {
+                $('.count-up').each(function() {
+                    var $this = $(this);
+                    var countTo = $this.attr('data-count');
+                    
+                    $({ countNum: 0 }).animate({
+                        countNum: countTo
+                    }, {
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function() {
+                            $this.text(Math.floor(this.countNum));
+                        },
+                        complete: function() {
+                            $this.text(this.countNum);
+                        }
+                    });
+                });
+            }
+            
+            // Trigger counter animation when element is in view
+            function checkCounters() {
+                $('.count-up').each(function() {
+                    var elementTop = $(this).offset().top;
+                    var elementBottom = elementTop + $(this).outerHeight();
+                    var viewportTop = $(window).scrollTop();
+                    var viewportBottom = viewportTop + $(window).height();
+                    
+                    if (elementBottom > viewportTop && elementTop < viewportBottom) {
+                        if (!$(this).hasClass('animated')) {
+                            $(this).addClass('animated');
+                            animateCounters();
+                        }
+                    }
+                });
+            }
+            
+            // Scroll to top functionality
+            $(window).scroll(function () {
+                // Show/hide scroll to top button
+                if ($(window).scrollTop() > 300) {
+                    $('.scroll-top-premium').addClass('active');
+                } else {
+                    $('.scroll-top-premium').removeClass('active');
+                }
+                
+                // Trigger animations when scrolling
+                checkCounters();
+                
+                // Fade in elements on scroll
+                $('.fade-in-up').each(function() {
+                    var elementTop = $(this).offset().top;
+                    var elementVisible = 150;
+                    
+                    if ($(window).scrollTop() > elementTop - $(window).height() + elementVisible) {
+                        $(this).addClass('visible');
+                    }
+                });
+            });
+            
+            // Scroll to top when button is clicked
+            $('.scroll-top-premium').click(function() {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 800);
+            });
+            
+            // Table row hover effect
+            $('.table-premium tbody tr').hover(
+                function() {
+                    $(this).css('transform', 'scale(1.005)');
+                },
+                function() {
+                    $(this).css('transform', 'scale(1)');
+                }
+            );
+            
+            // Initialize animations on page load
+            $(window).trigger('scroll');
+            
+            // Trigger counters after a short delay
+            setTimeout(checkCounters, 500);
+        });
+    </script>
+    
+    <script type="text/javascript">
+        function googleTranslateElementInit(){
+            new google.translate.TranslateElement({
+                defaultLanguage:'en',
+                pageLanguage:'en',
+                includedLanguages:'en,hi,mr',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false,
+                multilanguagePage: true}, 'google_translate_element')
+        };
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+</body>
+</html>

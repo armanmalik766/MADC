@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MADC – Airport Projects</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        /* ================= MADC THEME VARIABLES ================= */
+        :root {
+            --madc-red: #B71C1C;
+            --madc-gold: #FFC107;
+            --madc-black: #212121;
+            --madc-gray: #f4f4f4;
+            --text-dark: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text-dark);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* ================= HEADER CONTAINER ================= */
+        #header-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: #fff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* PAGE EXIT TRANSITION */
+        .page-exit {
+            opacity: 0;
+            transform: scale(0.98);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        /* ================= RIGHT ACTION BUTTONS ================= */
+        .right-actions {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        .action-card {
+            background: #fff;
+            border-left: 5px solid var(--madc-red);
+            padding: 20px;
+            width: 280px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-card:hover {
+            transform: translateX(-10px);
+            border-left: 5px solid var(--madc-gold);
+            background: var(--madc-red);
+        }
+
+        .action-card h3 {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--madc-black);
+            margin-bottom: 5px;
+            transition: 0.3s;
+        }
+
+        .action-card small {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        /* Hover Text Change */
+        .action-card:hover h3,
+        .action-card:hover small {
+            color: #fff;
+        }
+
+        /* Icon decoration */
+        .action-card::after {
+            content: '✈';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #eee;
+            transition: 0.3s;
+        }
+
+        .action-card:hover::after {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+
+        /* ================= MAP AREA ================= */
+        .map-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            padding-top: 60px;
+        }
+
+   .map-container {
+    position: relative;
+    width: min(95vw, 850px);
+
+    /* 🔒 SINGLE SOURCE OF TRUTH */
+    aspect-ratio: 1200 / 800;
+
+    margin: auto;
+}
+
+
+.map-container img.main-map {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* correct */
+    pointer-events: none;
+}
+
+
+
+.marker {
+    position: absolute;
+    width: clamp(14px, 1.6vw, 20px);
+    height: clamp(14px, 1.6vw, 20px);
+    transform: translate(-50%, -50%);
+}
+
+
+
+@media (max-width: 768px) {
+    .map-container {
+        width: 95%;
+        aspect-ratio: 4 / 3; /* slightly taller for mobile */
+    }
+
+    .marker {
+        transform: translate(-50%, -50%);
+    }
+}
+
+
+        /* ================= GLOWING MARKERS (UPDATED) ================= */
+        .marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            /* Theme Color: Red Center */
+            background: var(--madc-red);
+            /* White border for contrast against map */
+            border: 2px solid #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 5;
+            /* Static Glow Effect combining Red and Gold */
+            box-shadow: 0 0 15px var(--madc-red), 0 0 25px var(--madc-gold);
+            transition: transform 0.3s ease, background 0.3s;
+        }
+
+        /* Inner Pulse (Red) */
+        .marker::before {
+            content: "";
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2px solid var(--madc-red);
+            opacity: 0.8;
+            animation: pulse-red 2s infinite;
+        }
+
+        /* Outer Ripple (Gold) - Creates the 'beacon' look */
+        .marker::after {
+            content: "";
+            position: absolute;
+            inset: -15px;
+            background: radial-gradient(circle, var(--madc-gold) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            z-index: -1;
+            animation: ripple-gold 2s infinite 0.5s; /* 0.5s delay for staggered effect */
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        @keyframes ripple-gold {
+            0% { transform: scale(0.5); opacity: 0.6; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        .marker:hover {
+            transform: scale(1.3);
+            background: var(--madc-gold);
+            border-color: var(--madc-black);
+            box-shadow: 0 0 20px var(--madc-gold), 0 0 40px var(--madc-red);
+            z-index: 20;
+        }
+
+        /* Tooltip Label */
+        .marker span {
+            position: absolute;
+            top: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--madc-black);
+            color: var(--madc-gold); /* Gold text for better visibility */
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border-bottom: 3px solid var(--madc-red); /* Red accent on tooltip */
+        }
+
+        /* Arrow for tooltip */
+        .marker span::after {
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid var(--madc-red); /* Matches border bottom */
+        }
+
+        .marker:hover span {
+            opacity: 1;
+            top: -55px;
+        }
+
+        /* ================= COORDINATES ================= */
+        .dhule { top: 21.5%; left: 31%; }
+        .shirdi { top: 44%; left: 30.5%; }
+        .amravati { top: 22.5%; left: 57%; }
+        .chandrapur { top: 37%; left: 73%; }
+        .solapur { top: 73%; left: 42.5%; }
+        .karad { top: 76%; left: 26.5%; }
+        .ratnagiri { top: 80.5%; left: 21.3%; }
+        .pune { top: 58%; left: 25.5%; }
+        .phaltan { top: 68.5%; left: 30%; }
+        .mihan { top: 21.5%; left: 72%; }
+        .nanded { top: 52.5%; left: 57%; }
+        .gadchiroli { top: 40%; left: 81.5%; }
+        .yavatmal { top: 34%; left: 62%; }
+        .latur { top: 61%; left: 52%; }
+        .baramati { top: 62.5%; left: 32%; }
+        .dharashiv { top: 65%; left: 45%; }
+
+
+        /* ================= ANIMATION ELEMENTS ================= */
+        #madc-plane {
+            position: fixed;
+            top: 55%;
+            left: 50%;
+            width: min(85vw, 1100px);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .fly {
+            animation: planeFlyRTL 3.4s cubic-bezier(.4, 0, .2, 1) forwards;
+        }
+
+        @keyframes planeFlyRTL {
+            0% {
+                transform: translate(160%, -50%) scale(.95);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            100% {
+                transform: translate(-170%, -65%) scale(1.1);
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+/* MAP INTRO ZOOM EFFECT */
+.map-container {
+    transform: scale(1.25);
+    opacity: 0;
+    transition: transform 1.6s cubic-bezier(0.25, 1, 0.5, 1),
+                opacity 1.2s ease;
+}
+
+/* When animation starts */
+.map-container.map-zoom-in {
+    transform: scale(1);
+    opacity: 1;
+}
+
+        #cloud-layer {
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            z-index: 9998;
+            pointer-events: none;
+        }
+
+        .cloud-show {
+            animation: cloudPass 3.4s ease forwards;
+        }
+
+        @keyframes cloudPass {
+            0%, 100% { opacity: 0 }
+            30%, 70% { opacity: 1 }
+        }
+
+        .fade-ui {
+            opacity: 0;
+            transition: 0.5s;
+            pointer-events: none;
+        }
+
+
+        /* ================= RESPONSIVE DESIGN ================= */
+        @media (max-width: 1024px) {
+            .map-container {
+                width: 95%;
+                height: 70vh;
+            }
+
+            .right-actions {
+                top: auto;
+                bottom: 30px;
+                right: 0;
+                left: 0;
+                flex-direction: row;
+                justify-content: center;
+                transform: none;
+                width: 100%;
+                padding: 0 20px;
+            }
+
+            .action-card {
+                width: 45%;
+                max-width: 200px;
+                padding: 15px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .right-actions {
+                flex-direction: column;
+                bottom: 20px;
+                gap: 10px;
+            }
+
+            .action-card {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .map-container {
+                height: 60vh;
+                margin-top: -50px;
+            }
+
+            .marker {
+                width: 16px;
+                height: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="header-container"></div>
+
+    <section class="map-wrapper" id="mapUI">
+        <div class="map-container">
+            <img src="assets/map/map1.png" class="main-map" alt="Maharashtra Map Projects">
+
+            <div class="marker dhule" onclick="startFly('dhule.html')"><span>DHULE</span></div>
+            <div class="marker shirdi" onclick="startFly('shirdi.html')"><span>SHIRDI</span></div>
+            <div class="marker amravati" onclick="startFly('amravati.html')"><span>AMRAVATI</span></div>
+            <div class="marker chandrapur" onclick="startFly('chandrapur.html')"><span>CHANDRAPUR</span></div>
+            <div class="marker solapur" onclick="startFly('solapur.html')"><span>SOLAPUR</span></div>
+            <div class="marker karad" onclick="startFly('karad.html')"><span>KARAD</span></div>
+            <div class="marker pune" onclick="startFly('pune-purandar.html')"><span>PUNE</span></div>
+            <div class="marker phaltan" onclick="startFly('phaltan.html')"><span>PHALTAN</span></div>
+            
+            <div class="marker mihan" onclick="startFly('mihan.html')"><span>MIHAN (NAGPUR)</span></div>
+            <div class="marker nanded" onclick="startFly('nanded.html')"><span>NANDED</span></div>
+            <div class="marker ratnagiri" onclick="startFly('ratnagiri.html')"><span>RATNAGIRI</span></div>
+            <div class="marker gadchiroli" onclick="startFly('gadchiroli.html')"><span>GADCHIROLI</span></div>
+            <div class="marker yavatmal" onclick="startFly('yavatmal.html')"><span>YAVATMAL</span></div>
+            <div class="marker latur" onclick="startFly('latur.html')"><span>LATUR</span></div>
+            <div class="marker baramati" onclick="startFly('baramati.html')"><span>BARAMATI</span></div>
+            <div class="marker dharashiv" onclick="startFly('dharashiv.html')"><span>DHARASHIV (OSMANABAD)</span></div>
+
+        </div>
+    </section>
+
+    <div class="right-actions">
+        <div class="action-card" onclick="startFly('enter-about.html')">
+            <small>Explore</small>
+            <h3>More</h3>
+        </div>
+        <!-- <div class="action-card" onclick="startFly('aviation-support-system-infrastructure-dev.html')">
+            <small>Infrastructure</small>
+            <h3>Support System</h3>
+        </div>
+        <div class="action-card" onclick="startFly('global-aviation-hub.html')">
+            <small>Explore</small>
+            <h3>Aviation Hub</h3>
+        </div> -->
+    </div>
+
+    <img src="assets/map/airplane.png" id="madc-plane">
+    <div id="cloud-layer"></div>
+    <audio id="planeSound" preload="auto">
+        <source src="assets/voice/aeroplane-voice1.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <script>
+        // Load Header
+        $(document).ready(function () {
+            $("#header-container").load("header.html");
+        });
+
+        const plane = document.getElementById("madc-plane");
+        const cloud = document.getElementById("cloud-layer");
+        const mapSection = document.getElementById("mapUI");
+        const actions = document.querySelector(".right-actions");
+        const sound = document.getElementById("planeSound");
+
+        function startFly(target) {
+            // Start Visuals
+            plane.classList.add("fly");
+            cloud.classList.add("cloud-show");
+
+            // Fade UI
+            mapSection.classList.add("fade-ui");
+            actions.classList.add("fade-ui");
+
+            // 🔊 Play Plane Sound
+            sound.pause();
+            sound.currentTime = 0;
+
+            const playPromise = sound.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    console.log("Audio autoplay blocked.");
+                });
+            }
+
+            // Redirect after animation
+            setTimeout(() => {
+                document.body.classList.add("page-exit");
+
+                setTimeout(() => {
+                    window.location.href = target;
+                }, 600); // wait for fade animation
+            }, 2200);
+        }
+    </script>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const map = document.querySelector(".map-container");
+
+    // slight delay for premium feel
+    setTimeout(() => {
+        map.classList.add("map-zoom-in");
+    }, 300);
+});
+</script>
+
+
+</body>
+
+</html>

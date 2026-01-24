@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" href="assets/img/logo/madc-mob.png" type="image/png" sizes="16x16" />
+    <title>Aviation Support System And Infrastructure Development In Nagpur | MADC</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- MADC Color Palette & Theme Setup --- */
+        :root {
+            /* Derived exactly from the MADC Logo */
+            --madc-red: #D92128;    /* The vibrant red 'A' pillar */
+            --madc-grey: #555759;   /* The dark grey 'A' pillar and text */
+            --madc-light-grey: #808285; /* A lighter shade of the logo grey */
+            
+            /* Theme Colors */
+            --text-dark: #2c2c2c;
+            --text-muted: #6c757d;
+            --bg-light: #f8f9fa;
+            --section-bg-alt: #f0f2f5;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background-color: #fff;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5 {
+            font-weight: 700;
+            color: var(--madc-grey);
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--madc-red);
+        }
+
+        .text-red { color: var(--madc-red) !important; }
+        .text-grey { color: var(--madc-grey) !important; }
+        .bg-red { background-color: var(--madc-red) !important; }
+
+        /* --- Hero Banner (New addition for premium feel) --- */
+        .hero-banner {
+            /* Using a placeholder aviation image - replace with actual asset if available */
+            background: linear-gradient(rgba(44, 44, 44, 0.7), rgba(85, 87, 89, 0.8)), 
+                        url('https://images.unsplash.com/photo-1478860409698-8707f313ee8b?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0 80px;
+            margin-bottom: 50px;
+            border-bottom: 5px solid var(--madc-red);
+        }
+
+        .hero-banner h1 {
+            color: white;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- Custom Cards for Premium Look --- */
+        .premium-card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            background: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Top Border Accent using Logo Colors */
+        .premium-card.red-accent { border-top: 4px solid var(--madc-red); }
+        .premium-card.grey-accent { border-top: 4px solid var(--madc-grey); }
+
+        .premium-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .card-icon-wrapper {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* List Styling within cards */
+        .custom-list li {
+            position: relative;
+            list-style: none;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+        }
+
+        .custom-list li::before {
+            content: '\f058'; /* FontAwesome Check Circle */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--madc-red); /* Using logo red for bullets */
+        }
+
+        /* Section Padding */
+        .section-padding { padding: 80px 0; }
+        .alt-bg { background-color: var(--section-bg-alt); }
+
+        /* Scroll Top Button Override */
+        .scroll-top.primary-bg {
+            background-color: var(--madc-red) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header-container" class="sticky-top bg-white shadow-sm"></div>
+    <div class="main">
+        
+        <section class="hero-banner text-center">
+            <div class="container" data-aos="fade-up">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <h6 class="text-uppercase mb-3" style="color: #dadada; letter-spacing: 2px;">Maharashtra Airport Development Co. Ltd.</h6>
+                        <h1 class="display-4 mb-4">Aviation Support System &<br> Infrastructure Development in Nagpur</h1>
+                        <p class="lead" style="color: rgba(255,255,255,0.8);">Spearheading the development of MIHAN: Multi-Modal International Hub Airport at Nagpur.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding overflow-hidden">
+            <div class="container">
+                <div class="row align-items-center mb-5">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <h2 class="section-title">Strategic Vision: <span class="text-red">MIHAN</span></h2>
+                        <p class="lead text-muted">Nagpur being the geographical centre of India is easily accessible by Road, Rail and Air.</p>
+                        <p>With vital linkages towards America, Europe, Middle East, China, Japan and Australia, the Govt. of Maharashtra decided to develop the Multi-Modal International Hub Airport at Nagpur (MIHAN).</p>
+                        <p><strong>MADC</strong> has been appointed as the nodal agency and Special Planning Authority to develop this flagship project.</p>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                        <div class="row g-3">
+                             <div class="col-12">
+                                <div class="p-4 bg-white shadow-sm rounded border-start border-4" style="border-color: var(--madc-red) !important;">
+                                    <h5 class="text-red mb-3"><i class="fas fa-layer-group me-2"></i>MIHAN Project Segments</h5>
+                                    <ul class="custom-list mb-0">
+                                        <li>The Airport</li>
+                                        <li>Special Economic Zone (SEZ)</li>
+                                        <li>Area Outside SEZ</li>
+                                    </ul>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-4" data-aos="fade-up">
+                    <div class="col-lg-12 mb-3">
+                        <h3>Dr. Babasaheb Ambedkar International Airport</h3>
+                        <p class="text-muted">Being developed by MIHAN India Ltd. (JV of MADC Ltd. and AAI) on 1347.43 Ha land.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="premium-card grey-accent p-4 text-center">
+                            <div class="card-icon-wrapper text-grey"><i class="fas fa-users"></i></div>
+                            <h5>Passenger Capacity</h5>
+                            <p class="text-red fw-bold fs-4 mb-0">1.4 Crore</p>
+                            <small class="text-muted">Expected</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="premium-card grey-accent p-4 text-center">
+                            <div class="card-icon-wrapper text-grey"><i class="fas fa-dolly"></i></div>
+                            <h5>Cargo Handling</h5>
+                            <p class="text-red fw-bold fs-4 mb-0">8.7 Lakhs Ton</p>
+                            <small class="text-muted">Expected</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="premium-card grey-accent p-4 text-center">
+                            <div class="card-icon-wrapper text-grey"><i class="fas fa-road"></i></div>
+                            <h5>Infrastructure</h5>
+                            <p>Existing runway extension by 400m.</p>
+                            <p class="mb-0">New parallel runway: <strong class="text-red">4000m X 65m</strong> & Sprawling new Terminal Building.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding alt-bg">
+            <div class="container">
+                <div class="row justify-content-center text-center mb-5" data-aos="fade-up">
+                    <div class="col-lg-8">
+                        <h2 class="section-title mx-auto">SEZ & Aerospace Ecosystem</h2>
+                        <p class="lead text-muted">The only Multi-Product SEZ adjacent to an existing International Airport, sharing the boundary giving direct access vide Taxiway.</p>
+                    </div>
+                </div>
+
+                <div class="row g-4 mb-5" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-md-6">
+                        <div class="bg-white p-4 rounded shadow-sm h-100 border-top border-4" style="border-color: var(--madc-red) !important;">
+                            <h4 class="text-red"><i class="fas fa-chart-area me-2"></i>Special Economic Zone</h4>
+                            <p class="display-6 fw-bold text-dark mb-1">1236.21 Ha</p>
+                            <p class="text-muted">Notified Land for SEZ</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="bg-white p-4 rounded shadow-sm h-100 border-top border-4" style="border-color: var(--madc-grey) !important;">
+                            <h4 class="text-grey"><i class="fas fa-city me-2"></i>Mixed use Zone</h4>
+                            <p class="display-6 fw-bold text-dark mb-1">1013.20 Ha</p>
+                            <p class="text-muted">Area outside SEZ reserved for Mixed Use</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="mb-4 text-center" data-aos="fade-up">Key Aviation Partners in MIHAN SEZ</h3>
+                <div class="row g-4">
+                    
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="premium-card red-accent p-4">
+                            <div class="d-flex align-items-center mb-4">
+                                <i class="fas fa-plane-circle-check fa-2x text-red me-3"></i>
+                                <h4 class="mb-0">AI Engineering Services Ltd.</h4>
+                            </div>
+                            <p class="text-muted small mb-3">(Formerly Air India Ltd.) - 50 Acres Allotted</p>
+                            <ul class="custom-list">
+                                <li>Developed a world-class MRO facility for Boeing Aircrafts.</li>
+                                <li>Offered services to more than <strong>160</strong> Narrow Body and Wide Body Boeing Aircrafts till date.</li>
+                                <li>Agreement with <strong>Kuwait Airline</strong> for MRO services (4 aircrafts repaired/maintained already).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="premium-card grey-accent p-4">
+                            <div class="d-flex align-items-center mb-4">
+                                <i class="fas fa-jet-fighter-up fa-2x text-grey me-3"></i>
+                                <h4 class="mb-0">Reliance Aerostructure Ltd.</h4>
+                            </div>
+                             <p class="text-muted small mb-3">Co-Developer Status - 104 Acres Allotted</p>
+                            <ul class="custom-list">
+                                <li><strong>Dassault Reliance Aerospace Ltd. (DRAL):</strong> Spread over 31 acres. Manufacturing components for Falcon 2000 Business Jet and Rafale Fighter Jet.</li>
+                                <li>DRAL scheduled to make Falcon 2000 in flying condition by <span class="text-red fw-bold">Dec 2025</span>.</li>
+                                <li><strong>Thales Reliance Defence Systems Ltd (TRDS):</strong> Manufacturing Radar Systems and defence products for Ministry of Defence.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="premium-card grey-accent p-4">
+                            <div class="d-flex align-items-center mb-4">
+                                <i class="fas fa-industry fa-2x text-grey me-3"></i>
+                                <h4 class="mb-0">Tata Advanced Systems Ltd.</h4>
+                            </div>
+                            <p class="text-muted small mb-3">(formerly TAL Manufacturing Solutions Ltd.) - 30 Acres Allotted</p>
+                            <ul class="custom-list">
+                                <li>Part of MADC vision to develop aviation/aerospace manufacturing hub.</li>
+                                <li>Manufacturing components like Floor Beams for <strong>Boeing</strong> aircrafts.</li>
+                                <li>Manufacturing components for <strong>Airbus</strong> and <strong>Rolls Royce</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                        <div class="premium-card red-accent p-4">
+                            <div class="d-flex align-items-center mb-4">
+                                <i class="fas fa-screwdriver-wrench fa-2x text-red me-3"></i>
+                                <h4 class="mb-0">AAR Indamer Technics Pvt. Ltd.</h4>
+                            </div>
+                            <p class="text-muted small mb-3">JV of ‘AAR’ (USA) and ‘Indamer Aviation’ (India) - Approx 29.3 Acres</p>
+                            <ul class="custom-list">
+                                <li>Offering MRO to Airbus A320/A321 of <strong>Indigo Airlines</strong> and aircrafts of <strong>Go First Airlines</strong>.</li>
+                                <li>More than <strong>86</strong> A320 aircrafts maintained.</li>
+                                <li>Facility for ‘C’ Check, Environmental Controlled Hanger for Painting.</li>
+                                <li>Developing capabilities for B737 in next year.</li>
+                                <li>Partnership with <strong>Airbus Helicopters</strong> for rotary-wing MRO ecosystem in South Asia.</li>
+                                <li>Facilitating engine replacement (Pratt & Whitney to CFM) for IndiGo.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="scroll-top scroll-to-target text-white bg-red" data-target="html">
+        <span class="fas fa-hand-point-up"></span>
+    </div>
+    <div id="footer-container"></div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="assets/js/vendors/bootstrap-slider.min.js"></script>
+    <script src="assets/js/vendors/owl.carousel.min.js"></script>
+    <script src="assets/js/vendors/magnific-popup.min.js"></script>
+    <script src="assets/js/vendors/validator.min.js"></script>
+    <script src="assets/js/vendors/hs.megamenu.js"></script>
+    <script src="assets/js/app.js"></script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#header-container").load("header.html");
+            // Initialize AOS animations
+            AOS.init({
+                duration: 800, /* shorter duration for snappier feel */
+                easing: 'ease-in-out',
+                once: true, /* only animate once */
+                offset: 100
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#footer-container").load("footer.html");
+        });
+    </script>
+
+    <script async type="text/javascript"src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+    <script async type="text/javascript">
+        function googleTranslateElementInit(){
+            new google.translate.TranslateElement({
+                defaultLanguage:'en',
+                pageLanguage:'en',
+                includedLanguages:'en,hi,mr',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false,
+                multilanguagePage: true}, 'google_translate_element')
+        };
+    </script>
+    
+    <script>
+        function goBack() {
+            window.location.href ='pro-madc.html';
+        }  
+    </script>
+
+</body>
+</html>

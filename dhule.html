@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Dhule (Gondur) Airport | MADC</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* MADC Theme Colors */
+            --madc-red: #D92128;
+            --madc-red-light: #fbecec;
+            --madc-grey: #555759;
+            --madc-dark: #2c2c2c;
+            
+            --bg-dark: #12141d; /* Premium Dark Background */
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* --- Main Premium Card --- */
+        .premium-modal {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 1200px;
+            min-height: 600px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            display: flex;
+            overflow: hidden;
+            animation: modalPop 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: scale(0.95);
+            position: relative;
+        }
+
+        /* --- Left Visual Panel --- */
+        .left-panel {
+            background: #fcfcfc;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border-right: 1px solid #eee;
+        }
+
+        /* Image Slider Styling */
+        .hero-slider-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 300px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        /* Statistics Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 15px 10px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #f1f1f1;
+            transition: 0.3s;
+        }
+        
+        .stat-card:hover { transform: translateY(-5px); border-color: var(--madc-red); }
+
+        .stat-icon-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: white;
+        }
+
+        .bg-red-grad { background: linear-gradient(135deg, var(--madc-red), #ff6b6b); }
+        .bg-grey-grad { background: linear-gradient(135deg, var(--madc-grey), #888); }
+
+        .stat-val { font-weight: 700; font-size: 1rem; color: var(--madc-dark); display: block; }
+        .stat-label { font-size: 0.65rem; color: var(--madc-grey); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* --- Right Content Panel --- */
+        .right-panel {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            overflow-y: auto; /* Allow scrolling if content is long */
+        }
+
+        /* Tags */
+        .tag-row { display: flex; gap: 10px; align-items: center; }
+        .badge-pill {
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .tag-red { background: var(--madc-red-light); color: var(--madc-red); }
+        .tag-grey { background: #f0f2f5; color: var(--madc-grey); }
+
+        /* Typography */
+        .main-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--madc-dark);
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-style: italic;
+            color: var(--madc-grey);
+            border-left: 3px solid var(--madc-red);
+            padding-left: 15px;
+            margin: 5px 0 0 0;
+        }
+
+        /* Info Box */
+        .highlight-box {
+            background: #f9f9f9;
+            border-radius: 16px;
+            padding: 25px;
+            border-left: 5px solid var(--madc-red);
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--madc-red);
+            margin-bottom: 10px;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        /* Feature Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: var(--madc-dark);
+            font-weight: 500;
+        }
+        .feature-item i { color: var(--madc-red); font-size: 1.1rem; }
+
+        /* Buttons */
+        .action-row {
+            display: flex;
+            gap: 15px;
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        .btn-premium {
+            flex: 1;
+            padding: 15px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-ai {
+            background: #f0f2f5;
+            color: var(--madc-dark);
+        }
+        .btn-ai:hover, .btn-ai.active { background: #e4e6eb; color: var(--madc-red); }
+        
+        .btn-return {
+            background: linear-gradient(90deg, var(--madc-red), #b0151b);
+            color: white;
+            box-shadow: 0 4px 15px rgba(217, 33, 40, 0.3);
+        }
+        .btn-return:hover {
+            box-shadow: 0 6px 20px rgba(217, 33, 40, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 35px;
+            height: 35px;
+            background: #f1f1f1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            color: #666;
+            transition: 0.2s;
+        }
+        .close-btn:hover { background: var(--madc-red); color: white; }
+
+        /* Animation */
+        @keyframes modalPop {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(217, 33, 40, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(217, 33, 40, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(217, 33, 40, 0); }
+        }
+        .pulse-active { animation: pulse-ring 1.5s infinite; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .premium-modal { flex-direction: column; height: auto; width: 100%; }
+            .left-panel { order: 1; padding: 15px; }
+            .right-panel { order: 2; padding: 25px; }
+            body { padding: 10px; align-items: flex-start; }
+            .hero-slider-wrapper { height: 250px; }
+            .carousel-item img { height: 250px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="premium-modal">
+        <div class="close-btn" onclick="goBack()">
+            <i class="fas fa-times"></i>
+        </div>
+
+        <div class="row g-0 w-100 m-0">
+            
+            <div class="col-lg-5 left-panel">
+                
+                <div id="dhuleCarousel" class="carousel slide hero-slider-wrapper" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#dhuleCarousel" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#dhuleCarousel" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#dhuleCarousel" data-bs-slide-to="2"></button>
+                        <button type="button" data-bs-target="#dhuleCarousel" data-bs-slide-to="3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="assets/img/dhule1.jpg" alt="Dhule Airport">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/img/dhule2.jpg" alt="Dhule Runway">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/img/dhule3.jpg" alt="Dhule View">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/img/dhule4.jpg" alt="Dhule Aerial">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#dhuleCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#dhuleCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon-circle bg-red-grad"><i class="fas fa-plane-departure"></i></div>
+                        <span class="stat-val">VIP</span>
+                        <span class="stat-label">Operations</span>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon-circle bg-grey-grad"><i class="fas fa-graduation-cap"></i></div>
+                        <span class="stat-val">FTO</span>
+                        <span class="stat-label">Training</span>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon-circle bg-red-grad"><i class="fas fa-ruler-combined"></i></div>
+                        <span class="stat-val">63 Ha</span>
+                        <span class="stat-label">Area</span>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-white rounded-3 border d-flex align-items-center gap-3 mt-auto">
+                    <div class="stat-icon-circle bg-red-grad m-0" style="width: 35px; height: 35px; font-size: 1rem;">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                    <div>
+                        <small class="d-block text-muted" style="font-size: 0.7rem;">AI GUIDE</small>
+                        <span style="font-size: 0.85rem; font-weight: 600;">Indian Accent Enabled</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 right-panel">
+                
+                <div class="tag-row">
+                    <span class="badge-pill tag-red">MADC OPERATED</span>
+                    <span class="badge-pill tag-grey"><i class="fas fa-map-marker-alt me-1"></i> DHULE, MAHARASHTRA</span>
+                </div>
+
+                <div>
+                    <h1 class="main-title">Dhule (Gondur) Airport</h1>
+                    <p class="subtitle">"A strategic aviation hub operated by MADC"</p>
+                </div>
+
+                <div class="highlight-box">
+                    <span class="info-label"><i class="fas fa-info-circle me-1"></i> About Dhule</span>
+                    <p id="read-content" style="font-size: 0.9rem; color: #555; line-height: 1.7; margin: 0;">
+                        Dhule (Gondur) Airport is operated by MADC. This airport is primarily used for non-scheduled flights of VIPs and corporates. The airport infrastructure is developed over 63 Hectares, featuring a runway of 1380 meters by 30 meters with an orientation of 09/27. It also serves as a key base for aviation training.
+                    </p>
+                </div>
+
+                <div>
+                    <span class="info-label" style="color:#888; margin-bottom: 8px;">KEY DETAILS</span>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <i class="fas fa-road"></i> 1380m x 30m Runway
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-users"></i> VIP & Corporate
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-school"></i> Bombay Flying Club
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-clock"></i> Non-Scheduled Ops
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-row">
+                    <button id="voiceBtn" class="btn-premium btn-ai" onclick="toggleVoice()">
+                        <i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear voice Guide</span>
+                    </button>
+                    <button class="btn-premium btn-return" onclick="goBack()">
+                        Return to Map
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function goBack() {
+            window.location.href = 'pro-madc.html';
+        }
+
+        /* --- AI VOICE LOGIC (Autoplay & Click) --- */
+        let speechSynth = window.speechSynthesis;
+        let isSpeaking = false;
+        let voices = [];
+        let hasAutoplayed = false; // Flag to prevent looping or double play
+
+        // 1. Function to Load Voices and attempt Autoplay
+        function populateVoices() {
+            voices = speechSynth.getVoices();
+            
+            // Try Autoplay if voices are loaded and we haven't played yet
+            if (voices.length > 0 && !hasAutoplayed) {
+                // Short delay to ensure page elements are ready
+                setTimeout(() => {
+                    toggleVoice(true); // true = isAutoplay
+                }, 500);
+            }
+        }
+
+        // 2. Initialize Voices
+        populateVoices();
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = populateVoices;
+        }
+
+        // 3. Toggle Logic
+        function toggleVoice(isAutoplay = false) {
+            const btn = document.getElementById('voiceBtn');
+            const btnText = document.getElementById('voiceBtnText');
+
+            if (isSpeaking && !isAutoplay) {
+                // STOP Logic (User Click)
+                speechSynth.cancel();
+                isSpeaking = false;
+                btn.classList.remove('active', 'pulse-active');
+                btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear AI Guide</span>';
+            } else {
+                // PLAY Logic (User Click or Autoplay)
+                
+                // Safety check: if autoplay triggered but it's already speaking
+                if(isAutoplay && isSpeaking) return;
+
+                const content = document.getElementById('read-content').innerText;
+                const utterance = new SpeechSynthesisUtterance(content);
+                
+                // Voice Selection (Indian)
+                const indianVoice = voices.find(v => v.lang.includes('en-IN') || v.lang.includes('hi-IN'));
+                if (indianVoice) utterance.voice = indianVoice;
+                
+                utterance.rate = 0.9;
+                
+                utterance.onend = function() {
+                    isSpeaking = false;
+                    btn.classList.remove('active', 'pulse-active');
+                    btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear AI Guide</span>';
+                };
+
+                // Error handling for autoplay blocks
+                utterance.onerror = function(e) {
+                    console.log("Audio playback error (likely browser blocked autoplay):", e);
+                    isSpeaking = false;
+                    btn.classList.remove('active', 'pulse-active');
+                    btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear AI Guide</span>';
+                };
+
+                speechSynth.speak(utterance);
+                
+                // Update State & UI
+                isSpeaking = true;
+                hasAutoplayed = true; // Mark as played
+                btn.classList.add('active', 'pulse-active');
+                btn.innerHTML = '<i class="fas fa-stop"></i> <span id="voiceBtnText">Stop Listening</span>';
+            }
+        }
+    </script>
+</body>
+</html>

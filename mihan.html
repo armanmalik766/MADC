@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>MIHAN | MADC</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* MADC Theme Colors */
+            --madc-red: #D92128;
+            --madc-red-light: #fbecec;
+            --madc-grey: #555759;
+            --madc-dark: #2c2c2c;
+            
+            --bg-dark: #12141d;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* --- Main Premium Card --- */
+        .premium-modal {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 1200px;
+            height: 85vh;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            display: flex;
+            overflow: hidden;
+            animation: modalPop 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: scale(0.95);
+            position: relative;
+        }
+
+        /* --- Left Visual Panel --- */
+        .left-panel {
+            background: #fcfcfc;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border-right: 1px solid #eee;
+            width: 40%;
+        }
+
+        /* Hero Image Area */
+        .hero-image-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 320px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .hero-image-wrapper:hover .hero-img { transform: scale(1.05); }
+
+        /* Statistics Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 15px 5px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #f1f1f1;
+            transition: 0.3s;
+        }
+        
+        .stat-card:hover { transform: translateY(-5px); border-color: var(--madc-red); }
+
+        .stat-icon-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: white;
+        }
+
+        .bg-red-grad { background: linear-gradient(135deg, var(--madc-red), #ff6b6b); }
+        .bg-grey-grad { background: linear-gradient(135deg, var(--madc-grey), #888); }
+
+        .stat-val { font-weight: 700; font-size: 0.9rem; color: var(--madc-dark); display: block; }
+        .stat-label { font-size: 0.65rem; color: var(--madc-grey); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* --- Right Content Panel --- */
+        .right-panel {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 60%;
+            overflow-y: auto;
+        }
+
+        /* Tags */
+        .tag-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .badge-pill {
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .tag-red { background: var(--madc-red-light); color: var(--madc-red); }
+        .tag-orange { background: #fff3e0; color: #f57c00; }
+        .tag-outline { border: 1px solid #eee; color: var(--madc-grey); transition:0.2s; }
+        .tag-outline:hover { background: #eee; }
+
+        /* Typography */
+        .main-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--madc-dark);
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-style: italic;
+            color: var(--madc-grey);
+            border-left: 3px solid var(--madc-red);
+            padding-left: 15px;
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
+        }
+
+        /* Info Box */
+        .highlight-box {
+            background: #f9f9f9;
+            border-radius: 16px;
+            padding: 20px;
+            border-left: 5px solid var(--madc-red);
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--madc-red);
+            margin-bottom: 10px;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        /* Feature Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: var(--madc-dark);
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        .feature-item i { color: var(--madc-red); font-size: 1rem; margin-top: 2px; }
+
+        /* Buttons */
+        .action-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn-premium {
+            flex: 1;
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-ai { background: #f0f2f5; color: var(--madc-dark); }
+        .btn-ai:hover, .btn-ai.active { background: #e4e6eb; color: var(--madc-red); }
+        
+        .btn-return {
+            background: linear-gradient(90deg, var(--madc-red), #b0151b);
+            color: white;
+            box-shadow: 0 4px 15px rgba(217, 33, 40, 0.3);
+        }
+        .btn-return:hover {
+            box-shadow: 0 6px 20px rgba(217, 33, 40, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 35px;
+            height: 35px;
+            background: #f1f1f1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            color: #666;
+            transition: 0.2s;
+        }
+        .close-btn:hover { background: var(--madc-red); color: white; }
+
+        @keyframes modalPop {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(217, 33, 40, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(217, 33, 40, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(217, 33, 40, 0); }
+        }
+        .pulse-active { animation: pulse-ring 1.5s infinite; }
+
+        @media (max-width: 992px) {
+            .premium-modal { flex-direction: column; height: auto; max-height: 95vh; overflow-y: auto;}
+            .left-panel, .right-panel { width: 100%; padding: 20px; height: auto; border-right: none;}
+            .hero-image-wrapper { height: 250px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="premium-modal">
+        <div class="close-btn" onclick="goBack()">
+            <i class="fas fa-times"></i>
+        </div>
+
+        <div class="left-panel">
+            
+            <div class="hero-image-wrapper">
+                <img src="assets/img/logo/mihan-ban.jpg" class="hero-img" alt="MIHAN Airport">
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon-circle bg-red-grad"><i class="fas fa-map-marked-alt"></i></div>
+                    <span class="stat-val">4300 Ha</span>
+                    <span class="stat-label">Total Project</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-circle bg-grey-grad"><i class="fas fa-layer-group"></i></div>
+                    <span class="stat-val">1018 Ha</span>
+                    <span class="stat-label">Non-SEZ Area</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-circle bg-red-grad"><i class="fas fa-industry"></i></div>
+                    <span class="stat-val">1236 Ha</span>
+                    <span class="stat-label">SEZ Area</span>
+                </div>
+            </div>
+
+            <div class="p-3 bg-white rounded-3 border d-flex align-items-center gap-3 mt-auto">
+                <div class="stat-icon-circle bg-red-grad m-0" style="width: 35px; height: 35px; font-size: 1rem;">
+                    <i class="fas fa-volume-up"></i>
+                </div>
+                <div>
+                    <small class="d-block text-muted" style="font-size: 0.7rem;">AI SUMMARY</small>
+                    <span style="font-size: 0.85rem; font-weight: 600;">Indian Accent Enabled</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            
+            <div class="tag-row">
+                <span class="badge-pill tag-red">INTERNATIONAL HUB</span>
+                <span class="badge-pill tag-orange"><i class="fas fa-map-marker-alt me-1"></i> NAGPUR, MAHARASHTRA</span>
+                <a href="mihan-sez.html" class="badge-pill tag-outline">SEZ Info</a>
+                <a href="infrastructure.html" class="badge-pill tag-outline">Infra</a>
+            </div>
+
+            <div>
+                <h1 class="main-title">Multi-modal International Hub Airport (MIHAN)</h1>
+                <p class="subtitle">"Developing Nagpur as a global aviation and cargo hub"</p>
+            </div>
+
+            <div class="highlight-box">
+                <span class="info-label"><i class="fas fa-info-circle me-1"></i> Project Overview</span>
+                <p id="read-intro" style="font-size: 0.85rem; color: #555; line-height: 1.6; margin: 0;">
+                    MIHAN is a fully operational Multi-Product Special Economic Zone (SEZ) abutting Dr. Babasaheb Ambedkar International Airport. Strategically located at the Zero Mile Centre of India, it offers Single Window Clearance, state-of-the-art ready infrastructure, and Plug & Play office spaces. The project ensures excellent Air-Road-Rail-Metro connectivity and hassle-free allotment for businesses.
+                </p>
+            </div>
+
+            <div id="read-content" style="display:none;">
+                Welcome to MIHAN, the Multi-modal International Hub Airport at Nagpur.
+                This is a fully operational Multi-Product Special Economic Zone located strategically at the Zero Mile Centre of India.
+                The total project area spans 4300 Hectares, comprising 1236 Hectares of SEZ and 1018 Hectares of Non-SEZ area.
+                We offer Single Window Clearance, concessional power rates, and ready-to-use Plug and Play office spaces.
+                The zone features excellent Air, Road, Rail, and Metro connectivity.
+                Businesses here benefit from Customs Duty exemptions and zero-rated GST supplies.
+            </div>
+
+            <div>
+                <span class="info-label" style="color:#888; margin-bottom: 8px;">KEY FEATURES & BENEFITS</span>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-industry"></i> <span>Multi-Product SEZ (Fully Operational)</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-map-pin"></i> <span>Strategic Zero Mile Location</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-file-contract"></i> <span>Single Window Clearance</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-laptop-house"></i> <span>Plug & Play Infrastructure</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-network-wired"></i> <span>Air–Road–Rail–Metro Connectivity</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-percent"></i> <span>Customs & GST Benefits</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-row">
+                <button id="voiceBtn" class="btn-premium btn-ai" onclick="toggleVoice()">
+                    <i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear Overview</span>
+                </button>
+                <button class="btn-premium btn-return" onclick="goBack()">
+                    Return to Map
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function goBack() {
+            window.location.href = 'pro-madc.html';
+        }
+
+        /* --- AI VOICE LOGIC (Autoplay & Click) --- */
+        let speechSynth = window.speechSynthesis;
+        let isSpeaking = false;
+        let voices = [];
+        let hasAutoplayed = false; // Flag to prevent double playing
+
+        // 1. Function to Load Voices
+        function populateVoices() {
+            voices = speechSynth.getVoices();
+            
+            // Try Autoplay if voices are ready and haven't played yet
+            if (voices.length > 0 && !hasAutoplayed) {
+                // Short delay to ensure page render
+                setTimeout(() => {
+                    toggleVoice(true); // 'true' indicates this is an autoplay attempt
+                }, 500);
+            }
+        }
+
+        // 2. Initialize Voices
+        populateVoices();
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = populateVoices;
+        }
+
+        // 3. Toggle / Play Function
+        function toggleVoice(isAutoplay = false) {
+            const btn = document.getElementById('voiceBtn');
+            const btnText = document.getElementById('voiceBtnText');
+
+            if (isSpeaking && !isAutoplay) {
+                // STOP Logic
+                speechSynth.cancel();
+                isSpeaking = false;
+                btn.classList.remove('active', 'pulse-active');
+                btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear Overview</span>';
+            } else {
+                // PLAY Logic (or Autoplay)
+                
+                // If autoplay triggered but sound is already playing (rare case), do nothing
+                if(isAutoplay && isSpeaking) return;
+
+                // Stop any previous instance just in case
+                speechSynth.cancel();
+
+                const content = document.getElementById('read-content').innerText;
+                const utterance = new SpeechSynthesisUtterance(content);
+                
+                // Select Indian Voice
+                const indianVoice = voices.find(v => v.lang.includes('en-IN') || v.lang.includes('hi-IN'));
+                if (indianVoice) utterance.voice = indianVoice;
+                
+                utterance.rate = 0.95;
+                
+                // When finished speaking
+                utterance.onend = function() {
+                    isSpeaking = false;
+                    btn.classList.remove('active', 'pulse-active');
+                    btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear Overview</span>';
+                };
+
+                // ERROR HANDLING (e.g. Browser Autoplay Block)
+                utterance.onerror = function(event) {
+                    console.log("Audio error or blocked:", event);
+                    isSpeaking = false;
+                    btn.classList.remove('active', 'pulse-active');
+                    btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear Overview</span>';
+                };
+
+                speechSynth.speak(utterance);
+                
+                // Update State
+                isSpeaking = true;
+                hasAutoplayed = true; // Mark as played so it doesn't loop
+                
+                // Update Button UI
+                btn.classList.add('active', 'pulse-active');
+                btn.innerHTML = '<i class="fas fa-stop"></i> <span id="voiceBtnText">Stop Listening</span>';
+            }
+        }
+    </script>
+</body>
+</html>

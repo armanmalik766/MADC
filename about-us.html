@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!--favicon icon-->
+    <link rel="icon" href="assets/img/logo/madc-mob.png" type="image/png" sizes="16x16" />
+    <!--title-->
+    <title>About Us | MADC</title>
+    
+    <!-- External Styles and Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --madc-red: #B40000;
+            --madc-red-light: #FF3B3B;
+            --madc-dark: #0B0B0B;
+            --madc-white: #FFFFFF;
+            --madc-glass: rgba(255, 255, 255, 0.85);
+            --madc-green: #22C55E;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            background-color: #0B0B0B;
+            color: #FFFFFF;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Aviation Hero Gradient */
+        .hero-gradient {
+            background: linear-gradient(135deg, #5C0000 0%, #B40000 45%, #2A0000 100%);
+        }
+        
+        /* Button Gradient */
+        .btn-gradient {
+            background: linear-gradient(135deg, #B40000, #FF3B3B);
+        }
+        
+        /* Glow Effects */
+        .red-glow {
+            box-shadow: 0 0 40px rgba(180, 0, 0, 0.6);
+        }
+        
+        .red-glow-light {
+            box-shadow: 0 0 20px rgba(255, 59, 59, 0.4);
+        }
+        
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(180, 0, 0, 0.1);
+        }
+        
+        .glass-dark {
+            background: rgba(11, 11, 11, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Animation */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 59, 59, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(255, 59, 59, 0.7); }
+        }
+        
+        .animate-pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+        
+        /* Plane Path Animation */
+        .plane-path {
+            position: absolute;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0B0B0B;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #B40000;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF3B3B;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .glass-card {
+                backdrop-filter: blur(8px);
+            }
+            
+            .hero-gradient {
+                background: linear-gradient(135deg, #5C0000 0%, #B40000 100%);
+            }
+        }
+        
+        /* Hover Effects */
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Custom List */
+        .custom-list i {
+            color: #FF3B3B;
+            margin-right: 12px;
+        }
+        
+        /* Section Spacing */
+        section {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+        
+        @media (max-width: 640px) {
+            section {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+        }
+    </style>
+    
+    <script async src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        document.addEventListener('contextmenu', function (event) {
+            event.preventDefault();
+        });
+    </script>
+</head>
+<body class="bg-madc-dark">
+    <!-- Header will be loaded here -->
+    <div id="header-container"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-gradient py-16 md:py-32 relative overflow-hidden">
+            <!-- Animated Background Elements -->
+            <div class="plane-path top-10 -left-20 animate-pulse hidden md:block">
+                <i class="fa-solid fa-plane text-[200px] md:text-[300px] text-white -rotate-12"></i>
+            </div>
+            <div class="plane-path bottom-10 -right-20 animate-pulse hidden md:block">
+                <i class="fa-solid fa-plane text-[150px] md:text-[250px] text-white rotate-45"></i>
+            </div>
+            
+            <div class="container mx-auto px-4 md:px-6 relative z-10 text-center">
+                <h1 class="text-white text-4xl md:text-7xl font-bold mb-4 md:mb-6 tracking-tight uppercase" data-aos="fade-up">
+                    ABOUT US
+                </h1>
+                <div class="w-24 h-1.5 bg-white/30 mx-auto rounded-full mb-6 md:mb-8"></div>
+                <p class="text-white/90 text-lg md:text-xl max-w-2xl mx-auto font-light" data-aos="fade-up" data-aos-delay="100">
+                    Building the wings of Maharashtra since 2002.
+                </p>
+                
+                <!-- Stats Bar -->
+                <div class="flex flex-wrap justify-center gap-6 md:gap-12 mt-12 md:mt-16" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-center">
+                        <div class="text-3xl md:text-5xl font-bold text-white mb-2">20+</div>
+                        <div class="text-white/70 text-sm md:text-base">Years of Excellence</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl md:text-5xl font-bold text-white mb-2">2</div>
+                        <div class="text-white/70 text-sm md:text-base">Major Airports</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl md:text-5xl font-bold text-white mb-2">Statewide</div>
+                        <div class="text-white/70 text-sm md:text-base">Infrastructure</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Introduction Section -->
+        <section class="py-12 md:py-20 relative bg-white">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                        <h2 class="text-3xl md:text-5xl font-bold text-[#0B0B0B] mb-4 md:mb-6 leading-tight">
+                            Maharashtra Airport Development Company Limited
+                        </h2>
+                        <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+                            <span class="px-4 md:px-5 py-2 bg-red-50 text-[#B40000] rounded-full font-semibold text-sm border border-red-100 shadow-sm">
+                                "Aspirations leading to innovations"
+                            </span>
+                            <span class="px-4 md:px-5 py-2 bg-emerald-50 text-emerald-700 rounded-full font-semibold text-sm border border-emerald-100 shadow-sm">
+                                "Green Goals"
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 md:p-12 rounded-3xl md:rounded-[2.5rem] relative hover-lift" data-aos="zoom-in">
+                        <div class="absolute -top-4 md:-top-6 -left-3 md:-left-4 text-5xl md:text-7xl text-red-200/50">
+                            <i class="fa-solid fa-quote-left"></i>
+                        </div>
+                       <p class="text-[#0B0B0B]/90 text-lg md:text-2xl leading-relaxed md:leading-relaxed font-light italic">
+    <span class="text-[#B40000] font-extrabold text-3xl md:text-4xl not-italic mr-1">We</span>
+    are a Government of Maharashtra undertaking entrusted with the development, operation, and maintenance of airports across the State.
+    MADC functions as the nodal agency for the 
+    <span class="font-bold text-[#0B0B0B] not-italic">Regional Connectivity Scheme (UDAN)</span>,
+    operating airports such as 
+    <span class="font-bold text-[#0B0B0B] not-italic">Shirdi, Amravati, and Nanded</span>,
+    while developing upcoming airports at 
+    <span class="font-bold text-[#0B0B0B] not-italic">Vadhwan, Gadchiroli, and Ratnagiri</span>.
+    As the Special Planning Authority for 
+    <span class="font-bold text-[#0B0B0B] not-italic">MIHAN, Nagpur</span> and 
+    <span class="font-bold text-[#0B0B0B] not-italic">AASHA, Shirdi</span>,
+    we drive integrated aviation infrastructure, sustainable growth, and regional economic development across Maharashtra.
+</p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision & Mission Section -->
+        <section class="py-12 md:py-20 bg-[#0B0B0B] relative overflow-hidden">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 opacity-5">
+                <div class="absolute top-1/4 left-1/4 w-64 h-64 border border-[#B40000] rounded-full"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-96 h-96 border border-[#FF3B3B] rounded-full"></div>
+            </div>
+            
+            <div class="container mx-auto px-4 md:px-6 relative z-10">
+                <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+                    <!-- Vision -->
+                    <div class="glass-dark p-6 md:p-10 rounded-2xl md:rounded-3xl border border-white/10 text-white hover-lift animate-pulse-glow" data-aos="fade-right">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#B40000]/20 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-eye text-[#FF3B3B]"></i>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-bold mb-4 uppercase tracking-wide text-white">MADC VISION</h2>
+                        <p class="text-base md:text-lg font-light leading-relaxed opacity-90">
+                            "To develop Aviation Infrastructure in the State and world-class Multi-modal International Hub Airport along with a multi-product Special Economic Zone at Nagpur"
+                        </p>
+                    </div>
+                    
+                    <!-- Mission -->
+                    <div class="bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl shadow-xl hover-lift" data-aos="fade-left">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-red-100 rounded-2xl flex items-center justify-center text-[#B40000] text-2xl mb-6">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-bold mb-4 text-[#0B0B0B] uppercase tracking-wide">MADC MISSION</h2>
+                        <p class="text-base md:text-lg text-[#0B0B0B]/90 leading-relaxed font-light">
+                            "To facilitate development of world-class Multi-modal International Hub Airport along with a multi-product Special Economic Zone at Nagpur, and Aviation Infrastructure across the State with allied activities through appropriate development models with the commitment towards the environment and citizens."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Objectives Section -->
+        <section class="py-12 md:py-20 bg-[#0B0B0B] relative overflow-hidden">
+            <div class="container mx-auto px-4 md:px-6">
+                <!-- Heading -->
+                <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
+                        OBJECTIVES
+                    </h2>
+                    <div class="w-20 h-1.5 btn-gradient mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-6 md:gap-8 items-start">
+                    <!-- LEFT LIST -->
+                    <div class="space-y-4">
+                        <div class="obj-item p-4 md:p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 flex items-center gap-4"
+                             data-aos="fade-up">
+                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl btn-gradient flex items-center justify-center text-white shrink-0 shadow-lg">
+                                <i class="fa-solid fa-plane text-lg md:text-xl"></i>
+                            </div>
+                            <span class="text-white font-semibold text-base md:text-lg">
+                                Build and Operate airports in the State
+                            </span>
+                        </div>
+
+                        <div class="obj-item p-4 md:p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 flex items-center gap-4"
+                             data-aos="fade-up" data-aos-delay="100">
+                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl btn-gradient flex items-center justify-center text-white shrink-0 shadow-lg">
+                                <i class="fa-solid fa-route text-lg md:text-xl"></i>
+                            </div>
+                            <span class="text-white font-semibold text-base md:text-lg">
+                                Facilitate Intra-state and Inter-state Connectivity
+                            </span>
+                        </div>
+
+                        <div class="obj-item p-4 md:p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 flex items-center gap-4"
+                             data-aos="fade-up" data-aos-delay="200">
+                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl btn-gradient flex items-center justify-center text-white shrink-0 shadow-lg">
+                                <i class="fa-solid fa-city text-lg md:text-xl"></i>
+                            </div>
+                            <span class="text-white font-semibold text-base md:text-lg">
+                                Ensure planned development around airports
+                            </span>
+                        </div>
+
+                        <div class="obj-item p-4 md:p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 flex items-center gap-4"
+                             data-aos="fade-up" data-aos-delay="300">
+                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl btn-gradient flex items-center justify-center text-white shrink-0 shadow-lg">
+                                <i class="fa-solid fa-chart-line text-lg md:text-xl"></i>
+                            </div>
+                            <span class="text-white font-semibold text-base md:text-lg">
+                                Encourage overall growth of aviation sector
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT CARD -->
+                    <div class="bg-gradient-to-br from-[#5C0000] to-[#2A0000] p-6 md:p-10 rounded-3xl md:rounded-[2.5rem] text-white relative overflow-hidden shadow-2xl hover-lift"
+                         data-aos="fade-left">
+                        <div class="absolute top-0 right-0 p-4 md:p-8 opacity-10">
+                            <i class="fa-solid fa-tower-observation text-6xl md:text-9xl"></i>
+                        </div>
+
+                        <h3 class="text-xl md:text-2xl font-bold mb-6 md:mb-8 flex items-center gap-3">
+                            <span class="w-6 md:w-8 h-1 bg-[#FF3B3B] rounded-full"></span>
+                            Strategic Development
+                        </h3>
+
+                        <div class="space-y-4 md:space-y-6">
+                            <div class="flex gap-3 md:gap-4">
+                                <i class="fa-solid fa-circle-check text-[#FF3B3B] mt-1 text-sm md:text-base"></i>
+                                <div>
+                                    <p class="font-bold text-base md:text-lg text-white">
+                                        Nagpur International Hub
+                                    </p>
+                                    <p class="text-white/70 text-sm">
+                                        Developing a world-class Multi-modal airport.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-3 md:gap-4">
+                                <i class="fa-solid fa-circle-check text-[#FF3B3B] mt-1 text-sm md:text-base"></i>
+                                <div>
+                                    <p class="font-bold text-base md:text-lg text-white">
+                                        Multi-product SEZ
+                                    </p>
+                                    <p class="text-white/70 text-sm">
+                                        Adjacent Special Economic Zones for industrial growth.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-3 md:gap-4">
+                                <i class="fa-solid fa-circle-check text-[#FF3B3B] mt-1 text-sm md:text-base"></i>
+                                <div>
+                                    <p class="font-bold text-base md:text-lg text-white">
+                                        Supporting Infrastructure
+                                    </p>
+                                    <p class="text-white/70 text-sm">
+                                        Comprehensive ecosystem for logistics and aviation.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-3 md:gap-4">
+                                <i class="fa-solid fa-circle-check text-[#FF3B3B] mt-1 text-sm md:text-base"></i>
+                                <div>
+                                    <p class="font-bold text-base md:text-lg text-white">
+                                        Sustainability Focus
+                                    </p>
+                                    <p class="text-white/70 text-sm">
+                                        Green initiatives and carbon neutralization goals.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="py-12 md:py-20 bg-white relative">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-5xl font-bold text-[#0B0B0B] mb-4">
+                        OUR VALUES
+                    </h2>
+                    <div class="w-20 h-1.5 btn-gradient mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                    <div class="text-center p-6 rounded-2xl bg-white border border-gray-100 shadow-lg hover-lift" data-aos="fade-up">
+                        <div class="w-16 h-16 btn-gradient rounded-2xl flex items-center justify-center text-white text-2xl mx-auto mb-6">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#0B0B0B] mb-3">Commitment</h3>
+                        <p class="text-[#0B0B0B]/70">To development and local partnerships</p>
+                    </div>
+
+                    <div class="text-center p-6 rounded-2xl bg-white border border-gray-100 shadow-lg hover-lift" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-16 h-16 btn-gradient rounded-2xl flex items-center justify-center text-white text-2xl mx-auto mb-6">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#0B0B0B] mb-3">Sustainability</h3>
+                        <p class="text-[#0B0B0B]/70">Green goals and carbon neutralization</p>
+                    </div>
+
+                    <div class="text-center p-6 rounded-2xl bg-white border border-gray-100 shadow-lg hover-lift" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-16 h-16 btn-gradient rounded-2xl flex items-center justify-center text-white text-2xl mx-auto mb-6">
+                            <i class="fa-solid fa-gears"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#0B0B0B] mb-3">Innovation</h3>
+                        <p class="text-[#0B0B0B]/70">Modernization and technology adoption</p>
+                    </div>
+
+                    <div class="text-center p-6 rounded-2xl bg-white border border-gray-100 shadow-lg hover-lift" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-16 h-16 btn-gradient rounded-2xl flex items-center justify-center text-white text-2xl mx-auto mb-6">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#0B0B0B] mb-3">Collaboration</h3>
+                        <p class="text-[#0B0B0B]/70">Synergizing rural and urban economies</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scroll to Top Button -->
+    <div class="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50">
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+                class="w-12 h-12 md:w-14 md:h-14 btn-gradient text-white rounded-full shadow-2xl hover:shadow-red-500/30 transition-all active:scale-90 flex items-center justify-center text-lg md:text-xl animate-pulse-glow">
+            <span class="fas fa-arrow-up"></span>
+        </button>
+    </div>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-out-quad',
+            offset: 100
+        });
+        
+        // Mobile menu toggle (if needed)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Responsive adjustments
+            function handleResize() {
+                if (window.innerWidth < 768) {
+                    // Mobile-specific adjustments
+                    document.querySelectorAll('section').forEach(section => {
+                        section.classList.add('px-4');
+                    });
+                }
+            }
+            
+            // Initial check
+            handleResize();
+            
+            // Listen for resize
+            window.addEventListener('resize', handleResize);
+        });
+    </script>
+    
+    <script>
+        $(document).ready(function () {
+            $("#header-container").load("header.html");
+            $("#footer-container").load("footer.html");
+        });
+    </script>
+
+    <script async type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script async type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                defaultLanguage: "en",
+                pageLanguage: "en",
+                includedLanguages: "en,hi,mr",
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false,
+                multilanguagePage: true,
+            }, "google_translate_element");
+        }
+    </script>
+</body>
+</html>

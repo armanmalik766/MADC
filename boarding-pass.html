@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>Boarding Pass | MADC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0a2e52; /* Deep Navy */
+            --accent: #d4af37; /* Gold */
+            --highlight: #e74c3c; /* Red for alerts */
+            --bg: #f0f2f5;
+            --paper: #ffffff;
+            --text-grey: #6c757d;
+            --text-dark: #000000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* --- Back Button --- */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s;
+            z-index: 100;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .back-button:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* --- Ticket Container --- */
+        .ticket-container {
+            display: flex;
+            background: var(--paper);
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 1100px; /* Width kept wide */
+            position: relative;
+            overflow: hidden;
+            /* CHANGE: Height reduced significantly for sleek look */
+            min-height: 280px; 
+        }
+
+        /* --- Main Ticket Section (Left) --- */
+        .ticket-main {
+            flex: 2.5; 
+            /* CHANGE: Reduced Padding */
+            padding: 25px 35px; 
+            border-right: 2px dashed #ccc;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* --- Ticket Stub (Right) --- */
+        .ticket-stub {
+            flex: 1;
+            /* CHANGE: Reduced Padding */
+            padding: 25px 35px;
+            background: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            border-left: 2px solid white; 
+        }
+
+        /* --- The "Notches" --- */
+        .ticket-main::after {
+            content: '';
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 24px;
+            height: 24px;
+            background: #234585; 
+            border-radius: 50%;
+            box-shadow: inset 0 -2px 5px rgba(0,0,0,0.1);
+        }
+        .ticket-main::before {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            right: -12px;
+            width: 24px;
+            height: 24px;
+            background: #234585;
+            border-radius: 50%;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* --- Header Styles --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* CHANGE: Reduced margins */
+            margin-bottom: 15px; 
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
+        }
+
+        .airline-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px; 
+        }
+
+        .airline-logo img {
+            width: 120px; /* Slightly adjusted for height balance */
+            height: auto; 
+            object-fit: contain;
+        }
+
+        .airline-name {
+            font-size: 22px; 
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        .boarding-pass-label {
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-size: 12px;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 6px 12px;
+            border-radius: 4px;
+        }
+
+        /* --- Route Visual --- */
+        .route {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* CHANGE: Reduced margin */
+            margin-bottom: 20px; 
+        }
+
+        .city { text-align: left; }
+        .city.dest { text-align: right; }
+
+        .city-code {
+            font-size: 56px; /* Slightly smaller to save vertical space */
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 0.9;
+            letter-spacing: -2px;
+        }
+
+        .city-name {
+            font-size: 14px;
+            color: var(--text-grey);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .plane-icon {
+            flex-grow: 1;
+            text-align: center;
+            position: relative;
+            color: var(--accent);
+            padding: 0 40px; 
+        }
+
+        .plane-icon i {
+            font-size: 28px; 
+            transform: rotate(90deg);
+            position: relative; 
+            z-index: 1; 
+            background: var(--paper); 
+            padding: 0 15px;
+        }
+
+        .plane-line {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            right: 20px;
+            height: 3px; 
+            background: #e0e0e0;
+            z-index: 0;
+        }
+
+        /* --- Info Grid --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px; /* Reduced gap */
+            margin-bottom: 15px;
+        }
+
+        .info-item label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-grey);
+            margin-bottom: 4px; /* Tighter label spacing */
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .info-item span {
+            display: block;
+            font-size: 18px; 
+            font-weight: 700;
+            color: #222;
+        }
+        
+        /* Stub Specifics */
+        .ticket-stub .info-item label {
+            color: #000 !important;
+            font-weight: 700;
+        }
+        
+        .ticket-stub .info-item span {
+            color: #000 !important;
+            font-weight: 800;
+        }
+
+        .highlight-text {
+            color: var(--highlight) !important;
+        }
+
+        /* --- Footer Info --- */
+        .ticket-footer {
+            background: #f8f9fa;
+            /* CHANGE: Adjusted negative margins to match new padding */
+            margin: 0 -35px -25px -35px; 
+            padding: 15px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-grey);
+            border-top: 1px solid #eee;
+        }
+        
+        .footer-slogan {
+            white-space: nowrap;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        /* --- Stub Content --- */
+        .stub-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        .barcode {
+            /* CHANGE: Reduced Height */
+            height: 55px; 
+            background: repeating-linear-gradient(
+                90deg,
+                #000,
+                #000 3px,
+                transparent 3px,
+                transparent 5px,
+                #000 5px,
+                #000 10px,
+                transparent 10px,
+                transparent 12px
+            );
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+
+        .stub-route {
+            margin-bottom: 15px;
+        }
+        .stub-route h2 {
+            font-size: 22px;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 900px) {
+            .ticket-container {
+                flex-direction: column;
+                max-width: 450px; 
+                min-height: auto;
+                margin: 60px auto 20px; 
+            }
+
+            .ticket-main {
+                border-right: none;
+                border-bottom: 2px dashed #ccc;
+                padding: 30px;
+                flex: auto;
+            }
+
+            .ticket-main::after, .ticket-main::before {
+                display: none;
+            }
+
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 20px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .airline-logo {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .airline-logo img {
+                width: 120px; 
+            }
+
+            .airline-name {
+                font-size: 18px;
+            }
+
+            .boarding-pass-label {
+                align-self: flex-start;
+                font-size: 12px;
+            }
+            
+            .ticket-stub {
+                background: #fff;
+                padding: 30px;
+                border-left: none;
+                border-radius: 0 0 16px 16px;
+            }
+
+            .barcode {
+                height: 50px; 
+            }
+
+            .city-code { font-size: 48px; }
+            .plane-icon i { font-size: 24px; }
+
+            .ticket-footer {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+                margin: 0 -30px -30px;
+                padding: 20px;
+            }
+            
+            .footer-slogan {
+                white-space: normal;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="back-button" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back</button>
+
+    <div class="ticket-container">
+        <div class="ticket-main">
+            <div>
+                <div class="header">
+                    <div class="airline-logo">
+                        <img src="assets/img/logo/madc-mob.png" alt="MADC Logo">
+                        <span class="airline-name">Maharashtra Airport<br>Development Company</span>
+                    </div>
+                    <div class="boarding-pass-label">Web Check-in</div>
+                </div>
+
+                <div class="route">
+                    <div class="city">
+                        <div class="city-code">HYD</div>
+                        <div class="city-name">Hyderabad</div>
+                    </div>
+                    <div class="plane-icon">
+                        <div class="plane-line"></div>
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <div class="city dest">
+                        <div class="city-code">SAG</div>
+                        <div class="city-name">Shirdi</div>
+                    </div>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-item" style="grid-column: span 2;">
+                        <label>Passenger Name</label>
+                        <span id="passengerNameMain" style="text-transform: uppercase;">LOADING...</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Flight</label>
+                        <span>6E 6529</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Date</label>
+                        <span id="displayDate">01 JAN</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <label>Boarding Time</label>
+                        <span class="highlight-text" id="boardingTime">--:--</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Departure</label>
+                        <span id="departureTime">--:--</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Gate</label>
+                        <span class="highlight-text">TBD</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Seat</label>
+                        <span style="font-size: 24px;">30C</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ticket-footer">
+                <span><i class="fas fa-info-circle"></i> Gate closes 25 mins prior to departure.</span>
+                <span class="footer-slogan">"We Develop Grounds, Aiming the Skies"</span>
+            </div>
+        </div>
+
+        <div class="ticket-stub">
+            <div class="stub-content">
+                <div class="stub-header">
+                    <img src="assets/img/logo/madc-mob.png" style="width: 60px; margin-bottom: 10px;" alt="Logo">
+                    <div class="stub-route">
+                        <h2>HYD <i class="fas fa-arrow-right" style="font-size: 14px; margin: 0 5px; color:#ccc;"></i> SAG</h2>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div class="info-item">
+                        <label>Passenger</label>
+                        <span id="passengerNameStub" style="font-size: 13px; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px;">LOADING...</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Flight</label>
+                        <span>6E 6529</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Seat</label>
+                        <span class="highlight-text" style="font-size: 28px;">30C</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Zone</label>
+                        <span>1</span>
+                    </div>
+                </div>
+
+                <div class="barcode"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 1. Handle Passenger Data from LocalStorage
+            try {
+                const storedData = localStorage.getItem('boardingPassData');
+                if (storedData) {
+                    const data = JSON.parse(storedData);
+                    const name = data.name || "GUEST PASSENGER";
+                    document.getElementById('passengerNameMain').innerText = name;
+                    document.getElementById('passengerNameStub').innerText = name;
+                } else {
+                    document.getElementById('passengerNameMain').innerText = "GUEST USER";
+                    document.getElementById('passengerNameStub').innerText = "GUEST USER";
+                }
+            } catch (e) {
+                console.error("Error reading storage", e);
+            }
+
+            // 2. Handle Date Formatting
+            const dateOptions = { day: '2-digit', month: 'short', year: 'numeric' };
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString('en-GB', dateOptions).replace(/ /g, ' ').toUpperCase(); 
+            document.getElementById('displayDate').innerText = formattedDate;
+
+            // 3. Handle Time Logic
+            const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
+            const boardingTimeStr = today.toLocaleTimeString('en-GB', timeOptions);
+            const depDate = new Date(today.getTime() + 45 * 60000); 
+            const departureTimeStr = depDate.toLocaleTimeString('en-GB', timeOptions);
+
+            document.getElementById('boardingTime').innerText = boardingTimeStr;
+            document.getElementById('departureTime').innerText = departureTimeStr;
+        });
+
+        function goBack() {
+            if(document.referrer) {
+                window.history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

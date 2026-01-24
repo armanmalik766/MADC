@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <!--favicon icon-->
+        <link rel="icon" href="assets/img/logo/madc-mob.png" type="image/png" sizes="16x16"/>
+        <!--title-->
+        <title>Boardingpass | MADC</title>
+        <!--build:css-->
+        <link id="theme-style" href="assets/css/main.css" as="style" rel="stylesheet"/>
+        <link id="theme-dynamic" href="#" as="style" rel="stylesheet"/>
+        <!-- endbuild -->
+        <script async src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <style>
+            #currentDate1 {
+                font-size: 16px;
+                margin-left: 20px;
+                margin-top: -10px;
+                font-weight: 500;
+            }
+    
+            #currentDate1 span {
+                font-size: 20px;
+                font-weight: 700;
+                margin-left: 38px;
+            }
+        </style>
+
+</head>
+<body>
+    <button class="back-button" onclick="goBack()">BACK</button>
+
+        <!--preloader start-->
+        <!--<div id="preloader">-->
+        <!--    <div class="preloader-wrap">-->
+        <!--        <img src="assets/img/logo/madc-mob.png" alt="logo" class="main-logo"/>-->
+        <!--        <div class="preloader">-->
+        <!--            <i>.</i>-->
+        <!--            <i>.</i>-->
+        <!--            <i>.</i>-->
+        <!--        </div>-->
+        <!--    </div>-->
+        <!--</div>-->
+    
+        <div class="main">
+            <!--hero section start-->
+
+        
+            <!-- boarding pass start -->
+            <section class="main-tbl">
+                <div class="container">
+                    <div class="row">
+                        <div class="main-t">
+                            <div class="col-9">
+                                <div class="row f-brdr">
+                                    <div class="col-12">
+                                        <h2 class="brdpas-hndg"><strong style="color: red;"> MADC</strong><span> <img style="width: 24px;" class="logo-img" src="assets/img/logo/indigo.png" alt="#"></span> Boarding Pass (Web Check-in)  <img style="width: 80px; border: 2px solid black; border-radius: 50%; margin: 10px 0px; margin-left: 70px;" class="logo-img" src="assets/img/logo/madc-mob.png" alt="#"></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h2 class="ur-hndg">Your Arrival Terminal is T2  <span> <img style="width: 24px;" class="logo-img" src="assets/img/logo/indigo.png" alt=""></span></h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-t1">
+                            <div class="col-9">
+                                <div class="row f-brdr1">
+                                    <div class="col-6">
+                                        <h2 id="boardingPassName" style="font-size: 20px; padding-top: 14px;font-weight: 700; color: blue;">LASTNAME / FIRSTNAME / MR./MRS.</h2>
+                                    </div>
+                                    <div class="col-6">
+                                        <!-- <h2 id="" style="font-size: 20px; padding-top: 14px; font-weight: 500;text-align: end;"> Hyderabad To <span style="font-size: 20px; padding-top: 14px;font-weight: 700;">SHIRDI (T2)</span></h2> -->
+                                        <h2 id="" style="font-size: 20px; padding-top: 14px; font-weight: 500; text-align: end;">HYD -> SHIRDI (T2)</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="row f-brdr2">
+                                    <div class="col-12">
+                                        <h2 id="boardingPassName1"  style="font-size: 16px;margin-left: 20px; padding-top: 14px;font-weight: 700; color: blue;">LASTNAME / FIRSTNAME / MR./MRS.</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-t2">
+                            <div class="col-9">
+                                <div class="row f-brdr1">
+                                    <div class="col-2">
+                                    <div style="border: 1px solid rgb(136, 136, 136); padding: 10px;">
+                                            <h6 style="font-size: 16px;padding-top: 14px; font-weight:500;">Flight
+                                            <br>
+                                            <span style="font-size: 20px; padding-top: 14px; font-weight: 700;">6E 6529</span></h6>
+                                    </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div style="border: 1px solid rgb(136, 136, 136); padding: 10px;">
+                                            <h6 style="font-size: 16px;padding-top: 14px; font-weight:500;">Gate
+                                            <br>
+                                            <span style="font-size: 20px; padding-top: 14px; font-weight: 700;"> -</span></h6>
+                                    </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div style="border: 1px solid rgb(136, 136, 136); padding: 10px;">
+                                            <h6 style="font-size: 16px;padding-top: 14px; font-weight:500;">Boarding Time
+                                            <br>
+                                            <span style="font-size: 20px; padding-top: 14px; font-weight: 700;">0710 Hrs</span></h6>
+                                    </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div style="border: 1px solid rgb(136, 136, 136); padding: 10px;">
+                                            <h6 style="font-size: 16px;padding-top: 14px; font-weight:500;">Boarding
+                                            <br>
+                                            <span style="font-size: 20px; padding-top: 14px; font-weight: 700;">Zone 1</span></h6>
+                                    </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div style="border: 1px solid rgb(136, 136, 136); padding: 10px;">
+                                            <h6 style="font-size: 16px;padding-top: 14px; font-weight:500;">Seat
+                                            <br>
+                                            <span style="font-size: 20px; padding-top: 14px; font-weight: 700;">30C</span></h6>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="row f-brdr2">
+                                    <div class="col-12">
+                                        <h2 id="" style="font-size:20px; margin-left: 20px; margin-top:-40px ;font-weight: 700;">HYD -> SHIRDI (T2)</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-t3">
+                            <div class="col-9">
+                                <div class="row f-brdr1">
+                                    <div class="col-3">
+                                    <div style="text-align: center;">
+                                            <h6 style="font-size: 16px;padding-top: 14px; font-weight:500;">Date
+                                            <br>
+                                            <span id="currentDate" style="font-size: 20px; padding-top: 14px; font-weight: 700;">01 JAN 2024</span></h6>
+                                    </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div style="text-align: center;">
+                                            <h6 style="font-size: 16px;padding-top: 14px; font-weight:500;">Deparature
+                                            <br>
+                                            <span style="font-size: 20px; padding-top: 14px; font-weight: 700;">0755 Hrs</span></h6>
+                                    </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div style="text-align: center;">
+                                            <h6 style="font-size: 16px;padding-top: 14px; font-weight:500;">Boarding Time
+                                            <br>
+                                            <span style="font-size: 20px; padding-top: 14px; font-weight: 700;">0710 Hrs</span></h6>
+                                    </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div style="text-align: center;">
+                                            <h6 style="font-size: 16px;padding-top: 14px; font-weight:500;">Boarding
+                                            <br>
+                                            <span style="font-size: 20px; padding-top: 14px; font-weight: 700;">Zone 1</span></h6>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="row f-brdr2">
+                                    <div class="col-12">
+                                        <h2 style="font-size:16px; margin-left: 20px; margin-top:-76px ;font-weight:500;">Flight &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 20px; font-weight: 700;margin-left: 30px;"> 6E 6529</span>
+                                            <h2 id="currentDate1">Date &nbsp;&nbsp;&nbsp;&nbsp; <span id="formattedDate"></span></h2>
+                                            <h2 style="font-size:16px; margin-left: 20px; margin-top:-10px ;font-weight:500;">PNR &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 20px; font-weight: 700; margin-left: 40px;"> GWWC2P</span>
+                                        <h2 style="font-size:16px; margin-left: 20px; margin-top:-10px ;font-weight:500;">Services &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 20px; font-weight: 700;margin-left: 10px;"> NIL</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-t">
+                            <div class="col-12">
+                                <div style="text-align: center;">
+                                    <h6 style="font-size: 16px;padding-top: 14px; font-weight:500;">Gate is subject to change and will close 25 minutes prior to deparature
+                                    <br>
+                                    <span style="font-size: 20px; padding-top: 14px; font-weight: 700;">"We Develop Grounds, Aiming the Skies"</span></h6>
+                                    <span style="font-size: 20px; padding-top: 14px; font-weight: 700; color: black;">"Happy Flying"</span></h6>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- boarding pass end -->
+
+            <!--hero section end-->
+        </div>
+      
+
+<!-- form data fetching code start  -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve data from localStorage
+            var storedData = localStorage.getItem('boardingPassData');
+            
+            if (storedData) {
+                var data = JSON.parse(storedData);
+    
+                // Populate the relevant elements (replace with your actual element IDs)
+                document.getElementById('boardingPassName').innerText = data.name;
+                document.getElementById('boardingPassName1').innerText = data.name;
+
+                // var flightRouteElement = document.getElementById('flightRoute');
+                // flightRouteElement.innerText = data.from + ' To ' + data.to +'(T2)';
+                //     var flightRouteElement1 = document.getElementById('flightRoute1');
+                //     flightRouteElement1.innerText = data.from + ' ->   ' + data.to +' (T2)';  
+
+                // Add similar lines for other elements
+    
+                // Clear localStorage to avoid displaying it again on subsequent visits
+                localStorage.removeItem('boardingPassData');
+            } else {
+                // Handle the case where no data is available
+                console.error('Boarding pass data not found');
+            }
+        });
+    </script>
+<!-- form data fetching code End  -->
+
+<!-- current date Function start-->
+<script>
+    function formatDate(date) {
+        const options = { day: '2-digit', month: 'short', year: 'numeric' };
+        return new Intl.DateTimeFormat('en-US', options).format(date);
+    }
+
+    function updateCurrentDate() {
+        var currentDateElement = document.getElementById('currentDate');
+        var currentDate = new Date();
+
+        currentDateElement.textContent = formatDate(currentDate);
+    }
+    updateCurrentDate();
+
+</script>
+<script>
+    // Function to format the current date as "DD MMM YYYY"
+    function formatDate() {
+        const months = [
+            'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
+            'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'
+        ];
+
+        const today = new Date();
+        const day = today.getDate();
+        const month = months[today.getMonth()];
+        const year = today.getFullYear();
+
+        return `${day} ${month} ${year}`;
+    }
+
+    // Update the content of the span with the formatted date
+    document.getElementById('formattedDate').textContent = formatDate();
+</script>
+<!-- current date Function end-->
+
+
+
+<!-- header footer common script start -->
+    <script>
+        $(document).ready(function () {
+            $("#header-container").load("header.html");
+        });
+
+        $(document).ready(function () {
+            $("#footer-container").load("footer.html");
+        });
+    </script>
+<!-- header footer common script end -->
+
+       
+
+<!--build:js-->
+<script src="assets/js/vendors/jquery-3.6.0.min.js"></script>
+<script src="assets/js/vendors/bootstrap.bundle.min.js"></script>
+<script src="assets/js/vendors/bootstrap-slider.min.js"></script>
+<script src="assets/js/vendors/owl.carousel.min.js"></script>
+<script src="assets/js/vendors/magnific-popup.min.js"></script>
+<script src="assets/js/vendors/validator.min.js"></script>
+<script src="assets/js/vendors/hs.megamenu.js"></script>
+<script src="assets/js/app.js"></script>
+<!--endbuild-->
+ <!--go back js start-->
+ <script>
+    function goBack() {
+        window.location.href = 'index.html';
+    }  
+</script>
+<!--go back js end -->
+</body>
+</html>
