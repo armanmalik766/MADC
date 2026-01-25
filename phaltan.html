@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<script>
+    window.onbeforeunload = function() {
+        if (isSpeaking) {
+            speechSynth.cancel();
+        }
+    };
+</script>
 <html lang="en">
 <head>
     <meta charset="utf-8" />

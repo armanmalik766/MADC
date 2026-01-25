@@ -11,12 +11,10 @@
 
     <style>
         :root {
-            /* MADC Theme Colors */
             --madc-red: #D92128;
             --madc-red-light: #fbecec;
             --madc-grey: #555759;
             --madc-dark: #2c2c2c;
-            
             --bg-dark: #12141d;
             --card-bg: #ffffff;
         }
@@ -32,7 +30,6 @@
             padding: 20px;
         }
 
-        /* --- Main Premium Card --- */
         .premium-modal {
             background: var(--card-bg);
             width: 100%;
@@ -48,7 +45,6 @@
             position: relative;
         }
 
-        /* --- Left Visual Panel --- */
         .left-panel {
             background: #fcfcfc;
             padding: 25px;
@@ -59,24 +55,21 @@
             width: 40%;
         }
 
-        /* Hero Image Area */
         .hero-image-wrapper {
             position: relative;
             border-radius: 20px;
             overflow: hidden;
             height: 320px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            background: #000;
         }
 
-        .hero-img {
+        .hero-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
         }
-        .hero-image-wrapper:hover .hero-img { transform: scale(1.05); }
 
-        /* Statistics Cards */
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -113,7 +106,6 @@
         .stat-val { font-weight: 700; font-size: 0.9rem; color: var(--madc-dark); display: block; }
         .stat-label { font-size: 0.65rem; color: var(--madc-grey); text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* --- Right Content Panel --- */
         .right-panel {
             padding: 40px;
             display: flex;
@@ -123,7 +115,6 @@
             overflow-y: auto;
         }
 
-        /* Tags */
         .tag-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
         .badge-pill {
             padding: 6px 15px;
@@ -139,7 +130,6 @@
         .tag-outline { border: 1px solid #eee; color: var(--madc-grey); transition:0.2s; }
         .tag-outline:hover { background: #eee; }
 
-        /* Typography */
         .main-title {
             font-size: 2rem;
             font-weight: 700;
@@ -157,7 +147,6 @@
             font-size: 0.9rem;
         }
 
-        /* Info Box */
         .highlight-box {
             background: #f9f9f9;
             border-radius: 16px;
@@ -174,7 +163,6 @@
             text-transform: uppercase;
         }
 
-        /* Feature Grid */
         .features-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -196,7 +184,6 @@
         }
         .feature-item i { color: var(--madc-red); font-size: 1rem; margin-top: 2px; }
 
-        /* Buttons */
         .action-row {
             display: flex;
             gap: 15px;
@@ -279,9 +266,14 @@
         </div>
 
         <div class="left-panel">
-            
             <div class="hero-image-wrapper">
+                <video id="mihanVideo" class="hero-video" autoplay muted loop playsinline>
+                    <source src="assets/video/Nagpur Mihan .mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                   <div class="hero-image-wrapper">
                 <img src="assets/img/logo/mihan-ban.jpg" class="hero-img" alt="MIHAN Airport">
+            </div>
             </div>
 
             <div class="stats-grid">
@@ -314,7 +306,6 @@
         </div>
 
         <div class="right-panel">
-            
             <div class="tag-row">
                 <span class="badge-pill tag-red">INTERNATIONAL HUB</span>
                 <span class="badge-pill tag-orange"><i class="fas fa-map-marker-alt me-1"></i> NAGPUR, MAHARASHTRA</span>
@@ -326,11 +317,13 @@
                 <h1 class="main-title">Multi-modal International Hub Airport (MIHAN)</h1>
                 <p class="subtitle">"Developing Nagpur as a global aviation and cargo hub"</p>
             </div>
+            
+            
 
             <div class="highlight-box">
                 <span class="info-label"><i class="fas fa-info-circle me-1"></i> Project Overview</span>
                 <p id="read-intro" style="font-size: 0.85rem; color: #555; line-height: 1.6; margin: 0;">
-                    MIHAN is a fully operational Multi-Product Special Economic Zone (SEZ) abutting Dr. Babasaheb Ambedkar International Airport. Strategically located at the Zero Mile Centre of India, it offers Single Window Clearance, state-of-the-art ready infrastructure, and Plug & Play office spaces. The project ensures excellent Air-Road-Rail-Metro connectivity and hassle-free allotment for businesses.
+                    MIHAN is a fully operational Multi-Product Special Economic Zone (SEZ) abutting Dr. Babasaheb Ambedkar International Airport. Strategically located at the Zero Mile Centre of India, it offers Single Window Clearance and Plug & Play office spaces.
                 </p>
             </div>
 
@@ -338,31 +331,23 @@
                 Welcome to MIHAN, the Multi-modal International Hub Airport at Nagpur.
                 This is a fully operational Multi-Product Special Economic Zone located strategically at the Zero Mile Centre of India.
                 The total project area spans 4300 Hectares, comprising 1236 Hectares of SEZ and 1018 Hectares of Non-SEZ area.
-                We offer Single Window Clearance, concessional power rates, and ready-to-use Plug and Play office spaces.
                 The zone features excellent Air, Road, Rail, and Metro connectivity.
-                Businesses here benefit from Customs Duty exemptions and zero-rated GST supplies.
             </div>
 
             <div>
                 <span class="info-label" style="color:#888; margin-bottom: 8px;">KEY FEATURES & BENEFITS</span>
                 <div class="features-grid">
                     <div class="feature-item">
-                        <i class="fas fa-industry"></i> <span>Multi-Product SEZ (Fully Operational)</span>
+                        <i class="fas fa-industry"></i> <span>Multi-Product SEZ</span>
                     </div>
                     <div class="feature-item">
-                        <i class="fas fa-map-pin"></i> <span>Strategic Zero Mile Location</span>
+                        <i class="fas fa-map-pin"></i> <span>Zero Mile Location</span>
                     </div>
                     <div class="feature-item">
                         <i class="fas fa-file-contract"></i> <span>Single Window Clearance</span>
                     </div>
                     <div class="feature-item">
-                        <i class="fas fa-laptop-house"></i> <span>Plug & Play Infrastructure</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-network-wired"></i> <span>Air–Road–Rail–Metro Connectivity</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-percent"></i> <span>Customs & GST Benefits</span>
+                        <i class="fas fa-network-wired"></i> <span>Multi-Modal Connectivity</span>
                     </div>
                 </div>
             </div>
@@ -383,85 +368,62 @@
     
     <script>
         function goBack() {
+            // STOP Voice
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+            }
+            // STOP Video
+            const video = document.getElementById('mihanVideo');
+            if (video) {
+                video.pause();
+            }
             window.location.href = 'pro-madc.html';
         }
 
-        /* --- AI VOICE LOGIC (Autoplay & Click) --- */
+        /* --- AI VOICE LOGIC --- */
         let speechSynth = window.speechSynthesis;
         let isSpeaking = false;
         let voices = [];
-        let hasAutoplayed = false; // Flag to prevent double playing
+        let hasAutoplayed = false;
 
-        // 1. Function to Load Voices
         function populateVoices() {
             voices = speechSynth.getVoices();
-            
-            // Try Autoplay if voices are ready and haven't played yet
             if (voices.length > 0 && !hasAutoplayed) {
-                // Short delay to ensure page render
-                setTimeout(() => {
-                    toggleVoice(true); // 'true' indicates this is an autoplay attempt
-                }, 500);
+                setTimeout(() => { toggleVoice(true); }, 500);
             }
         }
 
-        // 2. Initialize Voices
         populateVoices();
         if (speechSynthesis.onvoiceschanged !== undefined) {
             speechSynthesis.onvoiceschanged = populateVoices;
         }
 
-        // 3. Toggle / Play Function
         function toggleVoice(isAutoplay = false) {
             const btn = document.getElementById('voiceBtn');
-            const btnText = document.getElementById('voiceBtnText');
-
             if (isSpeaking && !isAutoplay) {
-                // STOP Logic
                 speechSynth.cancel();
                 isSpeaking = false;
                 btn.classList.remove('active', 'pulse-active');
                 btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear Overview</span>';
             } else {
-                // PLAY Logic (or Autoplay)
-                
-                // If autoplay triggered but sound is already playing (rare case), do nothing
                 if(isAutoplay && isSpeaking) return;
-
-                // Stop any previous instance just in case
                 speechSynth.cancel();
 
                 const content = document.getElementById('read-content').innerText;
                 const utterance = new SpeechSynthesisUtterance(content);
-                
-                // Select Indian Voice
                 const indianVoice = voices.find(v => v.lang.includes('en-IN') || v.lang.includes('hi-IN'));
                 if (indianVoice) utterance.voice = indianVoice;
                 
                 utterance.rate = 0.95;
-                
-                // When finished speaking
                 utterance.onend = function() {
                     isSpeaking = false;
                     btn.classList.remove('active', 'pulse-active');
                     btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear Overview</span>';
                 };
 
-                // ERROR HANDLING (e.g. Browser Autoplay Block)
-                utterance.onerror = function(event) {
-                    console.log("Audio error or blocked:", event);
-                    isSpeaking = false;
-                    btn.classList.remove('active', 'pulse-active');
-                    btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear Overview</span>';
-                };
-
                 speechSynth.speak(utterance);
-                
-                // Update State
                 isSpeaking = true;
-                hasAutoplayed = true; // Mark as played so it doesn't loop
-                
-                // Update Button UI
+                hasAutoplayed = true;
                 btn.classList.add('active', 'pulse-active');
                 btn.innerHTML = '<i class="fas fa-stop"></i> <span id="voiceBtnText">Stop Listening</span>';
             }

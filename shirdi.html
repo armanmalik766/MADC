@@ -11,12 +11,10 @@
 
     <style>
         :root {
-            /* MADC Theme Colors */
             --madc-red: #D92128;
             --madc-red-light: #fbecec;
             --madc-grey: #555759;
             --madc-dark: #2c2c2c;
-            
             --bg-dark: #12141d;
             --card-bg: #ffffff;
         }
@@ -32,7 +30,6 @@
             padding: 20px;
         }
 
-        /* --- Main Premium Card --- */
         .premium-modal {
             background: var(--card-bg);
             width: 100%;
@@ -48,7 +45,6 @@
             position: relative;
         }
 
-        /* --- Left Visual Panel --- */
         .left-panel {
             background: #fcfcfc;
             padding: 25px;
@@ -59,7 +55,6 @@
             width: 40%;
         }
 
-        /* Hero Image Area with Slider Support */
         .hero-image-wrapper {
             position: relative;
             border-radius: 20px;
@@ -68,18 +63,15 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        .hero-img {
+        .hero-img, .hero-video {
             width: 100%;
-            height: 100%; /* Ensures image fills the carousel item */
+            height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
-            min-height: 320px;
         }
         
-        /* Apply hover zoom to the active image in the slider */
         .hero-image-wrapper:hover .hero-img { transform: scale(1.05); }
 
-        /* Statistics Cards */
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -116,7 +108,6 @@
         .stat-val { font-weight: 700; font-size: 0.9rem; color: var(--madc-dark); display: block; }
         .stat-label { font-size: 0.65rem; color: var(--madc-grey); text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* --- Right Content Panel --- */
         .right-panel {
             padding: 40px;
             display: flex;
@@ -126,7 +117,6 @@
             overflow-y: auto;
         }
 
-        /* Tags */
         .tag-row { display: flex; gap: 10px; align-items: center; }
         .badge-pill {
             padding: 6px 15px;
@@ -138,7 +128,6 @@
         .tag-red { background: var(--madc-red-light); color: var(--madc-red); }
         .tag-orange { background: #fff3e0; color: #f57c00; }
 
-        /* Typography */
         .main-title {
             font-size: 2rem;
             font-weight: 700;
@@ -156,7 +145,6 @@
             font-size: 0.9rem;
         }
 
-        /* Info Box */
         .highlight-box {
             background: #f9f9f9;
             border-radius: 16px;
@@ -173,7 +161,6 @@
             text-transform: uppercase;
         }
 
-        /* Feature Grid */
         .features-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -195,7 +182,6 @@
         }
         .feature-item i { color: var(--madc-red); font-size: 1rem; margin-top: 2px; }
 
-        /* Buttons */
         .action-row {
             display: flex;
             gap: 15px;
@@ -278,11 +264,16 @@
         </div>
 
         <div class="left-panel">
-            
             <div class="hero-image-wrapper">
                 <div id="shirdiCarousel" class="carousel slide h-100" data-bs-ride="carousel">
                     <div class="carousel-inner h-100">
-                        <div class="carousel-item active h-100" data-bs-interval="3000">
+                        <div class="carousel-item active h-100" data-bs-interval="10000">
+                            <video id="heroVideo" class="hero-video" autoplay muted loop playsinline>
+                                <source src="assets/video/Shirdi.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="carousel-item h-100" data-bs-interval="3000">
                             <img src="assets/img/shridi1.png" class="d-block w-100 hero-img" alt="Shirdi Airport 1">
                         </div>
                         <div class="carousel-item h-100" data-bs-interval="3000">
@@ -354,7 +345,6 @@
         </div>
 
         <div class="right-panel">
-            
             <div class="tag-row">
                 <span class="badge-pill tag-red">INTERNATIONAL AIRPORT</span>
                 <span class="badge-pill tag-orange"><i class="fas fa-map-marker-alt me-1"></i> SHIRDI, MAHARASHTRA</span>
@@ -368,41 +358,21 @@
             <div class="highlight-box">
                 <span class="info-label"><i class="fas fa-info-circle me-1"></i> About Shirdi & Airport</span>
                 <p id="read-intro" style="font-size: 0.85rem; color: #555; line-height: 1.6; margin: 0;">
-                    Shirdi International Greenfield Airport has been operational since 1st October 2017. Serving over 1.4 million passengers recently, it facilitates high pilgrimage traffic with Night Landing operations commenced in March 2024. The airport operates sustainably via a commissioned Solar Power Plant and connects to key cities like Delhi, Bengaluru, and Hyderabad.
+                    Shirdi International Greenfield Airport has been operational since 1st October 2017. Serving over 1.4 million passengers recently, it facilitates high pilgrimage traffic with Night Landing operations.
                 </p>
             </div>
 
             <div id="read-content" style="display:none;">
-                Welcome to Shirdi Greenfield International Airport. 
-                This Code 4C airport spans 350 Hectares and commenced operations on October 1st, 2017.
-                It features a 3200 meter by 60 meter runway with designation 09 27, and two taxiways.
-                The apron is equipped with 8 Code-C bays and 3 bays for General Aviation.
-                We handle approximately 30 daily aircraft movements and over 1.47 million passengers.
-                Night Landing operations commenced in March 2024, and a new ATC Tower was commissioned on November 15th, 2025.
-                Works under development include a new 54,000 square meter Integrated Terminal, an Air Cargo Complex, and Apron Expansion.
+                Welcome to Shirdi Greenfield International Airport. This Code 4C airport spans 350 Hectares and commenced operations on October 1st, 2017. It features a 3200 meter runway. Approximately 30 daily aircraft movements are handled here. Night Landing operations commenced in March 2024.
             </div>
 
-            <div>
+            <div class="mt-4">
                 <span class="info-label" style="color:#888; margin-bottom: 8px;">KEY FEATURES & DEVELOPMENT</span>
                 <div class="features-grid">
-                    <div class="feature-item">
-                        <i class="fas fa-road"></i> <span>3200m x 60m Runway (09/27)</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-plane-arrival"></i> <span>8 Code-C + 3 GA Apron Bays</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-solar-panel"></i> <span>Solar Power Plant</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-moon"></i> <span>Night Landing (Operational)</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-broadcast-tower"></i> <span>New ATC Tower (2025)</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-building"></i> <span>New Terminal (54,000 Sqm)</span>
-                    </div>
+                    <div class="feature-item"><i class="fas fa-road"></i> <span>3200m x 60m Runway</span></div>
+                    <div class="feature-item"><i class="fas fa-solar-panel"></i> <span>Solar Power Plant</span></div>
+                    <div class="feature-item"><i class="fas fa-moon"></i> <span>Night Landing</span></div>
+                    <div class="feature-item"><i class="fas fa-building"></i> <span>New Terminal (54,000 Sqm)</span></div>
                 </div>
             </div>
 
@@ -422,79 +392,58 @@
     
     <script>
         function goBack() {
+            // STOP AI Voice
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+            }
+            // STOP Video
+            const video = document.getElementById('heroVideo');
+            if (video) {
+                video.pause();
+            }
             window.location.href = 'pro-madc.html';
         }
 
-        /* --- AI VOICE LOGIC (Autoplay & Click) --- */
+        /* --- AI VOICE LOGIC --- */
         let speechSynth = window.speechSynthesis;
         let isSpeaking = false;
         let voices = [];
-        let hasAutoplayed = false; // Flag to prevent loop
+        let hasAutoplayed = false;
 
-        // 1. Function to Load Voices
         function populateVoices() {
             voices = speechSynth.getVoices();
-            
-            // Try Autoplay if voices are loaded and we haven't played yet
             if (voices.length > 0 && !hasAutoplayed) {
-                // Short delay to ensure page elements are ready
-                setTimeout(() => {
-                    toggleVoice(true); // true = isAutoplay
-                }, 500);
+                setTimeout(() => { toggleVoice(true); }, 500);
             }
         }
 
-        // 2. Initialize Voices
         populateVoices();
         if (speechSynthesis.onvoiceschanged !== undefined) {
             speechSynthesis.onvoiceschanged = populateVoices;
         }
 
-        // 3. Toggle Logic
         function toggleVoice(isAutoplay = false) {
             const btn = document.getElementById('voiceBtn');
-            const btnText = document.getElementById('voiceBtnText');
-
             if (isSpeaking && !isAutoplay) {
-                // STOP Logic (User Click)
                 speechSynth.cancel();
                 isSpeaking = false;
                 btn.classList.remove('active', 'pulse-active');
                 btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear AI Guide</span>';
             } else {
-                // PLAY Logic (User Click or Autoplay)
-                
-                // Safety check: if autoplay triggered but it's already speaking
                 if(isAutoplay && isSpeaking) return;
-
                 const content = document.getElementById('read-content').innerText;
                 const utterance = new SpeechSynthesisUtterance(content);
-                
-                // Voice Selection (Indian)
                 const indianVoice = voices.find(v => v.lang.includes('en-IN') || v.lang.includes('hi-IN'));
                 if (indianVoice) utterance.voice = indianVoice;
-                
                 utterance.rate = 0.95;
-                
                 utterance.onend = function() {
                     isSpeaking = false;
                     btn.classList.remove('active', 'pulse-active');
                     btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear AI Guide</span>';
                 };
-
-                // Error handling for autoplay blocks
-                utterance.onerror = function(e) {
-                    console.log("Audio playback error (likely browser blocked autoplay):", e);
-                    isSpeaking = false;
-                    btn.classList.remove('active', 'pulse-active');
-                    btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear AI Guide</span>';
-                };
-
                 speechSynth.speak(utterance);
-                
-                // Update State & UI
                 isSpeaking = true;
-                hasAutoplayed = true; // Mark as played
+                hasAutoplayed = true;
                 btn.classList.add('active', 'pulse-active');
                 btn.innerHTML = '<i class="fas fa-stop"></i> <span id="voiceBtnText">Stop Listening</span>';
             }

@@ -11,12 +11,10 @@
 
     <style>
         :root {
-            /* MADC Theme Colors */
             --madc-red: #D92128;
             --madc-red-light: #fbecec;
             --madc-grey: #555759;
             --madc-dark: #2c2c2c;
-            
             --bg-dark: #12141d;
             --card-bg: #ffffff;
         }
@@ -32,7 +30,6 @@
             padding: 20px;
         }
 
-        /* --- Main Premium Card --- */
         .premium-modal {
             background: var(--card-bg);
             width: 100%;
@@ -48,7 +45,6 @@
             position: relative;
         }
 
-        /* --- Left Visual Panel --- */
         .left-panel {
             background: #fcfcfc;
             padding: 25px;
@@ -59,7 +55,6 @@
             width: 40%;
         }
 
-        /* Hero Image Area with Slider Support */
         .hero-image-wrapper {
             position: relative;
             border-radius: 20px;
@@ -68,18 +63,15 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        .hero-img {
+        .hero-img, .hero-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
-            min-height: 320px;
         }
         
-        /* Apply hover zoom to the active image in the slider */
         .hero-image-wrapper:hover .hero-img { transform: scale(1.05); }
 
-        /* Statistics Cards */
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -116,7 +108,6 @@
         .stat-val { font-weight: 700; font-size: 0.9rem; color: var(--madc-dark); display: block; }
         .stat-label { font-size: 0.65rem; color: var(--madc-grey); text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* --- Right Content Panel --- */
         .right-panel {
             padding: 40px;
             display: flex;
@@ -126,7 +117,6 @@
             overflow-y: auto;
         }
 
-        /* Tags */
         .tag-row { display: flex; gap: 10px; align-items: center; }
         .badge-pill {
             padding: 6px 15px;
@@ -138,7 +128,6 @@
         .tag-red { background: var(--madc-red-light); color: var(--madc-red); }
         .tag-orange { background: #fff3e0; color: #f57c00; }
 
-        /* Typography */
         .main-title {
             font-size: 2rem;
             font-weight: 700;
@@ -156,7 +145,6 @@
             font-size: 0.9rem;
         }
 
-        /* Info Box */
         .highlight-box {
             background: #f9f9f9;
             border-radius: 16px;
@@ -173,7 +161,6 @@
             text-transform: uppercase;
         }
 
-        /* Feature Grid */
         .features-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -195,7 +182,6 @@
         }
         .feature-item i { color: var(--madc-red); font-size: 1rem; margin-top: 2px; }
 
-        /* Buttons */
         .action-row {
             display: flex;
             gap: 15px;
@@ -255,13 +241,6 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        @keyframes pulse-ring {
-            0% { box-shadow: 0 0 0 0 rgba(217, 33, 40, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(217, 33, 40, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(217, 33, 40, 0); }
-        }
-        .pulse-active { animation: pulse-ring 1.5s infinite; }
-
         @media (max-width: 992px) {
             .premium-modal { flex-direction: column; height: auto; max-height: 95vh; overflow-y: auto;}
             .left-panel, .right-panel { width: 100%; padding: 20px; height: auto; border-right: none;}
@@ -278,33 +257,22 @@
         </div>
 
         <div class="left-panel">
-            
             <div class="hero-image-wrapper">
                 <div id="laturCarousel" class="carousel slide h-100" data-bs-ride="carousel">
                     <div class="carousel-inner h-100">
-                        <div class="carousel-item active h-100" data-bs-interval="3000">
-                            <img src="assets/img/latur1.jpg" class="d-block w-100 hero-img" alt="Latur Airport Runway">
+                        <div class="carousel-item active h-100" data-bs-interval="10000">
+                            <video id="laturVideo" class="hero-video" autoplay muted loop playsinline>
+                                <source src="assets/video/Latur.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
-                        <div class="carousel-item h-100" data-bs-interval="3000">
-                            <img src="assets/img/latur2.jpg" class="d-block w-100 hero-img" alt="Latur Airport Terminal">
-                        </div>
-                        <div class="carousel-item h-100" data-bs-interval="3000">
-                            <img src="assets/img/latur3.jpg" class="d-block w-100 hero-img" alt="Latur Airport Apron">
-                        </div>
-                        <div class="carousel-item h-100" data-bs-interval="3000">
-                            <img src="assets/img/latur4.jpg" class="d-block w-100 hero-img" alt="Latur VIP Lounge">
-                        </div>
-                        <div class="carousel-item h-100" data-bs-interval="3000">
-                            <img src="assets/img/latur5.jpg" class="d-block w-100 hero-img" alt="Latur Aerial View">
-                        </div>
+                      
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#laturCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
+                        <span class="carousel-control-prev-icon"></span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#laturCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
+                        <span class="carousel-control-next-icon"></span>
                     </button>
                 </div>
             </div>
@@ -339,7 +307,6 @@
         </div>
 
         <div class="right-panel">
-            
             <div class="tag-row">
                 <span class="badge-pill tag-red">OPERATIONAL AIRPORT</span>
                 <span class="badge-pill tag-orange"><i class="fas fa-map-marker-alt me-1"></i> LATUR, MAHARASHTRA</span>
@@ -353,49 +320,26 @@
             <div class="highlight-box">
                 <span class="info-label"><i class="fas fa-info-circle me-1"></i> Operational Status Note</span>
                 <p style="font-size: 0.85rem; color: #555; line-height: 1.6; margin: 0;">
-                    Latur Airport is fully functional for VIP, charter, and special flights. Scheduled commercial services may vary or remain limited, and passengers are advised to verify current flight operations before planning travel.
+                    Latur Airport is fully functional for VIP, charter, and special flights. Verifying current flight operations is advised before planning travel.
                 </p>
             </div>
 
             <div class="mt-4">
                 <h5 style="font-weight: 700; font-size: 1rem; color: var(--madc-dark); margin-bottom: 10px;">About Latur Airport</h5>
                 <p id="read-intro" style="font-size: 0.85rem; color: #555; line-height: 1.6; margin: 0;">
-                    Latur Airport (LTU) is a public airport located near Chincholiraowadi, approximately 12 km west of Latur city in Maharashtra. Owned by the Maharashtra Industrial Development Corporation (MIDC) and operated by Reliance Airport Developers, the airport primarily supports VIP, corporate, and charter flight operations with limited scheduled commercial services.
+                    Latur Airport (LTU) is owned by the Maharashtra Industrial Development Corporation and operated by Reliance Airport Developers. It primarily supports VIP and corporate aviation.
                 </p>
             </div>
 
             <div id="read-content" style="display:none;">
-                Welcome to Latur Airport, identified by the IATA code LTU.
-                This public airport is located near Chincholiraowadi, around twelve kilometers west of Latur city in Maharashtra.
-                It is owned by the Maharashtra Industrial Development Corporation and operated by Reliance Airport Developers.
-                Latur Airport features a single asphalt runway with a length of two thousand three hundred meters.
-                The airport primarily serves VIP, charter, and corporate aviation, with limited scheduled commercial flight operations.
-                Passenger amenities include a VIP lounge, restrooms, baggage handling facilities, and car rental services.
-                Due to variable airline schedules, passengers are advised to confirm flight availability in advance.
-                Latur Airport continues to play a strategic role in regional connectivity and administrative aviation within the Marathwada region.
+                Welcome to Latur Airport, IATA code LTU. This airport is located twelve kilometers west of Latur city. It features an asphalt runway of two thousand three hundred meters and serves primarily VIP and charter flights.
             </div>
 
             <div class="mt-4">
                 <span class="info-label" style="color:#888; margin-bottom: 8px;">KEY FEATURES</span>
                 <div class="features-grid">
-                    <div class="feature-item">
-                        <i class="fas fa-road"></i> <span>2,300m Asphalt Runway</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-building"></i> <span>Single Passenger Terminal</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-user-tie"></i> <span>VIP & Charter Operations</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-car"></i> <span>Car Rental Facilities</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-couch"></i> <span>VIP Lounge Available</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-plane-slash"></i> <span>Limited Scheduled Flights</span>
-                    </div>
+                    <div class="feature-item"><i class="fas fa-road"></i> <span>2,300m Asphalt Runway</span></div>
+                    <div class="feature-item"><i class="fas fa-user-tie"></i> <span>VIP & Charter Operations</span></div>
                 </div>
             </div>
 
@@ -415,80 +359,58 @@
     
     <script>
         function goBack() {
+            // STOP Voice Guide immediately
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+            }
+            // STOP Video playback
+            const video = document.getElementById('laturVideo');
+            if (video) {
+                video.pause();
+            }
             window.location.href = 'pro-madc.html';
         }
 
-        /* --- AI VOICE LOGIC (Autoplay & Click) --- */
+        /* --- AI VOICE LOGIC --- */
         let speechSynth = window.speechSynthesis;
         let isSpeaking = false;
         let voices = [];
-        let hasAutoplayed = false; // Flag to prevent loop
+        let hasAutoplayed = false;
 
-        // 1. Function to Load Voices
         function populateVoices() {
             voices = speechSynth.getVoices();
-            
-            // Try Autoplay if voices are loaded and we haven't played yet
             if (voices.length > 0 && !hasAutoplayed) {
-                // Short delay to ensure page elements are ready
-                setTimeout(() => {
-                    toggleVoice(true); // true = isAutoplay
-                }, 500);
+                setTimeout(() => { toggleVoice(true); }, 500);
             }
         }
 
-        // 2. Initialize Voices
         populateVoices();
         if (speechSynthesis.onvoiceschanged !== undefined) {
             speechSynthesis.onvoiceschanged = populateVoices;
         }
 
-        // 3. Toggle Logic
         function toggleVoice(isAutoplay = false) {
             const btn = document.getElementById('voiceBtn');
-            const btnText = document.getElementById('voiceBtnText');
-
             if (isSpeaking && !isAutoplay) {
-                // STOP Logic (User Click)
                 speechSynth.cancel();
                 isSpeaking = false;
-                btn.classList.remove('active', 'pulse-active');
+                btn.classList.remove('active');
                 btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear AI Guide</span>';
             } else {
-                // PLAY Logic (User Click or Autoplay)
-                
-                // Safety check: if autoplay triggered but it's already speaking
                 if(isAutoplay && isSpeaking) return;
-
                 const content = document.getElementById('read-content').innerText;
                 const utterance = new SpeechSynthesisUtterance(content);
-                
-                // Voice Selection (Indian)
                 const indianVoice = voices.find(v => v.lang.includes('en-IN') || v.lang.includes('hi-IN'));
                 if (indianVoice) utterance.voice = indianVoice;
-                
-                utterance.rate = 0.95;
-                
                 utterance.onend = function() {
                     isSpeaking = false;
-                    btn.classList.remove('active', 'pulse-active');
+                    btn.classList.remove('active');
                     btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear AI Guide</span>';
                 };
-
-                // Error handling for autoplay blocks
-                utterance.onerror = function(e) {
-                    console.log("Audio playback error (likely browser blocked autoplay):", e);
-                    isSpeaking = false;
-                    btn.classList.remove('active', 'pulse-active');
-                    btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear AI Guide</span>';
-                };
-
                 speechSynth.speak(utterance);
-                
-                // Update State & UI
                 isSpeaking = true;
-                hasAutoplayed = true; // Mark as played
-                btn.classList.add('active', 'pulse-active');
+                hasAutoplayed = true;
+                btn.classList.add('active');
                 btn.innerHTML = '<i class="fas fa-stop"></i> <span id="voiceBtnText">Stop Listening</span>';
             }
         }

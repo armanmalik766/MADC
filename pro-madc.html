@@ -34,6 +34,24 @@
             width: 100vw;
         }
 
+        /* ================= NEW: FADE IN FROM BLACK ================= */
+        #page-loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 99999;
+            opacity: 1;
+            transition: opacity 1.5s ease-in-out;
+            pointer-events: none;
+        }
+
+        .loader-hidden {
+            opacity: 0 !important;
+        }
+
         /* ================= HEADER CONTAINER ================= */
         #header-container {
             position: fixed;
@@ -98,13 +116,11 @@
             transition: 0.3s;
         }
 
-        /* Hover Text Change */
         .action-card:hover h3,
         .action-card:hover small {
             color: #fff;
         }
 
-        /* Icon decoration */
         .action-card::after {
             content: '✈';
             position: absolute;
@@ -120,7 +136,7 @@
             color: rgba(255, 255, 255, 0.2);
         }
 
-        /* ================= MAP AREA (FIXED GEOMETRY) ================= */
+        /* ================= MAP AREA ================= */
         .map-wrapper {
             position: absolute;
             top: 0;
@@ -134,50 +150,36 @@
             padding-top: 60px;
         }
 
-        /* ✅ STEP 2: LOCK THE CONTAINER GEOMETRY */
         .map-container {
             position: relative;
             width: min(95vw, 900px);
-            
-            /* 🔒 MUST MATCH ACTUAL IMAGE SIZE (1200x800) */
             aspect-ratio: 1200 / 800; 
-            
             margin: auto;
-            
-            /* Animation props */
             transform: scale(1.25);
             opacity: 0;
-            transition: transform 1.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.2s ease;
+            transition: transform 1.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.5s ease;
         }
 
-        /* When animation starts */
         .map-container.map-zoom-in {
             transform: scale(1);
             opacity: 1;
         }
 
-        /* ✅ STEP 1: FIX THE MAP IMAGE */
         .map-container img.main-map {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
-            
-            /* ✅ NEVER COVER - This prevents cropping */
             object-fit: contain; 
-            
             pointer-events: none;
         }
 
-        /* ✅ STEP 3: MARKERS */
+        /* ================= MARKERS ================= */
         .marker {
             position: absolute;
             transform: translate(-50%, -50%);
-            /* Using clamp ensures markers don't get too tiny or too huge */
             width: clamp(14px, 2vw, 20px);
             height: clamp(14px, 2vw, 20px);
-            
-            /* Theme Color: Red Center */
             background: var(--madc-red);
             border: 2px solid #fff;
             border-radius: 50%;
@@ -187,8 +189,6 @@
             transition: transform 0.3s ease, background 0.3s;
         }
 
-        /* ================= MARKER EFFECTS ================= */
-        /* Inner Pulse (Red) */
         .marker::before {
             content: "";
             position: absolute;
@@ -199,7 +199,6 @@
             animation: pulse-red 2s infinite;
         }
 
-        /* Outer Ripple (Gold) */
         .marker::after {
             content: "";
             position: absolute;
@@ -222,14 +221,13 @@
         }
 
         .marker:hover {
-            transform: translate(-50%, -50%) scale(1.3); /* Keep centering translate */
+            transform: translate(-50%, -50%) scale(1.3);
             background: var(--madc-gold);
             border-color: var(--madc-black);
             box-shadow: 0 0 20px var(--madc-gold), 0 0 40px var(--madc-red);
             z-index: 20;
         }
 
-        /* Tooltip Label */
         .marker span {
             position: absolute;
             top: -45px;
@@ -283,8 +281,7 @@
         .baramati { top: 62.5%; left: 32%; }
         .dharashiv { top: 65%; left: 45%; }
 
-
-        /* ================= ANIMATION ELEMENTS ================= */
+        /* ================= PLANE & CLOUDS ================= */
         #madc-plane {
             position: fixed;
             top: 55%;
@@ -302,16 +299,8 @@
         }
 
         @keyframes planeFlyRTL {
-            0% {
-                transform: translate(160%, -50%) scale(.95);
-                opacity: 1;
-                visibility: visible;
-            }
-            100% {
-                transform: translate(-170%, -65%) scale(1.1);
-                opacity: 1;
-                visibility: visible;
-            }
+            0% { transform: translate(160%, -50%) scale(.95); opacity: 1; visibility: visible; }
+            100% { transform: translate(-170%, -65%) scale(1.1); opacity: 1; visibility: visible; }
         }
 
         #cloud-layer {
@@ -339,89 +328,21 @@
             pointer-events: none;
         }
 
-
-        /* ================= ✅ STEP 4: SAFE RESPONSIVE DESIGN ================= */
-        /* Note: No more modifying aspect-ratio or height here! */
-
-      /* ================= TABLETS & SMALL LAPTOPS ================= */
-@media (max-width: 1024px) {
-    .right-actions {
-        top: auto;
-        bottom: 24px;
-        right: 0;
-        left: 0;
-        flex-direction: row;
-        justify-content: center;
-        transform: none;
-        width: 100%;
-        padding: 0 16px;
-        gap: 12px;
-    }
-
-    .action-card {
-        width: 46%;
-        max-width: 220px;
-        padding: 14px;
-        font-size: 0.8rem;
-    }
-}
-
-/* ================= 📱 MOBILE PORTRAIT (MAIN FIX) ================= */
-@media (max-width: 768px) and (orientation: portrait) {
-    .map-wrapper {
-        padding-top: 50px;          /* ⬅ reduced top space */
-        align-items: center;        /* ⬅ center map vertically */
-    }
-
-    .map-container {
-        width: 98vw;                /* ⬅ BIGGER map */
-        max-height: calc(100vh - 120px); /* ⬅ fills screen safely */
-        aspect-ratio: 1200 / 800;   /* 🔒 DO NOT CHANGE */
-    }
-}
-
-/* ================= 📱 MOBILE LANDSCAPE ================= */
-@media (max-width: 768px) and (orientation: landscape) {
-    .map-wrapper {
-        padding-top: 40px;
-        align-items: center;
-    }
-
-    .map-container {
-        width: 92vw;
-        max-height: calc(100vh - 100px);
-        aspect-ratio: 1200 / 800;
-    }
-}
-
-/* ================= 📱 SMALL PHONES ================= */
-@media (max-width: 480px) {
-    .right-actions {
-        flex-direction: column;
-        bottom: 16px;
-        gap: 10px;
-    }
-
-    .action-card {
-        width: 100%;
-        max-width: 320px;
-        padding: 14px;
-    }
-
-    .map-container {
-        max-height: calc(100vh - 90px); /* ⬅ extra boost */
-    }
-
-    .marker {
-        width: 14px;
-        height: 14px;
-    }
-}
-
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 1024px) {
+            .right-actions { bottom: 24px; top: auto; right: 0; left: 0; flex-direction: row; justify-content: center; transform: none; width: 100%; padding: 0 16px; gap: 12px; }
+            .action-card { width: 46%; max-width: 220px; padding: 14px; }
+        }
+        @media (max-width: 768px) and (orientation: portrait) {
+            .map-wrapper { padding-top: 50px; align-items: center; }
+            .map-container { width: 98vw; max-height: calc(100vh - 120px); }
+        }
     </style>
 </head>
 
 <body>
+
+    <div id="page-loader-overlay"></div>
 
     <div id="header-container"></div>
 
@@ -437,7 +358,6 @@
             <div class="marker karad" onclick="startFly('karad.html')"><span>KARAD</span></div>
             <div class="marker pune" onclick="startFly('pune-purandar.html')"><span>PUNE</span></div>
             <div class="marker phaltan" onclick="startFly('phaltan.html')"><span>PHALTAN</span></div>
-            
             <div class="marker mihan" onclick="startFly('mihan.html')"><span>MIHAN (NAGPUR)</span></div>
             <div class="marker nanded" onclick="startFly('nanded.html')"><span>NANDED</span></div>
             <div class="marker ratnagiri" onclick="startFly('ratnagiri.html')"><span>RATNAGIRI</span></div>
@@ -446,7 +366,6 @@
             <div class="marker latur" onclick="startFly('latur.html')"><span>LATUR</span></div>
             <div class="marker baramati" onclick="startFly('baramati.html')"><span>BARAMATI</span></div>
             <div class="marker dharashiv" onclick="startFly('dharashiv.html')"><span>DHARASHIV (OSMANABAD)</span></div>
-
         </div>
     </section>
 
@@ -463,9 +382,7 @@
         <source src="assets/voice/aeroplane-voice1.mp3" type="audio/mpeg">
     </audio>
 
-
     <script>
-        // Load Header
         $(document).ready(function () {
             $("#header-container").load("header.html");
         });
@@ -475,47 +392,48 @@
         const mapSection = document.getElementById("mapUI");
         const actions = document.querySelector(".right-actions");
         const sound = document.getElementById("planeSound");
+        const mapContainer = document.querySelector(".map-container");
+        const loader = document.getElementById("page-loader-overlay");
 
+        // 1. HANDLE INITIAL FADE IN FROM BLACK
+        window.addEventListener("DOMContentLoaded", () => {
+            // Start fading out black overlay immediately
+            setTimeout(() => {
+                loader.classList.add("loader-hidden");
+            }, 100);
+
+            // Start map zoom-in slightly after fade begins
+            setTimeout(() => {
+                mapContainer.classList.add("map-zoom-in");
+            }, 400);
+
+            // Clean up DOM after transition
+            setTimeout(() => {
+                loader.style.display = "none";
+            }, 1600);
+        });
+
+        // 2. PLANE FLY ANIMATION
         function startFly(target) {
-            // Start Visuals
             plane.classList.add("fly");
             cloud.classList.add("cloud-show");
-
-            // Fade UI
             mapSection.classList.add("fade-ui");
             actions.classList.add("fade-ui");
 
-            // 🔊 Play Plane Sound
             sound.pause();
             sound.currentTime = 0;
-
             const playPromise = sound.play();
             if (playPromise !== undefined) {
-                playPromise.catch(() => {
-                    console.log("Audio autoplay blocked.");
-                });
+                playPromise.catch(() => console.log("Audio blocked."));
             }
 
-            // Redirect after animation
             setTimeout(() => {
                 document.body.classList.add("page-exit");
-
                 setTimeout(() => {
                     window.location.href = target;
-                }, 600); // wait for fade animation
+                }, 600);
             }, 2200);
         }
     </script>
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const map = document.querySelector(".map-container");
-
-        // slight delay for premium feel
-        setTimeout(() => {
-            map.classList.add("map-zoom-in");
-        }, 300);
-    });
-    </script>
-
 </body>
 </html>
