@@ -120,8 +120,7 @@
             color: rgba(255, 255, 255, 0.2);
         }
 
-
-        /* ================= MAP AREA ================= */
+        /* ================= MAP AREA (FIXED GEOMETRY) ================= */
         .map-wrapper {
             position: absolute;
             top: 0;
@@ -135,66 +134,60 @@
             padding-top: 60px;
         }
 
-   .map-container {
-    position: relative;
-    width: min(95vw, 850px);
+        /* ✅ STEP 2: LOCK THE CONTAINER GEOMETRY */
+        .map-container {
+            position: relative;
+            width: min(95vw, 900px);
+            
+            /* 🔒 MUST MATCH ACTUAL IMAGE SIZE (1200x800) */
+            aspect-ratio: 1200 / 800; 
+            
+            margin: auto;
+            
+            /* Animation props */
+            transform: scale(1.25);
+            opacity: 0;
+            transition: transform 1.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.2s ease;
+        }
 
-    /* 🔒 SINGLE SOURCE OF TRUTH */
-    aspect-ratio: 1200 / 800;
+        /* When animation starts */
+        .map-container.map-zoom-in {
+            transform: scale(1);
+            opacity: 1;
+        }
 
-    margin: auto;
-}
+        /* ✅ STEP 1: FIX THE MAP IMAGE */
+        .map-container img.main-map {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            
+            /* ✅ NEVER COVER - This prevents cropping */
+            object-fit: contain; 
+            
+            pointer-events: none;
+        }
 
-
-.map-container img.main-map {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;   /* correct */
-    pointer-events: none;
-}
-
-
-
-.marker {
-    position: absolute;
-    width: clamp(14px, 1.6vw, 20px);
-    height: clamp(14px, 1.6vw, 20px);
-    transform: translate(-50%, -50%);
-}
-
-
-
-@media (max-width: 768px) {
-    .map-container {
-        width: 95%;
-        aspect-ratio: 4 / 3; /* slightly taller for mobile */
-    }
-
-    .marker {
-        transform: translate(-50%, -50%);
-    }
-}
-
-
-        /* ================= GLOWING MARKERS (UPDATED) ================= */
+        /* ✅ STEP 3: MARKERS */
         .marker {
             position: absolute;
-            width: 20px;
-            height: 20px;
+            transform: translate(-50%, -50%);
+            /* Using clamp ensures markers don't get too tiny or too huge */
+            width: clamp(14px, 2vw, 20px);
+            height: clamp(14px, 2vw, 20px);
+            
             /* Theme Color: Red Center */
             background: var(--madc-red);
-            /* White border for contrast against map */
             border: 2px solid #fff;
             border-radius: 50%;
             cursor: pointer;
             z-index: 5;
-            /* Static Glow Effect combining Red and Gold */
             box-shadow: 0 0 15px var(--madc-red), 0 0 25px var(--madc-gold);
             transition: transform 0.3s ease, background 0.3s;
         }
 
+        /* ================= MARKER EFFECTS ================= */
         /* Inner Pulse (Red) */
         .marker::before {
             content: "";
@@ -206,7 +199,7 @@
             animation: pulse-red 2s infinite;
         }
 
-        /* Outer Ripple (Gold) - Creates the 'beacon' look */
+        /* Outer Ripple (Gold) */
         .marker::after {
             content: "";
             position: absolute;
@@ -215,7 +208,7 @@
             border-radius: 50%;
             opacity: 0;
             z-index: -1;
-            animation: ripple-gold 2s infinite 0.5s; /* 0.5s delay for staggered effect */
+            animation: ripple-gold 2s infinite 0.5s;
         }
 
         @keyframes pulse-red {
@@ -229,7 +222,7 @@
         }
 
         .marker:hover {
-            transform: scale(1.3);
+            transform: translate(-50%, -50%) scale(1.3); /* Keep centering translate */
             background: var(--madc-gold);
             border-color: var(--madc-black);
             box-shadow: 0 0 20px var(--madc-gold), 0 0 40px var(--madc-red);
@@ -243,7 +236,7 @@
             left: 50%;
             transform: translateX(-50%);
             background: var(--madc-black);
-            color: var(--madc-gold); /* Gold text for better visibility */
+            color: var(--madc-gold);
             padding: 8px 14px;
             font-size: 13px;
             font-weight: 700;
@@ -253,10 +246,9 @@
             pointer-events: none;
             transition: 0.3s;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            border-bottom: 3px solid var(--madc-red); /* Red accent on tooltip */
+            border-bottom: 3px solid var(--madc-red);
         }
 
-        /* Arrow for tooltip */
         .marker span::after {
             content: "";
             position: absolute;
@@ -265,7 +257,7 @@
             transform: translateX(-50%);
             border-left: 6px solid transparent;
             border-right: 6px solid transparent;
-            border-top: 6px solid var(--madc-red); /* Matches border bottom */
+            border-top: 6px solid var(--madc-red);
         }
 
         .marker:hover span {
@@ -315,26 +307,12 @@
                 opacity: 1;
                 visibility: visible;
             }
-
             100% {
                 transform: translate(-170%, -65%) scale(1.1);
                 opacity: 1;
                 visibility: visible;
             }
         }
-/* MAP INTRO ZOOM EFFECT */
-.map-container {
-    transform: scale(1.25);
-    opacity: 0;
-    transition: transform 1.6s cubic-bezier(0.25, 1, 0.5, 1),
-                opacity 1.2s ease;
-}
-
-/* When animation starts */
-.map-container.map-zoom-in {
-    transform: scale(1);
-    opacity: 1;
-}
 
         #cloud-layer {
             position: fixed;
@@ -362,55 +340,84 @@
         }
 
 
-        /* ================= RESPONSIVE DESIGN ================= */
-        @media (max-width: 1024px) {
-            .map-container {
-                width: 95%;
-                height: 70vh;
-            }
+        /* ================= ✅ STEP 4: SAFE RESPONSIVE DESIGN ================= */
+        /* Note: No more modifying aspect-ratio or height here! */
 
-            .right-actions {
-                top: auto;
-                bottom: 30px;
-                right: 0;
-                left: 0;
-                flex-direction: row;
-                justify-content: center;
-                transform: none;
-                width: 100%;
-                padding: 0 20px;
-            }
+      /* ================= TABLETS & SMALL LAPTOPS ================= */
+@media (max-width: 1024px) {
+    .right-actions {
+        top: auto;
+        bottom: 24px;
+        right: 0;
+        left: 0;
+        flex-direction: row;
+        justify-content: center;
+        transform: none;
+        width: 100%;
+        padding: 0 16px;
+        gap: 12px;
+    }
 
-            .action-card {
-                width: 45%;
-                max-width: 200px;
-                padding: 15px;
-                font-size: 0.8rem;
-            }
-        }
+    .action-card {
+        width: 46%;
+        max-width: 220px;
+        padding: 14px;
+        font-size: 0.8rem;
+    }
+}
 
-        @media (max-width: 480px) {
-            .right-actions {
-                flex-direction: column;
-                bottom: 20px;
-                gap: 10px;
-            }
+/* ================= 📱 MOBILE PORTRAIT (MAIN FIX) ================= */
+@media (max-width: 768px) and (orientation: portrait) {
+    .map-wrapper {
+        padding-top: 50px;          /* ⬅ reduced top space */
+        align-items: center;        /* ⬅ center map vertically */
+    }
 
-            .action-card {
-                width: 100%;
-                max-width: 300px;
-            }
+    .map-container {
+        width: 98vw;                /* ⬅ BIGGER map */
+        max-height: calc(100vh - 120px); /* ⬅ fills screen safely */
+        aspect-ratio: 1200 / 800;   /* 🔒 DO NOT CHANGE */
+    }
+}
 
-            .map-container {
-                height: 60vh;
-                margin-top: -50px;
-            }
+/* ================= 📱 MOBILE LANDSCAPE ================= */
+@media (max-width: 768px) and (orientation: landscape) {
+    .map-wrapper {
+        padding-top: 40px;
+        align-items: center;
+    }
 
-            .marker {
-                width: 16px;
-                height: 16px;
-            }
-        }
+    .map-container {
+        width: 92vw;
+        max-height: calc(100vh - 100px);
+        aspect-ratio: 1200 / 800;
+    }
+}
+
+/* ================= 📱 SMALL PHONES ================= */
+@media (max-width: 480px) {
+    .right-actions {
+        flex-direction: column;
+        bottom: 16px;
+        gap: 10px;
+    }
+
+    .action-card {
+        width: 100%;
+        max-width: 320px;
+        padding: 14px;
+    }
+
+    .map-container {
+        max-height: calc(100vh - 90px); /* ⬅ extra boost */
+    }
+
+    .marker {
+        width: 14px;
+        height: 14px;
+    }
+}
+
     </style>
 </head>
 
@@ -448,14 +455,6 @@
             <small>Explore</small>
             <h3>More</h3>
         </div>
-        <!-- <div class="action-card" onclick="startFly('aviation-support-system-infrastructure-dev.html')">
-            <small>Infrastructure</small>
-            <h3>Support System</h3>
-        </div>
-        <div class="action-card" onclick="startFly('global-aviation-hub.html')">
-            <small>Explore</small>
-            <h3>Aviation Hub</h3>
-        </div> -->
     </div>
 
     <img src="assets/map/airplane.png" id="madc-plane">
@@ -508,17 +507,15 @@
         }
     </script>
     <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const map = document.querySelector(".map-container");
+    document.addEventListener("DOMContentLoaded", () => {
+        const map = document.querySelector(".map-container");
 
-    // slight delay for premium feel
-    setTimeout(() => {
-        map.classList.add("map-zoom-in");
-    }, 300);
-});
-</script>
-
+        // slight delay for premium feel
+        setTimeout(() => {
+            map.classList.add("map-zoom-in");
+        }, 300);
+    });
+    </script>
 
 </body>
-
 </html>
