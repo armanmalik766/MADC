@@ -28,6 +28,12 @@
             --madc-green: #22C55E;
         }
 
+        html, body {
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
@@ -155,6 +161,24 @@
             section {
                 padding-top: 3rem;
                 padding-bottom: 3rem;
+            }
+        }
+
+        @media (min-height: 900px) and (orientation: portrait) {
+            body {
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+
+            #header-container,
+            #footer-container {
+                width: 100%;
+                overflow: hidden;
+            }
+
+            section {
+                position: relative;
+                isolation: isolate;
             }
         }
     </style>
@@ -508,28 +532,7 @@
             offset: 100
         });
 
-        // Load header and footer
-        $(document).ready(function () {
-            $("#header-container").load("header.html");
-            $("#footer-container").load("footer.html");
-
-            // Handle responsive adjustments
-            function handleResize() {
-                if (window.innerWidth < 768) {
-                    document.querySelectorAll('section').forEach(section => {
-                        section.classList.add('px-4');
-                    });
-                } else {
-                    document.querySelectorAll('section').forEach(section => {
-                        section.classList.remove('px-4');
-                    });
-                }
-            }
-
-            handleResize();
-            window.addEventListener('resize', handleResize);
-        });
-
+ 
         // Optional: Add smooth scroll to all anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -545,106 +548,107 @@
         });
     </script>
 
-<script>
-    // 1. Init AOS Animations
-    AOS.init({
-        duration: 900,
-        once: true,
-        offset: 120
-    });
+    <script>
+     
 
-    // 2. Header/Footer Loader & Auto-Scroll Coordination
-    $(document).ready(function () {
-        // Use Deferred objects to track async loading of external HTML files
-        const headerLoad = $.Deferred();
-        const footerLoad = $.Deferred();
+        // 2. Header/Footer Loader & Auto-Scroll Coordination
+        $(document).ready(function () {
+            // Use Deferred objects to track async loading of external HTML files
+            const headerLoad = $.Deferred();
+            const footerLoad = $.Deferred();
 
-        $("#header-container").load("header.html", () => headerLoad.resolve());
-        $("#footer-container").load("footer.html", () => footerLoad.resolve());
+            $("#header-container").load("header.html", () => headerLoad.resolve());
+            $("#footer-container").load("footer.html", () => footerLoad.resolve());
 
-        // Only start scrolling once the full page height is established
-        $.when(headerLoad, footerLoad).done(function() {
-            setTimeout(startAutoScroll, 1000); 
-        });
-    });
-
-    // 3. PRECISION COUNTDOWN LOGIC (Intersection Observer)
-    const counterOptions = { threshold: 0.5 };
-
-    const counterObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counters = entry.target.querySelectorAll('.counter-value');
-                
-                counters.forEach(counter => {
-                    const target = +counter.getAttribute('data-target');
-                    const duration = 2000; 
-                    const startTime = performance.now();
-
-                    const updateCount = (currentTime) => {
-                        const elapsed = currentTime - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        
-                        // Cubic Ease-Out for smooth slowing
-                        const easeOut = 1 - Math.pow(1 - progress, 3);
-                        const currentVal = Math.floor(easeOut * target);
-                        
-                        counter.innerText = currentVal.toLocaleString();
-
-                        if (progress < 1) {
-                            requestAnimationFrame(updateCount);
-                        } else {
-                            counter.innerText = target.toLocaleString();
-                        }
-                    };
-                    requestAnimationFrame(updateCount);
+            // Only start scrolling once the full page height is established
+            $.when(headerLoad, footerLoad).done(function () {
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        document.body.style.height = document.documentElement.scrollHeight + "px";
+                        startAutoScroll();
+                    }, 1500);
                 });
-                // Stop observing once animation has triggered
-                observer.unobserve(entry.target);
-            }
+
+            });
         });
-    }, counterOptions);
 
-    const impactSection = document.querySelector('.impact-section');
-    if (impactSection) {
-        counterObserver.observe(impactSection);
-    }
+        // 3. PRECISION COUNTDOWN LOGIC (Intersection Observer)
+        const counterOptions = { threshold: 0.5 };
 
-    // 4. AUTOSCROLL LOGIC
-    let scrollInterval;
-    let isPaused = false;
-    const scrollSpeed = 1; 
-    const scrollDelay = 30; 
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.counter-value');
 
-    function startAutoScroll() {
-        scrollInterval = setInterval(() => {
-            if (!isPaused) {
-                window.scrollBy(0, scrollSpeed);
-                
-                // STOP CONDITION: Check if bottom is reached
-                // (window.innerHeight + window.scrollY) handles the current scroll position
-                if ((window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 5)) {
-                    clearInterval(scrollInterval);
-                    console.log("Reached bottom - Autoscroll stopped.");
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        const duration = 2000;
+                        const startTime = performance.now();
+
+                        const updateCount = (currentTime) => {
+                            const elapsed = currentTime - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+
+                            // Cubic Ease-Out for smooth slowing
+                            const easeOut = 1 - Math.pow(1 - progress, 3);
+                            const currentVal = Math.floor(easeOut * target);
+
+                            counter.innerText = currentVal.toLocaleString();
+
+                            if (progress < 1) {
+                                requestAnimationFrame(updateCount);
+                            } else {
+                                counter.innerText = target.toLocaleString();
+                            }
+                        };
+                        requestAnimationFrame(updateCount);
+                    });
+                    // Stop observing once animation has triggered
+                    observer.unobserve(entry.target);
                 }
-            }
-        }, scrollDelay);
-    }
+            });
+        }, counterOptions);
 
-    // 5. INTERACTION PAUSE HANDLERS
-    // Desktop: Pause on hover
-    document.body.addEventListener('mouseenter', () => { isPaused = true; }, true);
-    document.body.addEventListener('mouseleave', () => { isPaused = false; }, true);
+        const impactSection = document.querySelector('.impact-section');
+        if (impactSection) {
+            counterObserver.observe(impactSection);
+        }
 
-    // Mobile: Pause on touch, resume after 2 seconds of inactivity
-    document.addEventListener('touchstart', () => { 
-        isPaused = true; 
-    }, {passive: true});
-    
-    document.addEventListener('touchend', () => { 
-        setTimeout(() => { isPaused = false; }, 2000); 
-    }, {passive: true});
-</script>
+        // 4. AUTOSCROLL LOGIC
+        let scrollInterval;
+        let isPaused = false;
+        const scrollSpeed = 1;
+        const scrollDelay = 30;
+
+        function startAutoScroll() {
+            scrollInterval = setInterval(() => {
+                if (!isPaused) {
+                    window.scrollBy(0, scrollSpeed);
+
+                    // STOP CONDITION: Check if bottom is reached
+                    // (window.innerHeight + window.scrollY) handles the current scroll position
+                    if ((window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 5)) {
+                        clearInterval(scrollInterval);
+                        console.log("Reached bottom - Autoscroll stopped.");
+                    }
+                }
+            }, scrollDelay);
+        }
+
+        // 5. INTERACTION PAUSE HANDLERS
+        // Desktop: Pause on hover
+        document.body.addEventListener('mouseenter', () => { isPaused = true; }, true);
+        document.body.addEventListener('mouseleave', () => { isPaused = false; }, true);
+
+        // Mobile: Pause on touch, resume after 2 seconds of inactivity
+        document.addEventListener('touchstart', () => {
+            isPaused = true;
+        }, { passive: true });
+
+        document.addEventListener('touchend', () => {
+            setTimeout(() => { isPaused = false; }, 2000);
+        }, { passive: true });
+    </script>
 </body>
 
 </html>
