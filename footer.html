@@ -14,8 +14,10 @@
   /* Container for the floating nav to ensure it sits on top of everything */
   .floating-nav-container {
     position: fixed;
-    bottom: 40px;
-    /* Raised slightly */
+    bottom: 20px;
+    /* Lowered from 40px to stay closer to bottom */
+    top: auto;
+    /* Ensure top doesn't interfere */
     left: 50%;
     transform: translateX(-50%);
     z-index: 10000;

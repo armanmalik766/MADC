@@ -157,29 +157,9 @@
                 padding-bottom: 3rem;
             }
         }
-
-        /* Preloader */
-        #page-preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0B0B0B;
-            z-index: 99999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.6s ease;
-        }
-
-        .loader-fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
     </style>
 
-    <script async src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         document.addEventListener('contextmenu', function (event) {
             event.preventDefault();
@@ -188,12 +168,6 @@
 </head>
 
 <body class="bg-madc-dark">
-    <!-- Preloader -->
-    <div id="page-preloader">
-        <img src="assets/img/logo/madc-mob.png" alt="Loading..."
-            style="width: 80px; height: 80px; animation: pulse 1.5s infinite;">
-    </div>
-
     <!-- Header will be loaded here -->
     <div id="header-container"></div>
 
@@ -220,16 +194,14 @@
                 </p>
 
                 <!-- Stats Bar -->
-                <div class="impact-section flex flex-wrap justify-center gap-6 md:gap-12 mt-12 md:mt-16"
-                    data-aos="fade-up" data-aos-delay="200">
+                <div class="flex flex-wrap justify-center gap-6 md:gap-12 mt-12 md:mt-16" data-aos="fade-up"
+                    data-aos-delay="200">
                     <div class="text-center">
-                        <div class="text-3xl md:text-5xl font-bold text-white mb-2"><span class="counter-value"
-                                data-target="20">0</span>+</div>
+                        <div class="text-3xl md:text-5xl font-bold text-white mb-2">20+</div>
                         <div class="text-white/70 text-sm md:text-base">Years of Excellence</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-3xl md:text-5xl font-bold text-white mb-2"><span class="counter-value"
-                                data-target="2">0</span></div>
+                        <div class="text-3xl md:text-5xl font-bold text-white mb-2">2</div>
                         <div class="text-white/70 text-sm md:text-base">Major Airports</div>
                     </div>
                     <div class="text-center">
@@ -528,6 +500,7 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Initialize AOS animations
         AOS.init({
             duration: 800,
             once: true,
@@ -535,153 +508,143 @@
             offset: 100
         });
 
-        // Mobile menu toggle (if needed)
-        document.addEventListener('DOMContentLoaded', function () {
-            // Responsive adjustments
+        // Load header and footer
+        $(document).ready(function () {
+            $("#header-container").load("header.html");
+            $("#footer-container").load("footer.html");
+
+            // Handle responsive adjustments
             function handleResize() {
                 if (window.innerWidth < 768) {
-                    // Mobile-specific adjustments
                     document.querySelectorAll('section').forEach(section => {
                         section.classList.add('px-4');
+                    });
+                } else {
+                    document.querySelectorAll('section').forEach(section => {
+                        section.classList.remove('px-4');
                     });
                 }
             }
 
-            // Initial check
             handleResize();
-
-            // Listen for resize
             window.addEventListener('resize', handleResize);
         });
-    </script>
 
-    <script>
-        $(document).ready(function () {
-            $("#header-container").load("header.html");
-            $("#footer-container").load("footer.html");
-        });
-    </script>
-
-    <script async type="text/javascript"
-        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    <script async type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                defaultLanguage: "en",
-                pageLanguage: "en",
-                includedLanguages: "en,hi,mr",
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false,
-                multilanguagePage: true,
-            }, "google_translate_element");
-        }
-    </script>
-    <script>
-        // 1. Init Animations
-        AOS.init({
-            duration: 900,
-            once: true,
-            offset: 120
-        });
-
-        // 2. Header/Footer Loader & Auto-Scroll Init
-        $(document).ready(function () {
-            let componentsLoaded = 0;
-            const totalComponents = 2; // Header and Footer
-
-            function checkLoad() {
-                componentsLoaded++;
-                if (componentsLoaded >= totalComponents) {
-                    // Slight delay to ensure rendering is stable
-                    setTimeout(() => {
-                        $("#page-preloader").addClass("loader-fade-out");
-                        startAutoScroll();
-                    }, 300);
+        // Optional: Add smooth scroll to all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
-            }
-
-            $("#header-container").load("header.html", checkLoad);
-            $("#footer-container").load("footer.html", checkLoad);
-
-            // Failsafe: Remove loader after 3 seconds even if something fails
-            setTimeout(() => {
-                $("#page-preloader").addClass("loader-fade-out");
-            }, 3000);
-        });
-
-        // 3. PRECISION COUNTDOWN LOGIC
-        const counters = document.querySelectorAll('.counter-value');
-        const animationDuration = 2000;
-
-        const animateCounters = () => {
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const startTime = performance.now();
-
-                const updateCount = (currentTime) => {
-                    const elapsed = currentTime - startTime;
-                    const progress = Math.min(elapsed / animationDuration, 1);
-                    const easeOut = 1 - Math.pow(1 - progress, 3);
-                    const currentVal = Math.floor(easeOut * target);
-                    counter.innerText = currentVal.toLocaleString();
-
-                    if (progress < 1) {
-                        requestAnimationFrame(updateCount);
-                    } else {
-                        counter.innerText = target.toLocaleString();
-                    }
-                };
-                requestAnimationFrame(updateCount);
             });
-        };
-
-        let counted = false;
-        $(window).scroll(function () {
-            const $impactSection = $('.impact-section');
-            if ($impactSection.length === 0) return;
-
-            var hT = $impactSection.offset().top,
-                hH = $impactSection.outerHeight(),
-                wH = $(window).height(),
-                wS = $(this).scrollTop();
-
-            if (wS > (hT + hH / 2 - wH) && !counted) {
-                animateCounters();
-                counted = true;
-            }
-        });
-
-        // 4. AUTOSCROLL LOGIC
-        let scrollInterval;
-        let isPaused = false;
-        const scrollSpeed = 1; // Pixels per step (reduced for smoothness)
-        const scrollDelay = 30; // Milliseconds between steps
-
-        function startAutoScroll() {
-            scrollInterval = setInterval(() => {
-                if (!isPaused) {
-                    window.scrollBy(0, scrollSpeed);
-
-                    // STOP CONDITION: Check if bottom is reached
-                    // We use -1 or -2 to account for floating point differences in browsers
-                    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 2) {
-                        clearInterval(scrollInterval); // Kill the interval to stop scrolling
-                        console.log("Reached bottom - Autoscroll stopped.");
-                    }
-                }
-            }, scrollDelay);
-        }
-
-        // Pause scroll when mouse is over content (so user can read)
-        document.body.addEventListener('mouseenter', () => { isPaused = true; }, true);
-        document.body.addEventListener('mouseleave', () => { isPaused = false; }, true);
-
-        // Pause on touch (for mobile)
-        document.addEventListener('touchstart', () => { isPaused = true; });
-        document.addEventListener('touchend', () => {
-            setTimeout(() => { isPaused = false; }, 2000);
         });
     </script>
+
+<script>
+    // 1. Init AOS Animations
+    AOS.init({
+        duration: 900,
+        once: true,
+        offset: 120
+    });
+
+    // 2. Header/Footer Loader & Auto-Scroll Coordination
+    $(document).ready(function () {
+        // Use Deferred objects to track async loading of external HTML files
+        const headerLoad = $.Deferred();
+        const footerLoad = $.Deferred();
+
+        $("#header-container").load("header.html", () => headerLoad.resolve());
+        $("#footer-container").load("footer.html", () => footerLoad.resolve());
+
+        // Only start scrolling once the full page height is established
+        $.when(headerLoad, footerLoad).done(function() {
+            setTimeout(startAutoScroll, 1000); 
+        });
+    });
+
+    // 3. PRECISION COUNTDOWN LOGIC (Intersection Observer)
+    const counterOptions = { threshold: 0.5 };
+
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counters = entry.target.querySelectorAll('.counter-value');
+                
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000; 
+                    const startTime = performance.now();
+
+                    const updateCount = (currentTime) => {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        
+                        // Cubic Ease-Out for smooth slowing
+                        const easeOut = 1 - Math.pow(1 - progress, 3);
+                        const currentVal = Math.floor(easeOut * target);
+                        
+                        counter.innerText = currentVal.toLocaleString();
+
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            counter.innerText = target.toLocaleString();
+                        }
+                    };
+                    requestAnimationFrame(updateCount);
+                });
+                // Stop observing once animation has triggered
+                observer.unobserve(entry.target);
+            }
+        });
+    }, counterOptions);
+
+    const impactSection = document.querySelector('.impact-section');
+    if (impactSection) {
+        counterObserver.observe(impactSection);
+    }
+
+    // 4. AUTOSCROLL LOGIC
+    let scrollInterval;
+    let isPaused = false;
+    const scrollSpeed = 1; 
+    const scrollDelay = 30; 
+
+    function startAutoScroll() {
+        scrollInterval = setInterval(() => {
+            if (!isPaused) {
+                window.scrollBy(0, scrollSpeed);
+                
+                // STOP CONDITION: Check if bottom is reached
+                // (window.innerHeight + window.scrollY) handles the current scroll position
+                if ((window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 5)) {
+                    clearInterval(scrollInterval);
+                    console.log("Reached bottom - Autoscroll stopped.");
+                }
+            }
+        }, scrollDelay);
+    }
+
+    // 5. INTERACTION PAUSE HANDLERS
+    // Desktop: Pause on hover
+    document.body.addEventListener('mouseenter', () => { isPaused = true; }, true);
+    document.body.addEventListener('mouseleave', () => { isPaused = false; }, true);
+
+    // Mobile: Pause on touch, resume after 2 seconds of inactivity
+    document.addEventListener('touchstart', () => { 
+        isPaused = true; 
+    }, {passive: true});
+    
+    document.addEventListener('touchend', () => { 
+        setTimeout(() => { isPaused = false; }, 2000); 
+    }, {passive: true});
+</script>
 </body>
 
 </html>
