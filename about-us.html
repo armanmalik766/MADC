@@ -501,5 +501,92 @@
             }, "google_translate_element");
         }
     </script>
+    <script>
+        // 1. Init Animations
+        AOS.init({
+            duration: 900,
+            once: true,
+            offset: 120
+        });
+
+        // 2. Header/Footer Loader & Auto-Scroll Init
+        $(document).ready(function () {
+            $("#header-container").load("header.html");
+            $("#footer-container").load("footer.html");
+
+            // Trigger autoscroll after page is loaded
+            startAutoScroll();
+        });
+
+        // 3. PRECISION COUNTDOWN LOGIC
+        const counters = document.querySelectorAll('.counter-value');
+        const animationDuration = 2000; 
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const startTime = performance.now();
+
+                const updateCount = (currentTime) => {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / animationDuration, 1);
+                    const easeOut = 1 - Math.pow(1 - progress, 3);
+                    const currentVal = Math.floor(easeOut * target);
+                    counter.innerText = currentVal.toLocaleString();
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        counter.innerText = target.toLocaleString();
+                    }
+                };
+                requestAnimationFrame(updateCount);
+            });
+        };
+
+        let counted = false;
+        $(window).scroll(function() {
+            var hT = $('.impact-section').offset().top,
+                hH = $('.impact-section').outerHeight(),
+                wH = $(window).height(),
+                wS = $(this).scrollTop();
+
+            if (wS > (hT + hH/2 - wH) && !counted){
+                animateCounters();
+                counted = true;
+            }
+        });
+
+        // 4. AUTOSCROLL LOGIC
+        let scrollInterval;
+        let isPaused = false;
+        const scrollSpeed = 1; // Pixels per step (reduced for smoothness)
+        const scrollDelay = 30; // Milliseconds between steps
+
+        function startAutoScroll() {
+            scrollInterval = setInterval(() => {
+                if (!isPaused) {
+                    window.scrollBy(0, scrollSpeed);
+                    
+                    // STOP CONDITION: Check if bottom is reached
+                    // We use -1 or -2 to account for floating point differences in browsers
+                    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 2) {
+                        clearInterval(scrollInterval); // Kill the interval to stop scrolling
+                        console.log("Reached bottom - Autoscroll stopped.");
+                    }
+                }
+            }, scrollDelay);
+        }
+
+        // Pause scroll when mouse is over content (so user can read)
+        document.body.addEventListener('mouseenter', () => { isPaused = true; }, true);
+        document.body.addEventListener('mouseleave', () => { isPaused = false; }, true);
+
+        // Pause on touch (for mobile)
+        document.addEventListener('touchstart', () => { isPaused = true; });
+        document.addEventListener('touchend', () => { 
+            setTimeout(() => { isPaused = false; }, 2000); 
+        });
+    </script>
 </body>
 </html>
