@@ -1,9 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MADC Footer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ================= ROOT COLORS ================= */
+:root {
+  --madc-red: #d71920;
+  --madc-silver: #9e9e9e;
+  --madc-dark: #111111;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* ================= FOOTER ================= */
+.footer-bg {
+  background: var(--madc-dark);
+  border-top: 3px solid var(--madc-red);
+  padding: 14px 20px;
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 420px 1fr 140px; /* LOGO | CENTER | BACK */
+  align-items: center;
+}
+
+/* ================= LOGO ================= */
+.footer-logo {
+  background: #ffffff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1.5px var(--madc-silver);
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo img {
+  max-width: 380px;
+  height: auto;
+}
+
+/* ================= CENTER TEXT ================= */
+.footer-text {
+  color: var(--madc-silver);
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+  text-align: center;
+}
+
+.footer-text a {
+  color: var(--madc-red);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.footer-text a:hover {
+  text-decoration: underline;
+}
+
+/* ================= BACK BUTTON ================= */
+.back-btn {
+  justify-self: end;
+  background: var(--madc-red);
+  border: 1.5px solid #000;
+  color: #ffffff;
+  padding: 8px 18px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.back-btn:hover {
+  opacity: 0.9;
+}
+
+/* ================= MEDIA QUERIES ================= */
+
+/* Extra Large Screens (4K) */
+@media (min-width: 1600px) {
+  .footer-container {
+    max-width: 1600px;
+  }
+
+  .footer-text {
+    font-size: 20px;
+  }
+
+  .back-btn {
+    font-size: 17px;
+    padding: 10px 22px;
+  }
+}
+
+/* Large Tablets / Small Laptops */
+@media (max-width: 1199px) {
+  .footer-container {
+    grid-template-columns: 320px 1fr 120px;
+  }
+
+  .footer-logo img {
+    max-width: 280px;
+  }
+
+  .footer-text {
+    font-size: 17px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 991px) {
+  .footer-container {
+    grid-template-columns: 260px 1fr 110px;
+  }
+
+  .footer-logo img {
+    max-width: 230px;
+  }
+
+  .footer-text {
+    font-size: 16px;
+  }
+
+  .back-btn {
+    font-size: 15px;
+    padding: 7px 16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    justify-content: center;
+    margin: auto;
+  }
+
+  .footer-logo img {
+    max-width: 240px;
+  }
+
+  .footer-text {
+    font-size: 15px;
+  }
+
+  .back-btn {
+    justify-self: center;
+    font-size: 14px;
+    padding: 8px 18px;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+  .footer-bg {
+    padding: 12px 14px;
+  }
+
+  .footer-logo img {
+    max-width: 200px;
+  }
+
+  .footer-text {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .back-btn {
+    font-size: 13px;
+    padding: 7px 16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
 <footer class="footer-bg">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <p class="text-center">Copyright © 2024 <a href="http://indoorsystems.in/" target="__blank">Indoor systems solution pvt. ltd.</a> All rights reserved.</p>
-            </div>
-        </div>
+  <div class="footer-container">
+
+    <!-- LEFT: LOGO -->
+    <div class="footer-logo">
+      <img src="assets/img/logo/logoMADC2.png" alt="MADC Logo">
     </div>
+
+    <!-- CENTER: TEXT -->
+    <p class="footer-text">
+      For more information, please visit
+      <a href="https://www.madcindia.org/" target="_blank">MADC India</a>
+    </p>
+
+    <!-- RIGHT: BACK BUTTON -->
+    <button class="back-btn" onclick="goBack()">← Back</button>
+
+  </div>
 </footer>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+
+</body>
+</html>

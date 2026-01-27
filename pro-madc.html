@@ -32,6 +32,8 @@
             overflow: hidden;
             height: 100vh;
             width: 100vw;
+            display: flex;
+            flex-direction: column;
         }
 
         /* ================= NEW: FADE IN FROM BLACK ================= */
@@ -62,6 +64,15 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
+        /* ================= FOOTER CONTAINER (FIXED AT BOTTOM) ================= */
+        #footer-container {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+            background: #fff; /* Match your header/theme */
+        }
+
         /* PAGE EXIT TRANSITION */
         .page-exit {
             opacity: 0;
@@ -73,7 +84,7 @@
         .right-actions {
             position: fixed;
             right: 40px;
-            top: 50%;
+            top: 45%; /* Moved up slightly to clear footer */
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
@@ -148,6 +159,7 @@
             align-items: center;
             z-index: 1;
             padding-top: 60px;
+            padding-bottom: 60px; /* Space for footer */
         }
 
         .map-container {
@@ -155,7 +167,7 @@
             width: min(95vw, 900px);
             aspect-ratio: 1200 / 800; 
             margin: auto;
-            transform: scale(1.25);
+            transform: scale(1.1); /* Reduced scale slightly to fit between header/footer */
             opacity: 0;
             transition: transform 1.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.5s ease;
         }
@@ -330,12 +342,13 @@
 
         /* ================= RESPONSIVE ================= */
         @media (max-width: 1024px) {
-            .right-actions { bottom: 24px; top: auto; right: 0; left: 0; flex-direction: row; justify-content: center; transform: none; width: 100%; padding: 0 16px; gap: 12px; }
+            .right-actions { bottom: 70px; top: auto; right: 0; left: 0; flex-direction: row; justify-content: center; transform: none; width: 100%; padding: 0 16px; gap: 12px; }
             .action-card { width: 46%; max-width: 220px; padding: 14px; }
+            .map-wrapper { padding-bottom: 120px; } /* More space for mobile footer/actions */
         }
         @media (max-width: 768px) and (orientation: portrait) {
             .map-wrapper { padding-top: 50px; align-items: center; }
-            .map-container { width: 98vw; max-height: calc(100vh - 120px); }
+            .map-container { width: 98vw; max-height: calc(100vh - 160px); }
         }
     </style>
 </head>
@@ -354,9 +367,9 @@
             <div class="marker shirdi" onclick="startFly('shirdi.html')"><span>SHIRDI</span></div>
             <div class="marker amravati" onclick="startFly('amravati.html')"><span>AMRAVATI</span></div>
             <div class="marker chandrapur" onclick="startFly('chandrapur.html')"><span>CHANDRAPUR</span></div>
-            <div class="marker solapur" onclick="startFly('solapur.html')"><span>SOLAPUR</span></div>
+            <div class="marker solapur" onclick="startFly('solapur.html')"><span>SOLAPUR (BORAMANI)</span></div>
             <div class="marker karad" onclick="startFly('karad.html')"><span>KARAD</span></div>
-            <div class="marker pune" onclick="startFly('pune-purandar.html')"><span>PUNE</span></div>
+            <div class="marker pune" onclick="startFly('pune-purandar.html')"><span>PUNE(PURANDAR)</span></div>
             <div class="marker phaltan" onclick="startFly('phaltan.html')"><span>PHALTAN</span></div>
             <div class="marker mihan" onclick="startFly('mihan.html')"><span>MIHAN (NAGPUR)</span></div>
             <div class="marker nanded" onclick="startFly('nanded.html')"><span>NANDED</span></div>
@@ -370,9 +383,11 @@
     </section>
 
     <div class="right-actions">
-        <div class="action-card" onclick="startFly('enter-about.html')">
-            <small>Explore</small>
-            <h3>More</h3>
+        <div class="action-card" onclick="startFly('about-us.html')">
+            <small>About Us</small>
+        </div>
+        <div class="action-card" onclick="startFly('udan-rcs-mah.html')">
+            <small>UDAN-Rcs</small>
         </div>
     </div>
 
@@ -382,9 +397,12 @@
         <source src="assets/voice/aeroplane-voice1.mp3" type="audio/mpeg">
     </audio>
 
+    <div id="footer-container"></div>
+
     <script>
         $(document).ready(function () {
             $("#header-container").load("header.html");
+            $("#footer-container").load("footer.html");
         });
 
         const plane = document.getElementById("madc-plane");
@@ -397,17 +415,14 @@
 
         // 1. HANDLE INITIAL FADE IN FROM BLACK
         window.addEventListener("DOMContentLoaded", () => {
-            // Start fading out black overlay immediately
             setTimeout(() => {
                 loader.classList.add("loader-hidden");
             }, 100);
 
-            // Start map zoom-in slightly after fade begins
             setTimeout(() => {
                 mapContainer.classList.add("map-zoom-in");
             }, 400);
 
-            // Clean up DOM after transition
             setTimeout(() => {
                 loader.style.display = "none";
             }, 1600);
@@ -419,6 +434,7 @@
             cloud.classList.add("cloud-show");
             mapSection.classList.add("fade-ui");
             actions.classList.add("fade-ui");
+            document.getElementById("footer-container").classList.add("fade-ui"); // Fade footer too
 
             sound.pause();
             sound.currentTime = 0;

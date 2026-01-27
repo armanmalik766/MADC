@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Shri Guru Gobind Singh Ji Airport, Nanded | MADC</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -36,7 +38,7 @@
             max-width: 1200px;
             height: 85vh;
             border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             display: flex;
             overflow: hidden;
             animation: modalPop 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -60,18 +62,21 @@
             border-radius: 20px;
             overflow: hidden;
             height: 320px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
-        .hero-img, .hero-video {
+        .hero-img,
+        .hero-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
             min-height: 320px;
         }
-        
-        .hero-image-wrapper:hover .hero-img { transform: scale(1.05); }
+
+        .hero-image-wrapper:hover .hero-img {
+            transform: scale(1.05);
+        }
 
         .stats-grid {
             display: grid;
@@ -84,12 +89,15 @@
             padding: 15px 5px;
             border-radius: 16px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             border: 1px solid #f1f1f1;
             transition: 0.3s;
         }
-        
-        .stat-card:hover { transform: translateY(-5px); border-color: var(--madc-red); }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--madc-red);
+        }
 
         .stat-icon-circle {
             width: 40px;
@@ -103,11 +111,27 @@
             color: white;
         }
 
-        .bg-red-grad { background: linear-gradient(135deg, var(--madc-red), #ff6b6b); }
-        .bg-grey-grad { background: linear-gradient(135deg, var(--madc-grey), #888); }
+        .bg-red-grad {
+            background: linear-gradient(135deg, var(--madc-red), #ff6b6b);
+        }
 
-        .stat-val { font-weight: 700; font-size: 0.9rem; color: var(--madc-dark); display: block; }
-        .stat-label { font-size: 0.65rem; color: var(--madc-grey); text-transform: uppercase; letter-spacing: 0.5px; }
+        .bg-grey-grad {
+            background: linear-gradient(135deg, var(--madc-grey), #888);
+        }
+
+        .stat-val {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--madc-dark);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--madc-grey);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
         .right-panel {
             padding: 40px;
@@ -118,7 +142,12 @@
             overflow-y: auto;
         }
 
-        .tag-row { display: flex; gap: 10px; align-items: center; }
+        .tag-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
         .badge-pill {
             padding: 6px 15px;
             border-radius: 50px;
@@ -126,8 +155,16 @@
             font-weight: 600;
             letter-spacing: 0.5px;
         }
-        .tag-red { background: var(--madc-red-light); color: var(--madc-red); }
-        .tag-orange { background: #fff3e0; color: #f57c00; }
+
+        .tag-red {
+            background: var(--madc-red-light);
+            color: var(--madc-red);
+        }
+
+        .tag-orange {
+            background: #fff3e0;
+            color: #f57c00;
+        }
 
         .main-title {
             font-size: 2rem;
@@ -181,7 +218,12 @@
             font-weight: 500;
             line-height: 1.4;
         }
-        .feature-item i { color: var(--madc-red); font-size: 1rem; margin-top: 2px; }
+
+        .feature-item i {
+            color: var(--madc-red);
+            font-size: 1rem;
+            margin-top: 2px;
+        }
 
         .action-row {
             display: flex;
@@ -206,14 +248,23 @@
             gap: 10px;
         }
 
-        .btn-ai { background: #f0f2f5; color: var(--madc-dark); }
-        .btn-ai:hover, .btn-ai.active { background: #e4e6eb; color: var(--madc-red); }
-        
+        .btn-ai {
+            background: #f0f2f5;
+            color: var(--madc-dark);
+        }
+
+        .btn-ai:hover,
+        .btn-ai.active {
+            background: #e4e6eb;
+            color: var(--madc-red);
+        }
+
         .btn-return {
             background: linear-gradient(90deg, var(--madc-red), #b0151b);
             color: white;
             box-shadow: 0 4px 15px rgba(217, 33, 40, 0.3);
         }
+
         .btn-return:hover {
             box-shadow: 0 6px 20px rgba(217, 33, 40, 0.5);
             transform: translateY(-2px);
@@ -235,24 +286,61 @@
             color: #666;
             transition: 0.2s;
         }
-        .close-btn:hover { background: var(--madc-red); color: white; }
+
+        .close-btn:hover {
+            background: var(--madc-red);
+            color: white;
+        }
 
         @keyframes modalPop {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         @keyframes pulse-ring {
-            0% { box-shadow: 0 0 0 0 rgba(217, 33, 40, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(217, 33, 40, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(217, 33, 40, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(217, 33, 40, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(217, 33, 40, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(217, 33, 40, 0);
+            }
         }
-        .pulse-active { animation: pulse-ring 1.5s infinite; }
+
+        .pulse-active {
+            animation: pulse-ring 1.5s infinite;
+        }
 
         @media (max-width: 992px) {
-            .premium-modal { flex-direction: column; height: auto; max-height: 95vh; overflow-y: auto;}
-            .left-panel, .right-panel { width: 100%; padding: 20px; height: auto; border-right: none;}
-            .hero-image-wrapper { height: 250px; }
+            .premium-modal {
+                flex-direction: column;
+                height: auto;
+                max-height: 95vh;
+                overflow-y: auto;
+            }
+
+            .left-panel,
+            .right-panel {
+                width: 100%;
+                padding: 20px;
+                height: auto;
+                border-right: none;
+            }
+
+            .hero-image-wrapper {
+                height: 250px;
+            }
         }
     </style>
 </head>
@@ -274,17 +362,19 @@
                                 Your browser does not support the video tag.
                             </video>
                         </div>
-                        <div class="carousel-item h-100" data-bs-interval="3000">
+                        <!-- <div class="carousel-item h-100" data-bs-interval="3000">
                             <img src="assets/img/nanded1.png" class="d-block w-100 hero-img" alt="Nanded Airport 1">
                         </div>
                         <div class="carousel-item h-100" data-bs-interval="3000">
                             <img src="assets/img/nanded2.jpg" class="d-block w-100 hero-img" alt="Nanded Airport 2">
-                        </div>
+                        </div> -->
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#nandedCarousel" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#nandedCarousel"
+                        data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#nandedCarousel" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#nandedCarousel"
+                        data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     </button>
                 </div>
@@ -322,7 +412,9 @@
         <div class="right-panel">
             <div class="tag-row">
                 <span class="badge-pill tag-red">DOMESTIC AIRPORT</span>
-                <span class="badge-pill tag-orange"><i class="fas fa-map-marker-alt me-1"></i> NANDED, MAHARASHTRA</span>
+                <span class="badge-pill tag-orange"><i class="fas fa-map-marker-alt me-1"></i> NANDED,
+                    MAHARASHTRA</span>
+                <span class="badge-pill tag-green" style="background-color: #28a745; color: white">MADC OPERATED</span>
             </div>
 
             <div>
@@ -333,12 +425,17 @@
             <div class="highlight-box">
                 <span class="info-label"><i class="fas fa-info-circle me-1"></i> About Nanded Airport</span>
                 <p id="read-intro" style="font-size: 0.85rem; color: #555; line-height: 1.6; margin: 0;">
-                    Shri Guru Gobind Singh Ji Airport, Nanded is a Code 4C domestic airport operational since 2017. It supports regional connectivity with Night Landing Facility and handles an average of 10 movements daily.
+                    Shri Guru Gobind Singh Ji Airport, Nanded is a Code 4C domestic airport operational since 2017. It
+                    supports regional connectivity with Night Landing Facility and handles an average of 10 movements
+                    daily . Nanded Airport handled 3000 Aircraft moments and 1.4 lacs Passengers in last year.<br/> Government resolution regarding handing over of Nanded Airport to MADC Ltd. released on 30th
+                    December 2025.
                 </p>
             </div>
 
             <div id="read-content" style="display:none;">
-                Welcome to Shri Guru Gobind Singh Ji Airport, Nanded. Spread across 262 acres, it features a 2302 meter runway. Night landing facility is available, and it connects major Indian cities including Mumbai, Pune, and Bangalore.
+                Welcome to Shri Guru Gobind Singh Ji Airport, Nanded. Spread across 262 acres, it features a 2302 meter
+                runway. Night landing facility is available, and it connects major Indian cities including Mumbai, Pune,
+                and Bangalore.
             </div>
 
             <div class="mt-4">
@@ -348,13 +445,16 @@
                         <i class="fas fa-road"></i> <span>2302m x 45m Runway</span>
                     </div>
                     <div class="feature-item">
-                        <i class="fas fa-plane-arrival"></i> <span>4 Code-C Apron Bays</span>
+                        <i class="fas fa-plane-arrival"></i> <span>Apron: 4 bays of Code 4C</span>
                     </div>
                     <div class="feature-item">
                         <i class="fas fa-moon"></i> <span>Night Landing Facility</span>
                     </div>
                     <div class="feature-item">
                         <i class="fas fa-tools"></i> <span>Upgradation Ongoing</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-building"></i> <span>Terminal Building: 5700 Sqm</span>
                     </div>
                 </div>
             </div>
@@ -372,7 +472,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
         function goBack() {
             // Stop AI voice
@@ -413,13 +513,13 @@
                 btn.classList.remove('active', 'pulse-active');
                 btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear AI Guide</span>';
             } else {
-                if(isAutoplay && isSpeaking) return;
+                if (isAutoplay && isSpeaking) return;
                 const content = document.getElementById('read-content').innerText;
                 const utterance = new SpeechSynthesisUtterance(content);
                 const indianVoice = voices.find(v => v.lang.includes('en-IN') || v.lang.includes('hi-IN'));
                 if (indianVoice) utterance.voice = indianVoice;
                 utterance.rate = 0.95;
-                utterance.onend = function() {
+                utterance.onend = function () {
                     isSpeaking = false;
                     btn.classList.remove('active', 'pulse-active');
                     btn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="voiceBtnText">Hear AI Guide</span>';
@@ -433,4 +533,5 @@
         }
     </script>
 </body>
+
 </html>
