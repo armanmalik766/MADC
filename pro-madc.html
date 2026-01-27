@@ -70,7 +70,8 @@
             bottom: 0;
             width: 100%;
             z-index: 1000;
-            background: #fff; /* Match your header/theme */
+            background: #fff;
+            /* Match your header/theme */
         }
 
         /* PAGE EXIT TRANSITION */
@@ -84,8 +85,10 @@
         .right-actions {
             position: fixed;
             right: 40px;
-            top: 45%; /* Moved up slightly to clear footer */
-            transform: translateY(-50%);
+            bottom: 150px;
+            /* Aligned to bottom, above the floating footer */
+            top: auto;
+            transform: none;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -159,15 +162,17 @@
             align-items: center;
             z-index: 1;
             padding-top: 60px;
-            padding-bottom: 60px; /* Space for footer */
+            padding-bottom: 60px;
+            /* Space for footer */
         }
 
         .map-container {
             position: relative;
             width: min(95vw, 900px);
-            aspect-ratio: 1200 / 800; 
+            aspect-ratio: 1200 / 800;
             margin: auto;
-            transform: scale(1.1); /* Reduced scale slightly to fit between header/footer */
+            transform: scale(1.1);
+            /* Reduced scale slightly to fit between header/footer */
             opacity: 0;
             transition: transform 1.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.5s ease;
         }
@@ -182,7 +187,7 @@
             inset: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain; 
+            object-fit: contain;
             pointer-events: none;
         }
 
@@ -223,13 +228,27 @@
         }
 
         @keyframes pulse-red {
-            0% { transform: scale(0.8); opacity: 0.8; }
-            100% { transform: scale(1.5); opacity: 0; }
+            0% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
         }
 
         @keyframes ripple-gold {
-            0% { transform: scale(0.5); opacity: 0.6; }
-            100% { transform: scale(2.5); opacity: 0; }
+            0% {
+                transform: scale(0.5);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
         }
 
         .marker:hover {
@@ -276,22 +295,85 @@
         }
 
         /* ================= COORDINATES ================= */
-        .dhule { top: 21.5%; left: 31%; }
-        .shirdi { top: 44%; left: 30.5%; }
-        .amravati { top: 22.5%; left: 57%; }
-        .chandrapur { top: 37%; left: 73%; }
-        .solapur { top: 73%; left: 42.5%; }
-        .karad { top: 76%; left: 26.5%; }
-        .ratnagiri { top: 80.5%; left: 21.3%; }
-        .pune { top: 58%; left: 25.5%; }
-        .phaltan { top: 68.5%; left: 30%; }
-        .mihan { top: 21.5%; left: 72%; }
-        .nanded { top: 52.5%; left: 57%; }
-        .gadchiroli { top: 40%; left: 81.5%; }
-        .yavatmal { top: 34%; left: 62%; }
-        .latur { top: 61%; left: 52%; }
-        .baramati { top: 62.5%; left: 32%; }
-        .dharashiv { top: 65%; left: 45%; }
+        .dhule {
+            top: 21.5%;
+            left: 31%;
+        }
+
+        .shirdi {
+            top: 44%;
+            left: 30.5%;
+        }
+
+        .amravati {
+            top: 22.5%;
+            left: 57%;
+        }
+
+        .chandrapur {
+            top: 37%;
+            left: 73%;
+        }
+
+        .solapur {
+            top: 73%;
+            left: 42.5%;
+        }
+
+        .karad {
+            top: 76%;
+            left: 26.5%;
+        }
+
+        .ratnagiri {
+            top: 80.5%;
+            left: 21.3%;
+        }
+
+        .pune {
+            top: 58%;
+            left: 25.5%;
+        }
+
+        .phaltan {
+            top: 68.5%;
+            left: 30%;
+        }
+
+        .mihan {
+            top: 21.5%;
+            left: 72%;
+        }
+
+        .nanded {
+            top: 52.5%;
+            left: 57%;
+        }
+
+        .gadchiroli {
+            top: 40%;
+            left: 81.5%;
+        }
+
+        .yavatmal {
+            top: 34%;
+            left: 62%;
+        }
+
+        .latur {
+            top: 61%;
+            left: 52%;
+        }
+
+        .baramati {
+            top: 62.5%;
+            left: 32%;
+        }
+
+        .dharashiv {
+            top: 65%;
+            left: 45%;
+        }
 
         /* ================= PLANE & CLOUDS ================= */
         #madc-plane {
@@ -311,8 +393,17 @@
         }
 
         @keyframes planeFlyRTL {
-            0% { transform: translate(160%, -50%) scale(.95); opacity: 1; visibility: visible; }
-            100% { transform: translate(-170%, -65%) scale(1.1); opacity: 1; visibility: visible; }
+            0% {
+                transform: translate(160%, -50%) scale(.95);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            100% {
+                transform: translate(-170%, -65%) scale(1.1);
+                opacity: 1;
+                visibility: visible;
+            }
         }
 
         #cloud-layer {
@@ -330,8 +421,16 @@
         }
 
         @keyframes cloudPass {
-            0%, 100% { opacity: 0 }
-            30%, 70% { opacity: 1 }
+
+            0%,
+            100% {
+                opacity: 0
+            }
+
+            30%,
+            70% {
+                opacity: 1
+            }
         }
 
         .fade-ui {
@@ -342,16 +441,44 @@
 
         /* ================= RESPONSIVE ================= */
         @media (max-width: 1024px) {
-            .right-actions { bottom: 70px; top: auto; right: 0; left: 0; flex-direction: row; justify-content: center; transform: none; width: 100%; padding: 0 16px; gap: 12px; }
-            .action-card { width: 46%; max-width: 220px; padding: 14px; }
-            .map-wrapper { padding-bottom: 120px; } /* More space for mobile footer/actions */
-        } 
+            .right-actions {
+                bottom: 70px;
+                top: auto;
+                right: 0;
+                left: 0;
+                flex-direction: row;
+                justify-content: center;
+                transform: none;
+                width: 100%;
+                padding: 0 16px;
+                gap: 12px;
+            }
 
-        
+            .action-card {
+                width: 46%;
+                max-width: 220px;
+                padding: 14px;
+            }
+
+            .map-wrapper {
+                padding-bottom: 120px;
+            }
+
+            /* More space for mobile footer/actions */
+        }
+
+
 
         @media (max-width: 768px) and (orientation: portrait) {
-            .map-wrapper { padding-top: 50px; align-items: center; }
-            .map-container { width: 98vw; max-height: calc(100vh - 160px); }
+            .map-wrapper {
+                padding-top: 50px;
+                align-items: center;
+            }
+
+            .map-container {
+                width: 98vw;
+                max-height: calc(100vh - 160px);
+            }
         }
     </style>
 </head>
@@ -455,4 +582,5 @@
         }
     </script>
 </body>
+
 </html>

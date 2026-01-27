@@ -1,923 +1,967 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<title>Welcome to MADC</title>
-<link rel="icon" href="assets/img/logo/madc-mob.png" type="image/png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Welcome to MADC</title>
+  <link rel="icon" href="assets/img/logo/madc-mob.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<style>
-/* ================= GLOBAL STYLES ================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <style>
+    /* ================= GLOBAL STYLES ================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-:root {
-  --madc-red: #8B0000;
-  --madc-red-light: #B22222;
-  --madc-red-dark: #660000;
-  --madc-grey: #808080;
-  --madc-grey-light: #AAAAAA;
-  --madc-grey-dark: #505050;
-  --madc-white: #F8F8F8;
-  --madc-offwhite: #E8E8E8;
-  --madc-black: #0A0A14;
-  --madc-navy: #0A1428;
-  --madc-gold: #D4AF37;
-  
-  /* Animation timings */
-  --transition-slow: 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
-  --transition-medium: 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
-  --transition-fast: 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
+    :root {
+      --madc-red: #8B0000;
+      --madc-red-light: #B22222;
+      --madc-red-dark: #660000;
+      --madc-grey: #808080;
+      --madc-grey-light: #AAAAAA;
+      --madc-grey-dark: #505050;
+      --madc-white: #F8F8F8;
+      --madc-offwhite: #E8E8E8;
+      --madc-black: #0A0A14;
+      --madc-navy: #0A1428;
+      --madc-gold: #D4AF37;
 
-body {
-  font-family: 'Exo 2', 'Montserrat', sans-serif;
-  overflow-x: hidden;
-  background: var(--madc-black);
-  color: var(--madc-white);
-  overflow: hidden;
-  height: 100vh;
-  position: relative;
-}
+      /* Animation timings */
+      --transition-slow: 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+      --transition-medium: 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+      --transition-fast: 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
 
-/* ================= LOADER PHASE - SILVER BACKGROUND ================= */
-#loader {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(135deg, 
-    #d4d4d8 0%, 
-    #a1a1aa 25%, 
-    #d4d4d8 50%, 
-    #fafafa 75%, 
-    #d4d4d8 100%);
-  background-size: 400% 400%;
-  animation: shimmer 15s ease infinite;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  transition: 
-    opacity var(--transition-slow),
-    background var(--transition-slow);
-}
+    body {
+      font-family: 'Exo 2', 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      background: var(--madc-black);
+      color: var(--madc-white);
+      overflow: hidden;
+      height: 100vh;
+      position: relative;
+    }
 
-body.intro-reveal #loader {
-  background: linear-gradient(135deg, 
-    #d4d4d8 0%, 
-    transparent 100%);
-  opacity: 0.5;
-}
+    /* ================= LOADER PHASE - SILVER BACKGROUND ================= */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg,
+          #d4d4d8 0%,
+          #a1a1aa 25%,
+          #d4d4d8 50%,
+          #fafafa 75%,
+          #d4d4d8 100%);
+      background-size: 400% 400%;
+      animation: shimmer 15s ease infinite;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition:
+        opacity var(--transition-slow),
+        background var(--transition-slow);
+    }
 
-body.hero-active #loader {
-  opacity: 0;
-  pointer-events: none;
-  transition-delay: 0.3s;
-}
+    body.intro-reveal #loader {
+      background: linear-gradient(135deg,
+          #d4d4d8 0%,
+          transparent 100%);
+      opacity: 0.5;
+    }
 
-@keyframes shimmer {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+    body.hero-active #loader {
+      opacity: 0;
+      pointer-events: none;
+      transition-delay: 0.3s;
+    }
 
-.loader-container {
-  position: relative;
-  width: 280px;
-  height: 280px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 
-    transform var(--transition-slow),
-    opacity var(--transition-slow);
-}
+    @keyframes shimmer {
+      0% {
+        background-position: 0% 50%;
+      }
 
-body.intro-reveal .loader-container {
-  transform: scale(0.85);
-  opacity: 0.9;
-}
+      50% {
+        background-position: 100% 50%;
+      }
 
-body.hero-active .loader-container {
-  opacity: 0;
-  transition: opacity var(--transition-fast);
-}
+      100% {
+        background-position: 0% 50%;
+      }
+    }
 
-.loader-logo {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle, rgba(139,0,0,0.08), transparent 70%);
-  animation: loaderFloat 3.5s ease-in-out infinite;
-  position: relative;
-  z-index: 2;
-  border: 2px solid rgba(139,0,0,0.15);
-  transition: all var(--transition-slow);
-  overflow: hidden;
-}
+    .loader-container {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition:
+        transform var(--transition-slow),
+        opacity var(--transition-slow);
+    }
 
-body.intro-reveal .loader-logo {
-  border-color: rgba(139,0,0,0.05);
-  background: radial-gradient(circle, rgba(139,0,0,0.04), transparent 70%);
-}
+    body.intro-reveal .loader-container {
+      transform: scale(0.85);
+      opacity: 0.9;
+    }
 
-.loader-logo video {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 0 0 40px rgba(139,0,0,0.4);
-  transition: all var(--transition-slow);
-}
+    body.hero-active .loader-container {
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
 
-.loader-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  animation: spin 2s linear infinite;
-  transition: opacity var(--transition-slow);
-}
+    .loader-logo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, rgba(139, 0, 0, 0.08), transparent 70%);
+      animation: loaderFloat 3.5s ease-in-out infinite;
+      position: relative;
+      z-index: 2;
+      border: 2px solid rgba(139, 0, 0, 0.15);
+      transition: all var(--transition-slow);
+      overflow: hidden;
+    }
 
-.loader-ring:nth-child(1) {
-  width: 260px;
-  height: 260px;
-  border-top: 2px solid var(--madc-red);
-}
+    body.intro-reveal .loader-logo {
+      border-color: rgba(139, 0, 0, 0.05);
+      background: radial-gradient(circle, rgba(139, 0, 0, 0.04), transparent 70%);
+    }
 
-.loader-ring:nth-child(2) {
-  width: 240px;
-  height: 240px;
-  border-top: 2px solid var(--madc-grey);
-  animation-direction: reverse;
-  animation-duration: 1.5s;
-}
+    .loader-logo video {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 0 40px rgba(139, 0, 0, 0.4);
+      transition: all var(--transition-slow);
+    }
 
-.loader-ring:nth-child(3) {
-  width: 220px;
-  height: 220px;
-  border-top: 2px solid var(--madc-red-dark);
-  animation-duration: 2.5s;
-}
+    .loader-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      animation: spin 2s linear infinite;
+      transition: opacity var(--transition-slow);
+    }
 
-body.intro-reveal .loader-ring {
-  opacity: 0.3;
-}
+    .loader-ring:nth-child(1) {
+      width: 260px;
+      height: 260px;
+      border-top: 2px solid var(--madc-red);
+    }
 
-@keyframes loaderFloat {
-  0% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-12px) scale(1.03); }
-  100% { transform: translateY(0) scale(1); }
-}
+    .loader-ring:nth-child(2) {
+      width: 240px;
+      height: 240px;
+      border-top: 2px solid var(--madc-grey);
+      animation-direction: reverse;
+      animation-duration: 1.5s;
+    }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+    .loader-ring:nth-child(3) {
+      width: 220px;
+      height: 220px;
+      border-top: 2px solid var(--madc-red-dark);
+      animation-duration: 2.5s;
+    }
 
-.loading-text {
-  margin-top: 30px;
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: 2px;
-  color: var(--madc-red);
-  font-family: 'Exo 2', sans-serif;
-  opacity: 0.9;
-  transition: opacity var(--transition-slow);
-}
+    body.intro-reveal .loader-ring {
+      opacity: 0.3;
+    }
 
-body.intro-reveal .loading-text {
-  opacity: 0;
-}
+    @keyframes loaderFloat {
+      0% {
+        transform: translateY(0) scale(1);
+      }
 
-/* ================= GLOBE VIDEO BACKGROUND ================= */
-#globeVideoContainer {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  opacity: 0;
-  transition: opacity var(--transition-slow);
-  overflow: hidden;
-}
+      50% {
+        transform: translateY(-12px) scale(1.03);
+      }
 
-body.intro-reveal #globeVideoContainer {
-  opacity: 1;
-}
+      100% {
+        transform: translateY(0) scale(1);
+      }
+    }
 
-#globeVideo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.9);
-}
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
 
-/* ================= TRANSITION VIDEO OVERLAY ================= */
-#transitionVideoContainer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  z-index: 99999;
-  display: flex;
-  opacity: 0;
-  visibility: hidden;
-  transition: 
-    opacity var(--transition-fast),
-    visibility var(--transition-fast);
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
+      100% {
+        transform: rotate(360deg);
+      }
+    }
 
-#transitionVideoContainer.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: all;
-}
+    .loading-text {
+      margin-top: 30px;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: var(--madc-red);
+      font-family: 'Exo 2', sans-serif;
+      opacity: 0.9;
+      transition: opacity var(--transition-slow);
+    }
 
-#transitionVideo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+    body.intro-reveal .loading-text {
+      opacity: 0;
+    }
 
-/* ================= HERO CONTENT ================= */
-.hero-section {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  z-index: 2;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--transition-medium);
-}
+    /* ================= GLOBE VIDEO BACKGROUND ================= */
+    #globeVideoContainer {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity var(--transition-slow);
+      overflow: hidden;
+    }
 
-body.hero-active .hero-section {
-  opacity: 1;
-  pointer-events: all;
-}
+    body.intro-reveal #globeVideoContainer {
+      opacity: 1;
+    }
 
-.hero-content {
-  max-width: 900px;
-  padding: 20px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    #globeVideo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.9);
+    }
 
-/* Logo transition from loader */
-.hero-logo {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 25px;
-  opacity: 0;
-  transform: scale(1.1);
-  transition: 
-    opacity var(--transition-medium) 0.2s,
-    transform var(--transition-medium) 0.2s;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-}
+    /* ================= TRANSITION VIDEO OVERLAY ================= */
+    #transitionVideoContainer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: 99999;
+      display: flex;
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        opacity var(--transition-fast),
+        visibility var(--transition-fast);
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
 
-body.hero-active .hero-logo {
-  opacity: 1;
-  transform: scale(1);
-}
+    #transitionVideoContainer.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+    }
 
-.hero-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 50%;
-}
+    #transitionVideo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-/* Hero heading animation */
-.hero-heading {
-  font-size: 3.95rem;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 900;
-  margin-bottom: 40px;
-  background: linear-gradient(to right, var(--madc-white), var(--madc-offwhite), var(--madc-grey-light));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  line-height: 1.1;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 
-    opacity var(--transition-medium) 0.5s,
-    transform var(--transition-medium) 0.5s;
-}
+    /* ================= HERO CONTENT ================= */
+    .hero-section {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 2;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-medium);
+    }
 
-body.hero-active .hero-heading {
-  opacity: 1;
-  transform: translateY(0);
-}
+    body.hero-active .hero-section {
+      opacity: 1;
+      pointer-events: all;
+    }
 
-/* Buttons container animation */
-.buttons-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 10px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 
-    opacity var(--transition-medium) 0.8s,
-    transform var(--transition-medium) 0.8s;
-}
+    .hero-content {
+      max-width: 900px;
+      padding: 20px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-body.hero-active .buttons-container {
-  opacity: 1;
-  transform: translateY(0);
-}
+    /* Logo transition from loader */
+    .hero-logo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      opacity: 0;
+      transform: scale(1.1);
+      transition:
+        opacity var(--transition-medium) 0.2s,
+        transform var(--transition-medium) 0.2s;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+    }
 
-/* ================= BUTTONS ================= */
-.btn-primary {
-  padding: 18px 40px;
-  border-radius: 4px;
-  background: linear-gradient(135deg, var(--madc-red-dark), var(--madc-red));
-  border: none;
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  letter-spacing: 1px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-width: 280px;
-  font-family: 'Exo 2', sans-serif;
-  text-transform: uppercase;
-  border: 1px solid rgba(139,0,0,0.5);
-}
+    body.hero-active .hero-logo {
+      opacity: 1;
+      transform: scale(1);
+    }
 
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-  transition: left 0.7s;
-  z-index: -1;
-}
+    .hero-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
 
-.btn-primary:hover::before {
-  left: 100%;
-}
+    /* Hero heading animation */
+    .hero-heading {
+      font-size: 3.95rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      margin-bottom: 40px;
+      background: linear-gradient(to right, var(--madc-white), var(--madc-offwhite), var(--madc-grey-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      line-height: 1.1;
+      opacity: 0;
+      transform: translateY(40px);
+      transition:
+        opacity var(--transition-medium) 0.5s,
+        transform var(--transition-medium) 0.5s;
+    }
 
-.btn-primary:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(139,0,0,0.4);
-  background: linear-gradient(135deg, var(--madc-red), var(--madc-red-light));
-}
+    body.hero-active .hero-heading {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.btn-secondary {
-  padding: 18px 40px;
-  border-radius: 4px;
-  background: transparent;
-  border: 2px solid var(--madc-grey);
-  color: var(--madc-offwhite);
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  letter-spacing: 1px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-width: 280px;
-  font-family: 'Exo 2', sans-serif;
-  text-transform: uppercase;
-}
+    /* Buttons container animation */
+    .buttons-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 10px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition:
+        opacity var(--transition-medium) 0.8s,
+        transform var(--transition-medium) 0.8s;
+    }
 
-.btn-secondary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 100%;
-  background: rgba(128,128,128,0.1);
-  transition: all 0.4s ease;
-  z-index: -1;
-}
+    body.hero-active .buttons-container {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.btn-secondary:hover::before {
-  width: 100%;
-}
+    /* ================= BUTTONS ================= */
+    .btn-primary {
+      padding: 18px 40px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--madc-red-dark), var(--madc-red));
+      border: none;
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      letter-spacing: 1px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-width: 280px;
+      font-family: 'Exo 2', sans-serif;
+      text-transform: uppercase;
+      border: 1px solid rgba(139, 0, 0, 0.5);
+    }
 
-.btn-secondary:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(128,128,128,0.2);
-  color: white;
-  border-color: var(--madc-grey-light);
-}
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.7s;
+      z-index: -1;
+    }
 
-/* ================= MODAL ================= */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.9);
-  z-index: 1000;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(10px);
-}
+    .btn-primary:hover::before {
+      left: 100%;
+    }
 
-.modal-content {
-  background: linear-gradient(135deg, #0A0A14, #0A1428);
-  padding: 40px;
-  border-radius: 4px;
-  width: min(90%, 400px);
-  animation: modalPop 0.4s ease;
-  border: 1px solid rgba(139,0,0,0.5);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-  position: relative;
-  overflow: hidden;
-}
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(139, 0, 0, 0.4);
+      background: linear-gradient(135deg, var(--madc-red), var(--madc-red-light));
+    }
 
-.modal-content::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, var(--madc-red-dark), var(--madc-red), var(--madc-grey), var(--madc-red));
-  z-index: -1;
-  opacity: 0.3;
-  border-radius: 6px;
-}
+    .btn-secondary {
+      padding: 18px 40px;
+      border-radius: 4px;
+      background: transparent;
+      border: 2px solid var(--madc-grey);
+      color: var(--madc-offwhite);
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      letter-spacing: 1px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-width: 280px;
+      font-family: 'Exo 2', sans-serif;
+      text-transform: uppercase;
+    }
 
-.modal-content h3 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: var(--madc-white);
-  font-family: 'Exo 2', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
+    .btn-secondary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background: rgba(128, 128, 128, 0.1);
+      transition: all 0.4s ease;
+      z-index: -1;
+    }
 
-.modal-input {
-  width: 100%;
-  padding: 15px 20px;
-  margin: 20px 0;
-  border-radius: 4px;
-  border: 1px solid var(--madc-grey);
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  font-family: 'Exo 2', sans-serif;
-}
+    .btn-secondary:hover::before {
+      width: 100%;
+    }
 
-.modal-input:focus {
-  outline: none;
-  border-color: var(--madc-red);
-  box-shadow: 0 0 15px rgba(139,0,0,0.3);
-  background: rgba(255, 255, 255, 0.08);
-}
+    .btn-secondary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(128, 128, 128, 0.2);
+      color: white;
+      border-color: var(--madc-grey-light);
+    }
 
-.modal-input::placeholder {
-  color: var(--madc-grey);
-}
+    /* ================= MODAL ================= */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+    }
 
-.close-modal {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 28px;
-  color: var(--madc-grey);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
+    .modal-content {
+      background: linear-gradient(135deg, #0A0A14, #0A1428);
+      padding: 40px;
+      border-radius: 4px;
+      width: min(90%, 400px);
+      animation: modalPop 0.4s ease;
+      border: 1px solid rgba(139, 0, 0, 0.5);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+      position: relative;
+      overflow: hidden;
+    }
 
-.close-modal:hover {
-  color: var(--madc-red);
-  background: rgba(139,0,0,0.1);
-}
+    .modal-content::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, var(--madc-red-dark), var(--madc-red), var(--madc-grey), var(--madc-red));
+      z-index: -1;
+      opacity: 0.3;
+      border-radius: 6px;
+    }
 
-@keyframes modalPop {
-  from { transform: scale(0.85); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
+    .modal-content h3 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--madc-white);
+      font-family: 'Exo 2', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-/* ================= RESPONSIVE DESIGN ================= */
-@media (max-width: 1200px) {
-  .hero-heading {
-    font-size: 3.8rem;
-  }
-}
+    .modal-input {
+      width: 100%;
+      padding: 15px 20px;
+      margin: 20px 0;
+      border-radius: 4px;
+      border: 1px solid var(--madc-grey);
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      font-family: 'Exo 2', sans-serif;
+    }
 
-@media (max-width: 992px) {
-  .hero-heading {
-    font-size: 3.2rem;
-  }
-}
+    .modal-input:focus {
+      outline: none;
+      border-color: var(--madc-red);
+      box-shadow: 0 0 15px rgba(139, 0, 0, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+    }
 
-@media (max-width: 768px) {
-  .loader-container {
-    width: 220px;
-    height: 220px;
-  }
-  
-  .loader-logo {
-    width: 160px;
-    height: 160px;
-  }
-  
-  .loader-logo video {
-    width: 140px;
-    height: 140px;
-  }
-  
-  .loader-ring:nth-child(1) {
-    width: 200px;
-    height: 200px;
-  }
-  
-  .loader-ring:nth-child(2) {
-    width: 180px;
-    height: 180px;
-  }
-  
-  .loader-ring:nth-child(3) {
-    width: 160px;
-    height: 160px;
-  }
-  
-  .hero-heading {
-    font-size: 2.8rem;
-  }
-  
-  .hero-logo {
-    width: 140px;
-    height: 140px;
-  }
-  
-  .btn-primary, .btn-secondary {
-    min-width: 250px;
-    padding: 16px 30px;
-    font-size: 16px;
-  }
-  
-  .buttons-container {
-    flex-direction: column;
-    align-items: center;
-  }
-}
+    .modal-input::placeholder {
+      color: var(--madc-grey);
+    }
 
-@media (max-width: 576px) {
-  .hero-heading {
-    font-size: 2.2rem;
-  }
-  
-  .hero-logo {
-    width: 120px;
-    height: 120px;
-  }
-  
-  .btn-primary, .btn-secondary {
-    min-width: 100%;
-    padding: 15px 25px;
-  }
-  
-  .modal-content {
-    padding: 30px 20px;
-  }
-}
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      color: var(--madc-grey);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
 
-@media (max-width: 400px) {
-  .hero-heading {
-    font-size: 1.8rem;
-  }
-  
-  .btn-primary, .btn-secondary {
-    font-size: 14px;
-    padding: 14px 20px;
-  }
-}
+    .close-modal:hover {
+      color: var(--madc-red);
+      background: rgba(139, 0, 0, 0.1);
+    }
 
-/* Fast exit transition */
-.page-fast-exit {
-  opacity: 0;
-  transform: scale(0.98);
-  transition: opacity 0.45s ease, transform 0.45s ease;
-}
-</style>
+    @keyframes modalPop {
+      from {
+        transform: scale(0.85);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* ================= RESPONSIVE DESIGN ================= */
+    @media (max-width: 1200px) {
+      .hero-heading {
+        font-size: 3.8rem;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .hero-heading {
+        font-size: 3.2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .loader-container {
+        width: 220px;
+        height: 220px;
+      }
+
+      .loader-logo {
+        width: 160px;
+        height: 160px;
+      }
+
+      .loader-logo video {
+        width: 140px;
+        height: 140px;
+      }
+
+      .loader-ring:nth-child(1) {
+        width: 200px;
+        height: 200px;
+      }
+
+      .loader-ring:nth-child(2) {
+        width: 180px;
+        height: 180px;
+      }
+
+      .loader-ring:nth-child(3) {
+        width: 160px;
+        height: 160px;
+      }
+
+      .hero-heading {
+        font-size: 2.8rem;
+      }
+
+      .hero-logo {
+        width: 140px;
+        height: 140px;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        min-width: 250px;
+        padding: 16px 30px;
+        font-size: 16px;
+      }
+
+      .buttons-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-heading {
+        font-size: 2.2rem;
+      }
+
+      .hero-logo {
+        width: 120px;
+        height: 120px;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        min-width: 100%;
+        padding: 15px 25px;
+      }
+
+      .modal-content {
+        padding: 30px 20px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero-heading {
+        font-size: 1.8rem;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        font-size: 14px;
+        padding: 14px 20px;
+      }
+    }
+
+    /* Fast exit transition */
+    .page-fast-exit {
+      opacity: 0;
+      transform: scale(0.98);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+  </style>
 </head>
 
 <body>
 
-<div id="loader">
-  <div class="loader-container">
-    <div class="loader-ring"></div>
-    <div class="loader-ring"></div>
-    <div class="loader-ring"></div>
-    <div class="loader-logo">
-      <video autoplay muted playsinline preload="auto" id="logoVideo">
-        <source src="assets/img/logo/3dlogo.mp4" type="video/mp4">
-        <!-- Fallback if video doesn't exist -->
-        <source src="assets/video/globe.mp4" type="video/mp4">
-      </video>
+  <div id="loader">
+    <div class="loader-container">
+      <div class="loader-ring"></div>
+      <div class="loader-ring"></div>
+      <div class="loader-ring"></div>
+      <div class="loader-logo">
+        <video autoplay muted playsinline preload="auto" id="logoVideo">
+          <source src="assets/img/logo/3dlogo.mp4" type="video/mp4">
+          <!-- Fallback if video doesn't exist -->
+          <source src="assets/video/globe.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <!-- <div class="loading-text">SYSTEMS INITIALIZING...</div> -->
+  </div>
+
+  <!-- Globe video that appears behind loader -->
+  <div id="globeVideoContainer">
+    <video id="globeVideo" autoplay muted loop playsinline preload="auto">
+      <source src="assets/video/globe.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- Transition video overlay -->
+  <div id="transitionVideoContainer">
+    <video id="transitionVideo" playsinline muted>
+      <source src="assets/video/Earth_4.mp4" type="video/mp4">
+      <!-- Fallback if transition video doesn't exist -->
+      <source src="assets/video/globe.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- Hero section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-logo">
+        <img src="assets/img/logo/madc-mob.png" alt="MADC Logo">
+      </div>
+
+      <h1 class="hero-heading">MAHARASHTRA AIRPORT DEVELOPMENT COMPANY LTD.</h1>
+
+      <div class="buttons-container">
+        <button class="btn-primary" onclick="initiateJourney()">
+          <i class="fas fa-rocket"></i> INITIATE JOURNEY
+        </button>
+
+        <button class="btn-secondary" id="downloadBtn">
+          <i class="fas fa-ticket-alt"></i> OBTAIN BOARDING PASS
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <audio id="welcomeAudio" preload="auto">
+    <source src="assets/voice/ai_voice.mpeg" type="audio/mpeg">
+  </audio>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <div class="close-modal" onclick="closeModal()">&times;</div>
+      <h3>BOARDING PASS REQUEST</h3>
+      <p
+        style="text-align: center; margin-bottom: 20px; color: var(--madc-offwhite); font-family: 'Exo 2', sans-serif;">
+        Enter credentials for personalized boarding pass authorization
+      </p>
+      <form id="boardingPassForm">
+        <input type="text" id="inputName" class="modal-input" placeholder="FULL NAME" required>
+        <button type="submit" class="btn-primary" style="width:100%; margin-top: 20px;">
+          <i class="fas fa-check-circle"></i> AUTHORIZE & GENERATE
+        </button>
+      </form>
     </div>
   </div>
-  <!-- <div class="loading-text">SYSTEMS INITIALIZING...</div> -->
-</div>
 
-<!-- Globe video that appears behind loader -->
-<div id="globeVideoContainer">
-  <video id="globeVideo" autoplay muted loop playsinline preload="auto">
-    <source src="assets/video/globe.mp4" type="video/mp4">
-  </video>
-</div>
+  <script>
+    // ================= SMOOTH INTRO SEQUENCE =================
+    let introStarted = false;
 
-<!-- Transition video overlay -->
-<div id="transitionVideoContainer">
-  <video id="transitionVideo" playsinline muted>
-    <source src="assets/video/Earth_4.mp4" type="video/mp4">
-    <!-- Fallback if transition video doesn't exist -->
-    <source src="assets/video/globe.mp4" type="video/mp4">
-  </video>
-</div>
+    function startIntroSequence() {
+      if (introStarted) return;
+      introStarted = true;
 
-<!-- Hero section -->
-<section class="hero-section">
-  <div class="hero-content">
-    <div class="hero-logo">
-      <img src="assets/img/logo/madc-mob.png" alt="MADC Logo">
-    </div>
-    
-    <h1 class="hero-heading">MAHARASHTRA AIRPORT DEVELOPMENT COMPANY LTD.</h1>
-    
-    <div class="buttons-container">
-      <button class="btn-primary" onclick="initiateJourney()">
-        <i class="fas fa-rocket"></i> INITIATE JOURNEY
-      </button>
-      
-      <button class="btn-secondary" id="downloadBtn">
-        <i class="fas fa-ticket-alt"></i> OBTAIN BOARDING PASS
-      </button>
-    </div>
-  </div>
-</section>
+      console.log('Starting intro sequence...');
 
-<audio id="welcomeAudio" preload="auto">
-  <source src="assets/voice/ai_voice.mpeg" type="audio/mpeg">
-</audio>
+      // Phase 1: Reveal globe behind loader
+      document.body.classList.add('intro-reveal');
 
-<!-- Modal -->
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <div class="close-modal" onclick="closeModal()">&times;</div>
-    <h3>BOARDING PASS REQUEST</h3>
-    <p style="text-align: center; margin-bottom: 20px; color: var(--madc-offwhite); font-family: 'Exo 2', sans-serif;">
-      Enter credentials for personalized boarding pass authorization
-    </p>
-    <form id="boardingPassForm">
-      <input type="text" id="inputName" class="modal-input" placeholder="FULL NAME" required>
-      <button type="submit" class="btn-primary" style="width:100%; margin-top: 20px;">
-        <i class="fas fa-check-circle"></i> AUTHORIZE & GENERATE
-      </button>
-    </form>
-  </div>
-</div>
+      // Phase 2: Complete transition to hero state
+      setTimeout(() => {
+        document.body.classList.add('hero-active');
 
-<script>
-// ================= SMOOTH INTRO SEQUENCE =================
-let introStarted = false;
+        // Try to play welcome audio
+        const welcomeAudio = document.getElementById('welcomeAudio');
+        welcomeAudio.play().catch(() => {
+          console.log('Audio play blocked - will play on user interaction');
+        });
+      }, 1200); // Match CSS transition timing
+    }
 
-function startIntroSequence() {
-  if (introStarted) return;
-  introStarted = true;
-  
-  console.log('Starting intro sequence...');
-  
-  // Phase 1: Reveal globe behind loader
-  document.body.classList.add('intro-reveal');
-  
-  // Phase 2: Complete transition to hero state
-  setTimeout(() => {
-    document.body.classList.add('hero-active');
-    
-    // Try to play welcome audio
-    const welcomeAudio = document.getElementById('welcomeAudio');
-    welcomeAudio.play().catch(() => {
-      console.log('Audio play blocked - will play on user interaction');
+    // Start intro when loader video ends
+    const logoVideo = document.getElementById('logoVideo');
+    logoVideo.addEventListener('ended', () => {
+      console.log('Logo video ended, starting intro sequence');
+      // Small delay for dramatic effect
+      setTimeout(startIntroSequence, 300);
     });
-  }, 1200); // Match CSS transition timing
-}
 
-// Start intro when loader video ends
-const logoVideo = document.getElementById('logoVideo');
-logoVideo.addEventListener('ended', () => {
-  console.log('Logo video ended, starting intro sequence');
-  // Small delay for dramatic effect
-  setTimeout(startIntroSequence, 300);
-});
+    // Fallback in case video doesn't load
+    setTimeout(() => {
+      if (!introStarted) {
+        console.log('Fallback: Starting intro sequence after timeout');
+        startIntroSequence();
+      }
+    }, 8000);
 
-// Fallback in case video doesn't load
-setTimeout(() => {
-  if (!introStarted) {
-    console.log('Fallback: Starting intro sequence after timeout');
-    startIntroSequence();
-  }
-}, 8000);
+    // ================= VIDEO TRANSITION LOGIC =================
+    function initiateJourney() {
+      console.log('Initiating journey...');
 
-// ================= VIDEO TRANSITION LOGIC =================
-function initiateJourney() {
-  console.log('Initiating journey...');
-  
-  // Play Welcome Audio (user interaction allows it now)
-  const welcomeAudio = document.getElementById('welcomeAudio');
-  welcomeAudio.currentTime = 0;
-  welcomeAudio.play().catch((e) => {
-    console.log('Audio play error:', e);
-  });
-  
-  // Show Video Overlay
-  const container = document.getElementById('transitionVideoContainer');
-  const video = document.getElementById('transitionVideo');
-  
-  console.log('Transition video container:', container);
-  console.log('Transition video element:', video);
-  
-  // Make sure video is ready
-  video.load();
-  
-  // Activate the transition container
-  container.classList.add('active');
-  
-  // Play the video with error handling
-  const playPromise = video.play();
-  
-  if (playPromise !== undefined) {
-    playPromise
-      .then(() => {
-        console.log('Transition video playing successfully');
-        
-        // Hide hero content while transition video plays
-        document.querySelector('.hero-section').style.opacity = '0';
-        document.querySelector('.hero-section').style.pointerEvents = 'none';
-      })
-      .catch(error => {
-        console.error('Error playing transition video:', error);
-        
-        // If video can't play, fallback to direct redirect
-        console.log('Falling back to direct redirect...');
+      // Play Welcome Audio (user interaction allows it now)
+      const welcomeAudio = document.getElementById('welcomeAudio');
+      welcomeAudio.currentTime = 0;
+      welcomeAudio.play().catch((e) => {
+        console.log('Audio play error:', e);
+      });
+
+      // Show Video Overlay
+      const container = document.getElementById('transitionVideoContainer');
+      const video = document.getElementById('transitionVideo');
+
+      console.log('Transition video container:', container);
+      console.log('Transition video element:', video);
+
+      // Make sure video is ready
+      video.load();
+
+      // Activate the transition container
+      container.classList.add('active');
+
+      // Play the video with error handling
+      const playPromise = video.play();
+
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            console.log('Transition video playing successfully');
+
+            // Hide hero content while transition video plays
+            document.querySelector('.hero-section').style.opacity = '0';
+            document.querySelector('.hero-section').style.pointerEvents = 'none';
+          })
+          .catch(error => {
+            console.error('Error playing transition video:', error);
+
+            // If video can't play, fallback to direct redirect
+            console.log('Falling back to direct redirect...');
+            startPageExitTransition();
+          });
+      }
+
+      // When video ends, redirect
+      video.addEventListener('ended', function onVideoEnd() {
+        console.log('Transition video ended, redirecting...');
+
+        // Remove event listener to prevent multiple triggers
+        video.removeEventListener('ended', onVideoEnd);
+
         startPageExitTransition();
       });
-  }
-  
-  // When video ends, redirect
-  video.addEventListener('ended', function onVideoEnd() {
-    console.log('Transition video ended, redirecting...');
-    
-    // Remove event listener to prevent multiple triggers
-    video.removeEventListener('ended', onVideoEnd);
-    
-    startPageExitTransition();
-  });
-  
-  // Also set a timeout as backup in case video doesn't end properly
-  setTimeout(() => {
-    if (!container.classList.contains('redirecting')) {
-      console.log('Backup timeout triggered, redirecting...');
-      startPageExitTransition();
+
+      // Also set a timeout as backup in case video doesn't end properly
+      setTimeout(() => {
+        if (!container.classList.contains('redirecting')) {
+          console.log('Backup timeout triggered, redirecting...');
+          startPageExitTransition();
+        }
+      }, 15000); // 15 second timeout
     }
-  }, 15000); // 15 second timeout
-}
 
-function startPageExitTransition() {
-  const container = document.getElementById('transitionVideoContainer');
-  container.classList.add('redirecting');
-  
-  // Start fast fade
-  document.body.classList.add("page-fast-exit");
-  
-  // Quick redirect
-  setTimeout(() => {
-    console.log('Redirecting to pro-madc.html');
-    window.location.href = 'pro-madc.html';
-  }, 400);
-}
+    function startPageExitTransition() {
+      const container = document.getElementById('transitionVideoContainer');
+      container.classList.add('redirecting');
 
-// ================= MODAL FUNCTIONS =================
-const modal = document.getElementById('myModal');
+      // Start fast fade
+      document.body.classList.add("page-fast-exit");
 
-document.getElementById('downloadBtn').onclick = () => {
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-};
+      // Quick redirect
+      setTimeout(() => {
+        console.log('Redirecting to pro-madc.html');
+        window.location.href = 'pro-madc.html';
+      }, 400);
+    }
 
-function closeModal() {
-  modal.style.display = 'none';
-  document.body.style.overflow = 'auto';
-}
+    // ================= MODAL FUNCTIONS =================
+    const modal = document.getElementById('myModal');
 
-window.addEventListener('click', (event) => {
-  if (event.target == modal) {
-    closeModal();
-  }
-});
+    document.getElementById('downloadBtn').onclick = () => {
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    };
 
-document.getElementById('boardingPassForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const name = document.getElementById('inputName').value;
-  
-  localStorage.setItem(
-    'boardingPassData',
-    JSON.stringify({ name: name })
-  );
-  
-  const submitBtn = document.querySelector('#boardingPassForm button');
-  submitBtn.innerHTML = '<i class="fas fa-check"></i> AUTHORIZATION SUCCESSFUL';
-  submitBtn.style.background = 'linear-gradient(135deg, #006600, #003300)';
-  
-  setTimeout(() => {
-    window.location.href = 'boarding-pass.html';
-  }, 1000);
-});
+    function closeModal() {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
 
-// Preload videos for smooth transitions
-window.addEventListener('load', () => {
-  console.log('Page loaded, preloading videos...');
-  
-  // Preload globe video
-  const globeVideo = document.getElementById('globeVideo');
-  globeVideo.load();
-  
-  // Preload transition video
-  const transitionVideo = document.getElementById('transitionVideo');
-  transitionVideo.preload = 'auto';
-  
-  // Add error handlers for debugging
-  const videos = document.querySelectorAll('video');
-  videos.forEach(video => {
-    video.addEventListener('error', (e) => {
-      console.error('Video error for:', video.src, e);
+    window.addEventListener('click', (event) => {
+      if (event.target == modal) {
+        closeModal();
+      }
     });
-    
-    video.addEventListener('canplay', () => {
-      console.log('Video can play:', video.src);
-    });
-  });
-});
 
-// Debug: Log when transition video is ready
-document.getElementById('transitionVideo').addEventListener('loadeddata', () => {
-  console.log('Transition video loaded and ready to play');
-});
-</script>
+    document.getElementById('boardingPassForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('inputName').value;
+
+      localStorage.setItem(
+        'boardingPassData',
+        JSON.stringify({ name: name })
+      );
+
+      const submitBtn = document.querySelector('#boardingPassForm button');
+      submitBtn.innerHTML = '<i class="fas fa-check"></i> AUTHORIZATION SUCCESSFUL';
+      submitBtn.style.background = 'linear-gradient(135deg, #006600, #003300)';
+
+      setTimeout(() => {
+        window.location.href = 'boarding-pass.html';
+      }, 1000);
+    });
+
+    // Preload videos for smooth transitions
+    window.addEventListener('load', () => {
+      console.log('Page loaded, preloading videos...');
+
+      // Preload globe video
+      const globeVideo = document.getElementById('globeVideo');
+      globeVideo.load();
+
+      // Preload transition video
+      const transitionVideo = document.getElementById('transitionVideo');
+      transitionVideo.preload = 'auto';
+
+      // Add error handlers for debugging
+      const videos = document.querySelectorAll('video');
+      videos.forEach(video => {
+        video.addEventListener('error', (e) => {
+          console.error('Video error for:', video.src, e);
+        });
+
+        video.addEventListener('canplay', () => {
+          console.log('Video can play:', video.src);
+        });
+      });
+    });
+
+    // Debug: Log when transition video is ready
+    document.getElementById('transitionVideo').addEventListener('loadeddata', () => {
+      console.log('Transition video loaded and ready to play');
+    });
+  </script>
+
+  <!-- Footer will be loaded here -->
+  <div id="footer-container"></div>
+  <script>
+    $(document).ready(function () {
+      $("#footer-container").load("footer.html");
+    });
+  </script>
 
 </body>
+
 </html>

@@ -1,221 +1,265 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>MADC Footer</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Floating Navigation Bar Fragment -->
+<!-- FontAwesome (loaded here to ensure availability if not in parent) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-/* ================= ROOT COLORS ================= */
-:root {
-  --madc-red: #d71920;
-  --madc-silver: #9e9e9e;
-  --madc-dark: #111111;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
-/* ================= FOOTER ================= */
-.footer-bg {
-  background: var(--madc-dark);
-  border-top: 3px solid var(--madc-red);
-  padding: 14px 20px;
-}
-
-.footer-container {
-  max-width: 1400px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 420px 1fr 140px; /* LOGO | CENTER | BACK */
-  align-items: center;
-}
-
-/* ================= LOGO ================= */
-.footer-logo {
-  background: #ffffff;
-  padding: 6px 12px;
-  border-radius: 4px;
-  box-shadow: 0 0 0 1.5px var(--madc-silver);
-  display: flex;
-  align-items: center;
-}
-
-.footer-logo img {
-  max-width: 380px;
-  height: auto;
-}
-
-/* ================= CENTER TEXT ================= */
-.footer-text {
-  color: var(--madc-silver);
-  font-size: 18px;
-  font-weight: 500;
-  margin: 0;
-  text-align: center;
-}
-
-.footer-text a {
-  color: var(--madc-red);
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.footer-text a:hover {
-  text-decoration: underline;
-}
-
-/* ================= BACK BUTTON ================= */
-.back-btn {
-  justify-self: end;
-  background: var(--madc-red);
-  border: 1.5px solid #000;
-  color: #ffffff;
-  padding: 8px 18px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.back-btn:hover {
-  opacity: 0.9;
-}
-
-/* ================= MEDIA QUERIES ================= */
-
-/* Extra Large Screens (4K) */
-@media (min-width: 1600px) {
-  .footer-container {
-    max-width: 1600px;
+  /* MADC Brand Colors */
+  :root {
+    --madc-red: #d71920;
+    --madc-silver: #9e9e9e;
+    --madc-dark: #111111;
+    --madc-dark-glass: rgba(17, 17, 17, 0.95);
   }
 
-  .footer-text {
-    font-size: 20px;
-  }
-
-  .back-btn {
-    font-size: 17px;
-    padding: 10px 22px;
-  }
-}
-
-/* Large Tablets / Small Laptops */
-@media (max-width: 1199px) {
-  .footer-container {
-    grid-template-columns: 320px 1fr 120px;
-  }
-
-  .footer-logo img {
-    max-width: 280px;
-  }
-
-  .footer-text {
-    font-size: 17px;
-  }
-}
-
-/* Tablets */
-@media (max-width: 991px) {
-  .footer-container {
-    grid-template-columns: 260px 1fr 110px;
-  }
-
-  .footer-logo img {
-    max-width: 230px;
-  }
-
-  .footer-text {
-    font-size: 16px;
-  }
-
-  .back-btn {
-    font-size: 15px;
-    padding: 7px 16px;
-  }
-}
-
-/* Mobile */
-@media (max-width: 767px) {
-  .footer-container {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    text-align: center;
-  }
-
-  .footer-logo {
+  /* Container for the floating nav to ensure it sits on top of everything */
+  .floating-nav-container {
+    position: fixed;
+    bottom: 40px;
+    /* Raised slightly */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    margin: auto;
+    gap: 30px;
+    /* Increased gap */
+    padding: 15px 45px;
+    /* Increased padding */
+    background: var(--madc-dark-glass, rgba(17, 17, 17, 0.95));
+    /* MADC Dark */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 70px;
+    /* Rounder */
+    border: 1px solid rgba(158, 158, 158, 0.2);
+    /* Silver tint */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .footer-logo img {
-    max-width: 240px;
+  .floating-nav-container:hover {
+    background: rgba(10, 10, 10, 0.98);
+    box-shadow: 0 20px 50px rgba(215, 25, 32, 0.15);
+    /* Red Glow */
+    border-color: rgba(215, 25, 32, 0.4);
+    /* MADC Red */
   }
 
-  .footer-text {
-    font-size: 15px;
+  .nav-btn {
+    background: transparent;
+    border: none;
+    color: #e0e0e0;
+    /* Off-white for better contrast than pure silver */
+    font-size: 28px;
+    /* Increased font size */
+    width: 65px;
+    /* Increased width */
+    height: 65px;
+    /* Increased height */
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
   }
 
-  .back-btn {
-    justify-self: center;
-    font-size: 14px;
-    padding: 8px 18px;
-  }
-}
-
-/* Small Phones */
-@media (max-width: 480px) {
-  .footer-bg {
-    padding: 12px 14px;
-  }
-
-  .footer-logo img {
-    max-width: 200px;
+  .nav-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(215, 25, 32, 0.8) 0%, transparent 70%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.4s ease;
+    border-radius: 50%;
+    z-index: 0;
   }
 
-  .footer-text {
-    font-size: 14px;
-    line-height: 1.4;
+  .nav-btn:hover {
+    color: #ffffff;
+    transform: translateY(-5px) scale(1.1);
+    text-shadow: 0 0 10px rgba(215, 25, 32, 0.6);
   }
 
-  .back-btn {
+  .nav-btn:hover::before {
+    opacity: 0.2;
+    transform: scale(1.5);
+  }
+
+  .nav-btn:active {
+    transform: translateY(0) scale(0.95);
+  }
+
+  /* Icon specific tweaks */
+  .nav-btn i {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-btn:hover i {
+    transform: scale(1.1);
+  }
+
+  /* Tooltip styling */
+  .nav-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px) scale(0.9);
+    background: var(--madc-red, #d71920);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 4px;
     font-size: 13px;
-    padding: 7px 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
-}
+
+  .nav-btn:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+    visibility: visible;
+  }
+
+  /* Separator line */
+  .nav-separator {
+    width: 1px;
+    height: 28px;
+    background: linear-gradient(to bottom, transparent, rgba(158, 158, 158, 0.4), transparent);
+    margin: 0 5px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .floating-nav-container {
+      bottom: 20px;
+      padding: 8px 25px;
+      gap: 15px;
+      width: auto;
+      max-width: 90%;
+      border-radius: 40px;
+    }
+
+    .nav-btn {
+      width: 42px;
+      height: 42px;
+      font-size: 19px;
+    }
+  }
 </style>
-</head>
 
-<body>
+<!-- This container is the floating nav bar -->
+<div class="floating-nav-container">
 
-<footer class="footer-bg">
-  <div class="footer-container">
+  <button class="nav-btn" onclick="goBack()" data-tooltip="Go Back">
+    <i class="fas fa-arrow-left"></i>
+  </button>
 
-    <!-- LEFT: LOGO -->
-    <div class="footer-logo">
-    <a href="index.html"><img src="assets/img/logo/logoMADC2.png" alt="MADC Logo"></a>
-    </div>
+  <div class="nav-separator"></div>
 
-    <!-- CENTER: TEXT -->
-    <p class="footer-text">
-      For more information, please visit at <span style="color: #d71920;">www.madcindia.org</span>
-      <!-- <a href="https://www.madcindia.org/" target="_blank">MADC India</a> -->
-    </p>
+  <button class="nav-btn" onclick="goHome()" data-tooltip="Home">
+    <i class="fas fa-home"></i>
+  </button>
 
-    <!-- RIGHT: BACK BUTTON -->
-    <button class="back-btn" onclick="goBack()">← Back</button>
+  <button class="nav-btn" onclick="toggleFullScreen()" data-tooltip="Full Screen" id="fullscreenBtn">
+    <i class="fas fa-expand"></i>
+  </button>
 
-  </div>
-</footer>
+  <button class="nav-btn" onclick="hardRefresh()" data-tooltip="Hard Refresh">
+    <i class="fas fa-sync-alt"></i>
+  </button>
+
+</div>
 
 <script>
-function goBack() {
-  window.history.back();
-}
-</script>
+  // Go Back History
+  function goBack() {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      // Fallback if no history
+      window.location.href = 'index.html';
+    }
+  }
 
-</body>
-</html>
+  // Go Home
+  function goHome() {
+    window.location.href = 'index.html';
+  }
+
+  // Toggle Full Screen
+  function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(err => {
+        console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+      });
+      // Change icon to compress
+      const btnIcon = document.querySelector('#fullscreenBtn i');
+      const btn = document.querySelector('#fullscreenBtn');
+      if (btnIcon) btnIcon.classList.replace('fa-expand', 'fa-compress');
+      if (btn) btn.setAttribute('data-tooltip', 'Exit Full Screen');
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+        // Change icon back to expand
+        const btnIcon = document.querySelector('#fullscreenBtn i');
+        const btn = document.querySelector('#fullscreenBtn');
+        if (btnIcon) btnIcon.classList.replace('fa-compress', 'fa-expand');
+        if (btn) btn.setAttribute('data-tooltip', 'Full Screen');
+      }
+    }
+  }
+
+  // Hard Refresh
+  function hardRefresh() {
+    // Force reload from server, bypassing cache
+    window.location.reload(true);
+  }
+
+  // ================= AUTO FULL SCREEN LOGIC =================
+  // Browsers block automatic fullscreen without user interaction.
+  // We try to trigger it on the very first interaction (click/touchstart).
+  // AND we try immediately in case the environment allows it (e.g. Kiosk mode).
+
+  function activateAutoFullscreen() {
+
+    // Safety check: if already fullscreen, do nothing
+    if (document.fullscreenElement) {
+      // Remove listeners if we succeeded
+      document.removeEventListener('click', activateAutoFullscreen);
+      document.removeEventListener('touchstart', activateAutoFullscreen);
+      return;
+    }
+
+    // Try to request fullscreen
+    document.documentElement.requestFullscreen().then(() => {
+      // Success! Remove listeners
+      document.removeEventListener('click', activateAutoFullscreen);
+      document.removeEventListener('touchstart', activateAutoFullscreen);
+    }).catch((err) => {
+      // Ignore errors (user might deny or browser might block)
+      // console.log("Auto-fullscreen blocked, waiting for interaction.");
+    });
+  }
+
+  // 1. Attempt immediately when this footer script loads
+  activateAutoFullscreen();
+
+  // 2. Add one-time listeners for the "first click" policy
+  document.addEventListener('click', activateAutoFullscreen);
+  document.addEventListener('touchstart', activateAutoFullscreen);
+</script>
