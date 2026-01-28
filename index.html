@@ -962,6 +962,27 @@
     });
   </script>
 
+  <script>
+  function requestFullScreen() {
+    const el = document.documentElement;
+
+    if (el.requestFullscreen) {
+      el.requestFullscreen();
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen(); // Safari
+    } else if (el.msRequestFullscreen) {
+      el.msRequestFullscreen(); // IE11
+    }
+  }
+
+  // Trigger fullscreen on first user interaction
+  document.addEventListener("click", function onFirstClick() {
+    requestFullScreen();
+    document.removeEventListener("click", onFirstClick);
+  }, { once: true });
+</script>
+
+
 </body>
 
 </html>
